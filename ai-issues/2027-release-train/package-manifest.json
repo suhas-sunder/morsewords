@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "revisedAt": "2026-11-13",
   "purpose": "Reviewed package mapping; never execute as a blind production script",
   "historicalAuditBase": "8c83c8214d515565c314ff99bc3df8af88e73121",
@@ -8,18 +8,25 @@
     {
       "packageId": "W01",
       "theme": "Current product release gate",
-      "originalImplementationCommits": [
-        "4577709108bdedb1a04dd520e8fb1b7a74c36a44"
-      ],
       "amendmentCommits": [],
       "dependencies": [],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "release infrastructure"
+      ],
       "plannedScope": "`scripts/local-final-validation.ts`, retained historical validator, `tests/qa-robustness-review/core-product-quality.spec.ts`, package scripts and program docs.",
       "classification": "FOUNDATION / RELEASE INFRASTRUCTURE",
       "userFacing": false,
       "standaloneProductionEligible": false,
-      "status": "VALIDATED / READY FOR OWNER REVIEW; NOT RELEASED",
-      "testCommands": [
+      "status": "VALIDATED",
+      "acceptance": "Fresh checkout without ignored upload export passes; missing summary/preview, wrong canonical and blank tool fail; real built Netlify handler tested.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [
+        "4577709108bdedb1a04dd520e8fb1b7a74c36a44"
+      ],
+      "documentationCommits": [],
+      "reviewBranch": "release/2027-W01-current-product-gate",
+      "draftPr": "https://github.com/suhas-sunder/morsewords/pull/2",
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -29,17 +36,20 @@
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
         "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
+      ],
+      "packageSpecificGates": [
         "npx playwright test tests/qa-robustness-review/core-product-quality.spec.ts"
       ],
-      "acceptance": "Fresh checkout without ignored upload export passes; missing summary/preview, wrong canonical and blank tool fail; real built Netlify handler tested.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "evidence": [
+        "ai-issues/2027-release-train/W01.md"
+      ]
     },
     {
       "packageId": "W02",
       "theme": "Keyboard navigation and task discovery",
-      "originalImplementationCommits": [
-        "c54a36c9f9b30e154cd337c9c9074ca54e03c429"
-      ],
       "amendmentCommits": [],
       "dependencies": [
         "W01"
@@ -51,8 +61,16 @@
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "VALIDATED / READY FOR OWNER REVIEW; NOT RELEASED",
-      "testCommands": [
+      "status": "VALIDATED",
+      "acceptance": "Initial focus, Tab/Shift-Tab boundary, Escape/return, nested settings, route close, desktop More search and audio decoder link.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [
+        "c54a36c9f9b30e154cd337c9c9074ca54e03c429"
+      ],
+      "documentationCommits": [],
+      "reviewBranch": "release/2027-W02-keyboard-navigation",
+      "draftPr": "https://github.com/suhas-sunder/morsewords/pull/3",
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -62,17 +80,20 @@
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
         "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
+      ],
+      "packageSpecificGates": [
         "npx playwright test tests/qa-robustness-review/navigation-dialog-quality.spec.ts"
       ],
-      "acceptance": "Initial focus, Tab/Shift-Tab boundary, Escape/return, nested settings, route close, desktop More search and audio decoder link.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "evidence": [
+        "ai-issues/2027-release-train/W02.md"
+      ]
     },
     {
       "packageId": "W03",
       "theme": "Try audio decoding",
-      "originalImplementationCommits": [
-        "1dc108241442189e86eda1884d6cae9ebab60d74"
-      ],
       "amendmentCommits": [],
       "dependencies": [
         "W02"
@@ -84,8 +105,16 @@
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "VALIDATED / READY FOR OWNER REVIEW; NOT RELEASED",
-      "testCommands": [
+      "status": "VALIDATED",
+      "acceptance": "Sample produces expected text through actual detector; no automatic playback; file replacement/clear cancels stale work; user file flow preserved.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [
+        "1dc108241442189e86eda1884d6cae9ebab60d74"
+      ],
+      "documentationCommits": [],
+      "reviewBranch": "release/2027-W03-audio-decoder-onboarding",
+      "draftPr": "https://github.com/suhas-sunder/morsewords/pull/4",
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -95,17 +124,20 @@
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
         "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
+      ],
+      "packageSpecificGates": [
         "npx playwright test tests/qa-robustness-review/audio-decoder-onboarding.spec.ts"
       ],
-      "acceptance": "Sample produces expected text through actual detector; no automatic playback; file replacement/clear cancels stale work; user file flow preserved.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "evidence": [
+        "ai-issues/2027-release-train/W03.md"
+      ]
     },
     {
       "packageId": "W04",
       "theme": "Inspect Morse timing",
-      "originalImplementationCommits": [
-        "7b5f6f95b31be424f00d4d586b170d6333c212dc"
-      ],
       "amendmentCommits": [],
       "dependencies": [
         "W03"
@@ -118,8 +150,16 @@
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "VALIDATED / READY FOR OWNER REVIEW; NOT RELEASED",
-      "testCommands": [
+      "status": "VALIDATED",
+      "acceptance": "Known PARIS totals and equal-speed standard cases; slow effective speed widens gaps only; native labels/keyboard; no route-local range caps.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [
+        "7b5f6f95b31be424f00d4d586b170d6333c212dc"
+      ],
+      "documentationCommits": [],
+      "reviewBranch": "release/2027-W04-interactive-timing",
+      "draftPr": "https://github.com/suhas-sunder/morsewords/pull/5",
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -129,17 +169,20 @@
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
         "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
+      ],
+      "packageSpecificGates": [
         "npx playwright test tests/qa-robustness-review/timing-lab.spec.ts"
       ],
-      "acceptance": "Known PARIS totals and equal-speed standard cases; slow effective speed widens gaps only; native labels/keyboard; no route-local range caps.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "evidence": [
+        "ai-issues/2027-release-train/W04.md"
+      ]
     },
     {
       "packageId": "W05",
       "theme": "Understand pasted spacing",
-      "originalImplementationCommits": [
-        "9438c51ec88a622154ee6fb8978be872c61fbc33"
-      ],
       "amendmentCommits": [
         "f3a3e32c38f935796e151edb5a108e3d2fd82ba5"
       ],
@@ -154,8 +197,16 @@
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "VALIDATED / READY FOR OWNER REVIEW; NOT RELEASED",
-      "testCommands": [
+      "status": "VALIDATED",
+      "acceptance": "Slash/pipe/newline/7-space inputs, unknown pattern, empty text and unspaced stream; copied output unchanged; analysis matches shared parser.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [
+        "9438c51ec88a622154ee6fb8978be872c61fbc33"
+      ],
+      "documentationCommits": [],
+      "reviewBranch": "release/2027-W05-spacing-diagnostics",
+      "draftPr": "https://github.com/suhas-sunder/morsewords/pull/6",
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -165,17 +216,20 @@
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
         "git diff --check",
-        "npx playwright test tests/qa-robustness-review/spacing-diagnostics.spec.ts"
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Slash/pipe/newline/7-space inputs, unknown pattern, empty text and unspaced stream; copied output unchanged; analysis matches shared parser.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [
+        "npx playwright test --config=playwright.review.config.ts tests/qa-robustness-review/spacing-diagnostics.spec.ts"
+      ],
+      "evidence": [
+        "ai-issues/2027-release-train/W05.md"
+      ]
     },
     {
       "packageId": "W06",
       "theme": "Reference provenance",
-      "originalImplementationCommits": [
-        "42ade9c52351ca072a4250ff198e7b78e3f5097b"
-      ],
       "amendmentCommits": [
         "dcf88d35385c8e85ce9ea0f2db7e8497da2b2a1c",
         "ca9f244f70ec30cbfe9f8969e2708e83ebe9648e"
@@ -191,8 +245,16 @@
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "VALIDATED / READY FOR OWNER REVIEW; NOT RELEASED",
-      "testCommands": [
+      "status": "VALIDATED",
+      "acceptance": "Every displayed label maps to a checked source/section; exclamation and non-ITU extensions are not called ITU standards; playback mappings unchanged.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [
+        "42ade9c52351ca072a4250ff198e7b78e3f5097b"
+      ],
+      "documentationCommits": [],
+      "reviewBranch": "release/2027-W06-reference-provenance",
+      "draftPr": "https://github.com/suhas-sunder/morsewords/pull/7",
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -202,17 +264,20 @@
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
         "git diff --check",
-        "npx playwright test tests/qa-robustness-review/reference-provenance.spec.ts"
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Every displayed label maps to a checked source/section; exclamation and non-ITU extensions are not called ITU standards; playback mappings unchanged.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [
+        "npx playwright test --config=playwright.review.config.ts tests/qa-robustness-review/reference-provenance.spec.ts tests/qa-robustness-review/reference-authority.spec.ts"
+      ],
+      "evidence": [
+        "ai-issues/2027-release-train/W06.md"
+      ]
     },
     {
       "packageId": "W07",
       "theme": "Library evidence inventory",
-      "originalImplementationCommits": [
-        "ee780f083f25b300102897f143032d0190b1e5a0"
-      ],
       "amendmentCommits": [
         "8a3652d683f301c64ab63c24615bae46625f1718"
       ],
@@ -220,13 +285,23 @@
         "W01",
         "W06"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "library evidence tooling"
+      ],
       "plannedScope": "`scripts/books/library-quality-report.ts`, report schema and fixtures, package script; generated report under `ai-issues/2027-release-train/evidence/`.",
       "classification": "RESEARCH / EVIDENCE CHECKPOINT",
       "userFacing": false,
       "standaloneProductionEligible": false,
-      "status": "VALIDATED / READY FOR OWNER REVIEW; NOT RELEASED",
-      "testCommands": [
+      "status": "VALIDATED",
+      "acceptance": "All 524 pairs inventoried; representative live probes distinguish observed/unavailable/unprobed; missing sources/payload errors visible; no scores mutate indexing.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [
+        "ee780f083f25b300102897f143032d0190b1e5a0"
+      ],
+      "documentationCommits": [],
+      "reviewBranch": "release/2027-W07-library-evidence",
+      "draftPr": "https://github.com/suhas-sunder/morsewords/pull/8",
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -236,17 +311,20 @@
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
         "git diff --check",
-        "npx playwright test tests/qa-robustness-review/library-quality-report.spec.ts"
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "All 524 pairs inventoried; representative live probes distinguish observed/unavailable/unprobed; missing sources/payload errors visible; no scores mutate indexing.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [
+        "npx playwright test --config=playwright.review.config.ts tests/qa-robustness-review/library-quality-report.spec.ts"
+      ],
+      "evidence": [
+        "ai-issues/2027-release-train/W07.md"
+      ]
     },
     {
       "packageId": "W08",
       "theme": "Useful library failure states",
-      "originalImplementationCommits": [
-        "f29b0c8557094b7f2bb0fb63fcbf80f20a61616e"
-      ],
       "amendmentCommits": [
         "afd68084ceac5b6123c7833f44753e7299027437"
       ],
@@ -261,8 +339,18 @@
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "VALIDATED / READY FOR OWNER REVIEW; NOT RELEASED",
-      "testCommands": [
+      "status": "VALIDATED",
+      "acceptance": "Preview+payload failure, delayed recovery, successful preview+failed full load, restored settings and mode-specific actions; no fabricated readiness or disabled viable exports.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [
+        "f29b0c8557094b7f2bb0fb63fcbf80f20a61616e"
+      ],
+      "documentationCommits": [
+        "33ff79215cc303b66c5f37b9ddaaa954edbd405e"
+      ],
+      "reviewBranch": "release/2027-W08-library-failure-context",
+      "draftPr": "https://github.com/suhas-sunder/morsewords/pull/9",
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -272,16 +360,24 @@
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
         "git diff --check",
-        "npx playwright test tests/qa-robustness-review/library-loading-stability.spec.ts"
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Preview+payload failure, delayed recovery, successful preview+failed full load, restored settings and mode-specific actions; no fabricated readiness or disabled viable exports.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [
+        "npx playwright test --config=playwright.review.config.ts tests/qa-robustness-review/library-failure-context.spec.ts tests/qa-robustness-review/library-loading-stability.spec.ts tests/qa-robustness-review/morse-book-startup-preview.spec.ts tests/qa-robustness-review/morse-audiobook-parity.spec.ts"
+      ],
+      "evidence": [
+        "ai-issues/2027-release-train/W08.md"
+      ]
     },
     {
       "packageId": "W09",
       "theme": "Global navigation payload",
-      "originalImplementationCommits": [],
-      "amendmentCommits": [],
+      "amendmentCommits": [
+        "602802276910ddf5fe3ca083c11acc1155217a77",
+        "050fd3c12146145acbc5b7129c51a8840139b806"
+      ],
       "dependencies": [
         "W08",
         "TRANCHE-A-HARDENING"
@@ -293,8 +389,18 @@
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "VALIDATED / READY FOR OWNER REVIEW; NOT RELEASED",
-      "testCommands": [
+      "status": "VALIDATED",
+      "acceptance": "Same-method before/after raw/gzip/import graph/SSR, cold/warm desktop/mobile navigation, delayed/error/retry search, keyboard/core links; no new eager network request.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [
+        "31425946b27c35a643a99e0bb426cda071fbddd2"
+      ],
+      "documentationCommits": [
+        "f9d6e7ca8eda7714d3d0f1c96f35db1697a35dc9"
+      ],
+      "reviewBranch": "release/2027-W09-global-payload",
+      "draftPr": "https://github.com/suhas-sunder/morsewords/pull/11",
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -303,18 +409,22 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Same-method before/after raw/gzip/import graph/SSR, cold/warm desktop/mobile navigation, delayed/error/retry search, keyboard/core links; no new eager network request.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
-      "implementationCommits": [
-        "31425946b27c35a643a99e0bb426cda071fbddd2"
+      "packageSpecificGates": [
+        "npm run books:navigation-index:check",
+        "npx playwright test --config=playwright.review.config.ts tests/qa-robustness-review/navigation-payload.spec.ts tests/qa-robustness-review/navigation-dialog-quality.spec.ts"
+      ],
+      "evidence": [
+        "ai-issues/2027-release-train/W09.md"
       ]
     },
     {
       "packageId": "W10",
       "theme": "Translator input diagnostics",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W09"
@@ -328,8 +438,18 @@
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "VALIDATED / READY FOR OWNER REVIEW; NOT RELEASED",
-      "testCommands": [
+      "status": "VALIDATED",
+      "acceptance": "Repeated symbols, accents, emoji, whitespace, punctuation, long paste and accessible mobile output; canonical encoding unchanged.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [
+        "f58d08cce9a704967021c765aae2c2219c8cfa9f"
+      ],
+      "documentationCommits": [
+        "16a776958ea4fa7039a0a3bb58f2ecd5fd04f205"
+      ],
+      "reviewBranch": "release/2027-W10-translator-diagnostics",
+      "draftPr": "https://github.com/suhas-sunder/morsewords/pull/12",
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -338,18 +458,21 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Repeated symbols, accents, emoji, whitespace, punctuation, long paste and accessible mobile output; canonical encoding unchanged.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
-      "implementationCommits": [
-        "f58d08cce9a704967021c765aae2c2219c8cfa9f"
+      "packageSpecificGates": [
+        "npx playwright test --config=playwright.review.config.ts tests/qa-robustness-review/translator-diagnostics.spec.ts tests/qa-robustness-review/morse-utils.fuzz.spec.ts"
+      ],
+      "evidence": [
+        "ai-issues/2027-release-train/W10.md"
       ]
     },
     {
       "packageId": "W11",
       "theme": "Recover decoder boundaries",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W10"
@@ -363,8 +486,18 @@
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "VALIDATED / READY FOR OWNER REVIEW; NOT RELEASED",
-      "testCommands": [
+      "status": "VALIDATED",
+      "acceptance": "Unknown group identity, no invented gaps, source preserved on navigation/back, storage failure fallback.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [
+        "8ee1ee7632aac9f46064644eb6fea618b65f0439"
+      ],
+      "documentationCommits": [
+        "7c58cfa96c01b4eaf6b0e652ad1b6d47634011f4"
+      ],
+      "reviewBranch": "release/2027-W11-decoder-boundaries",
+      "draftPr": "https://github.com/suhas-sunder/morsewords/pull/13",
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -373,18 +506,21 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Unknown group identity, no invented gaps, source preserved on navigation/back, storage failure fallback.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
-      "implementationCommits": [
-        "8ee1ee7632aac9f46064644eb6fea618b65f0439"
+      "packageSpecificGates": [
+        "npx playwright test --config=playwright.review.config.ts tests/qa-robustness-review/decoder-boundaries.spec.ts tests/qa-robustness-review/spacing-diagnostics.spec.ts tests/qa-robustness-review/morse-code-reader.spec.ts tests/qa-robustness-review/morse-code-word-separator.spec.ts"
+      ],
+      "evidence": [
+        "ai-issues/2027-release-train/W11.md"
       ]
     },
     {
       "packageId": "W12",
       "theme": "Playback lifecycle",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W11"
@@ -396,8 +532,18 @@
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "VALIDATED / READY FOR OWNER REVIEW; NOT RELEASED",
-      "testCommands": [
+      "status": "VALIDATED",
+      "acceptance": "Rapid Play/Stop, message/settings changes, hidden tab, suspended/resumed context, unmount, stale timers/oscillators and browser unlock; document WebKit limits.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [
+        "c6df055b86a7bd08c4dd31ebe6e0a42189bbbd07"
+      ],
+      "documentationCommits": [
+        "dff39b499e51c75a89104cddb018f85172cf732b"
+      ],
+      "reviewBranch": "release/2027-W12-playback-lifecycle",
+      "draftPr": "https://github.com/suhas-sunder/morsewords/pull/14",
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -406,19 +552,24 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Rapid Play/Stop, message/settings changes, hidden tab, suspended/resumed context, unmount, stale timers/oscillators and browser unlock; document WebKit limits.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
-      "implementationCommits": [
-        "c6df055b86a7bd08c4dd31ebe6e0a42189bbbd07"
+      "packageSpecificGates": [
+        "npx playwright test --config=playwright.review.config.ts tests/qa-robustness-review/playback-ownership.spec.ts tests/qa-robustness-review/mobile-audio-playback.spec.ts tests/qa-robustness-review/audio-consolidation.spec.ts"
+      ],
+      "evidence": [
+        "ai-issues/2027-release-train/W12.md"
       ]
     },
     {
       "packageId": "W13",
       "theme": "Export job recovery",
-      "originalImplementationCommits": [],
-      "amendmentCommits": [],
+      "amendmentCommits": [
+        "9400be3db37ab3cf477ab8a15160c5e9f4f02f76"
+      ],
       "dependencies": [
         "W12"
       ],
@@ -430,8 +581,18 @@
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "VALIDATED / READY FOR OWNER REVIEW; NOT RELEASED",
-      "testCommands": [
+      "status": "VALIDATED",
+      "acceptance": "Actual part/duration progress, sequential release, stale-job guard, failed-part or truthful whole-job retry, no duplicate downloads, URL cleanup.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [
+        "c2610bb026ab5f0f7fadfefd90179e8f4ed098d2"
+      ],
+      "documentationCommits": [
+        "8c7ad40b1ac8e2ec43aa893f6ff38365b87b50c0"
+      ],
+      "reviewBranch": "release/2027-W13-export-recovery",
+      "draftPr": "https://github.com/suhas-sunder/morsewords/pull/15",
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -440,19 +601,21 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Actual part/duration progress, sequential release, stale-job guard, failed-part or truthful whole-job retry, no duplicate downloads, URL cleanup.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
-      "implementationCommits": [
-        "c2610bb026ab5f0f7fadfefd90179e8f4ed098d2",
-        "9400be3db37ab3cf477ab8a15160c5e9f4f02f76"
+      "packageSpecificGates": [
+        "npx playwright test --config=playwright.review.config.ts tests/qa-robustness-review/export-job-recovery.spec.ts tests/qa-robustness-review/translator-audio-export.spec.ts tests/qa-robustness-review/long-form-export-pipeline.spec.ts tests/qa-robustness-review/morse-video-export.spec.ts"
+      ],
+      "evidence": [
+        "ai-issues/2027-release-train/W13.md"
       ]
     },
     {
       "packageId": "W14",
       "theme": "Sound comparison",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W12",
@@ -466,8 +629,18 @@
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "VALIDATED / READY FOR OWNER REVIEW; NOT RELEASED",
-      "testCommands": [
+      "status": "VALIDATED",
+      "acceptance": "Same timing, complete registry, explicit audition only, stop prior sound, selected preference persists, keyboard/mobile.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [
+        "c4d7813c8789a12586b8787e250c83b97973c5d1"
+      ],
+      "documentationCommits": [
+        "04c0ae090aaced7168441ec3f3a61b6304083349"
+      ],
+      "reviewBranch": "release/2027-W14-preset-comparison",
+      "draftPr": "https://github.com/suhas-sunder/morsewords/pull/16",
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -476,18 +649,21 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Same timing, complete registry, explicit audition only, stop prior sound, selected preference persists, keyboard/mobile.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
-      "implementationCommits": [
-        "c4d7813c8789a12586b8787e250c83b97973c5d1"
+      "packageSpecificGates": [
+        "npx playwright test --config=playwright.review.config.ts tests/qa-robustness-review/preset-comparison.spec.ts tests/qa-robustness-review/audio-preset-registry.spec.ts"
+      ],
+      "evidence": [
+        "ai-issues/2027-release-train/W14.md"
       ]
     },
     {
       "packageId": "W15",
       "theme": "Decoder signal inspection",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W03",
@@ -501,8 +677,18 @@
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "VALIDATED / READY FOR OWNER REVIEW; NOT RELEASED",
-      "testCommands": [
+      "status": "VALIDATED",
+      "acceptance": "Downsampled bounded memory/DOM, longest supported clip responsive, actual detected values, before/after lab cost, no invented confidence.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [
+        "3fe850101c1f66699040d66a8d0420ebfd825bfc"
+      ],
+      "documentationCommits": [
+        "95b84f82099f5a68c3fae9e7af2e3189fd5e9efe"
+      ],
+      "reviewBranch": "release/2027-W15-decoder-inspection",
+      "draftPr": "https://github.com/suhas-sunder/morsewords/pull/17",
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -511,20 +697,21 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Downsampled bounded memory/DOM, longest supported clip responsive, actual detected values, before/after lab cost, no invented confidence.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
-      "implementationCommits": [
-        "3fe850101c1f66699040d66a8d0420ebfd825bfc"
+      "packageSpecificGates": [
+        "npx playwright test --config=playwright.review.config.ts tests/qa-robustness-review/signal-inspection.spec.ts tests/qa-robustness-review/audio-decoder.spec.ts tests/qa-robustness-review/audio-decoder-onboarding.spec.ts"
+      ],
+      "evidence": [
+        "ai-issues/2027-release-train/W15.md"
       ]
     },
     {
       "packageId": "W16",
       "theme": "Audio tool integration review",
-      "originalImplementationCommits": [
-        "6a52b6fae01daf8692009c63b1b62ee410c41c53"
-      ],
       "amendmentCommits": [
         "754c83c0627f7afa770b0c5848977aec8f11db48"
       ],
@@ -544,18 +731,7 @@
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "VALIDATED / READY FOR OWNER REVIEW; NOT RELEASED",
-      "testCommands": [
-        "npm run typecheck",
-        "npm test",
-        "npm run build:netlify",
-        "npm run site:local-final-validation",
-        "npm run test:core-product",
-        "npm run pages:url-indexability-canonical-audit",
-        "npm run pages:gsc-meta-content-quality-audit",
-        "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
-      ],
+      "status": "VALIDATED",
       "acceptance": "Rendered ranges/defaults/presets/engine values, persistence/migration and intentional exceptions, mobile/WebKit, repeat W09 performance checks.",
       "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
       "reviewBranch": "release/2027-W16-audio-integration",
@@ -566,23 +742,14 @@
         "evidence/w16-performance.json",
         "TRANCHE-B-FINAL-REVIEW.md"
       ],
-      "draftPr": "https://github.com/suhas-sunder/morsewords/pull/18"
-    },
-    {
-      "packageId": "W17",
-      "theme": "Start a learning session",
-      "originalImplementationCommits": [],
-      "amendmentCommits": [],
-      "dependencies": [
-        "W16"
+      "draftPr": "https://github.com/suhas-sunder/morsewords/pull/18",
+      "implementationCommits": [
+        "6a52b6fae01daf8692009c63b1b62ee410c41c53"
       ],
-      "affectedRoutes": [],
-      "plannedScope": "Practice hub, `data/morseLearning.ts`, learn route.",
-      "classification": "USER-FACING",
-      "userFacing": true,
-      "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "documentationCommits": [
+        "689d8ea38965b37d70138d761f5407cd01bffcb1"
+      ],
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -591,26 +758,79 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Choice leads to matching configured exercise; skip/back works; no forced account.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [
+        "npx playwright test --config=playwright.review.config.ts tests/qa-robustness-review/audio-integration.spec.ts tests/qa-robustness-review/settings-storage.spec.ts tests/qa-robustness-review/interactive-settings-contract.spec.ts tests/qa-robustness-review/audio-format-parity.spec.ts tests/qa-robustness-review/audio-preset-registry.spec.ts tests/qa-robustness-review/morse-timing.spec.ts tests/qa-robustness-review/morse-video-generator.spec.ts tests/qa-robustness-review/morse-audiobook-parity.spec.ts tests/qa-robustness-review/morse-book-startup-preview.spec.ts"
+      ]
+    },
+    {
+      "packageId": "W17",
+      "theme": "Library detail payload isolation",
+      "amendmentCommits": [],
+      "dependencies": [
+        "W16",
+        "TRANCHE-B-HARDENING"
+      ],
+      "affectedRoutes": [
+        "/morse-code-books/:slug",
+        "/morse-code-audiobooks/:slug",
+        "/morse-code-books/:slug/print"
+      ],
+      "plannedScope": "Server-only library lookup, bounded detail loader projection and manifest-free browser helpers.",
+      "classification": "USER-FACING",
+      "userFacing": true,
+      "standaloneProductionEligible": true,
+      "status": "PROPOSED",
+      "acceptance": "Measured raw/gzip client reduction without SSR inflation; all 524 identity/eligibility contracts, related titles, preview/full/fallback/retry, selection, settings, playback, segmented export and print noindex preserved.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
+        "npm run typecheck",
+        "npm test",
+        "npm run build:netlify",
+        "npm run site:local-final-validation",
+        "npm run test:core-product",
+        "npm run pages:url-indexability-canonical-audit",
+        "npm run pages:gsc-meta-content-quality-audit",
+        "npm run pages:sitemap-count-print-indexability-audit",
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
+      ],
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W18",
-      "theme": "Explain wrong answers",
-      "originalImplementationCommits": [],
+      "theme": "Start a learning session",
       "amendmentCommits": [],
       "dependencies": [
         "W17"
       ],
-      "affectedRoutes": [],
-      "plannedScope": "Practice/typing answer feedback shared behavior.",
+      "affectedRoutes": [
+        "/practice",
+        "/learn-morse-code"
+      ],
+      "plannedScope": "Practice hub, `data/morseLearning.ts`, learn route.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Choice leads to matching configured exercise; skip/back works; no forced account.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -619,26 +839,37 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "No answer leakage before submission; exact token differences; accessible status announcements.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W19",
-      "theme": "Weak-spot review",
-      "originalImplementationCommits": [],
+      "theme": "Explain wrong answers",
       "amendmentCommits": [],
       "dependencies": [
         "W18"
       ],
-      "affectedRoutes": [],
-      "plannedScope": "Word trainer, practice storage, review selection tests.",
+      "affectedRoutes": [
+        "/practice",
+        "/typing"
+      ],
+      "plannedScope": "Practice/typing answer feedback shared behavior.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "No answer leakage before submission; exact token differences; accessible status announcements.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -647,26 +878,38 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Existing keys preserved/migrated reversibly, empty queue, repeated mistakes, clear-one/clear-all distinctions.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W20",
-      "theme": "Short session completion",
-      "originalImplementationCommits": [],
+      "theme": "Weak-spot review",
       "amendmentCommits": [],
       "dependencies": [
         "W19"
       ],
-      "affectedRoutes": [],
-      "plannedScope": "Practice/typing/sentence session lifecycle and summary.",
+      "affectedRoutes": [
+        "local learning storage",
+        "/morse-code-word-trainer",
+        "/practice"
+      ],
+      "plannedScope": "Word trainer, practice storage, review selection tests.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Existing keys preserved/migrated reversibly, empty queue, repeated mistakes, clear-one/clear-all distinctions.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -675,26 +918,38 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Paused time excluded, finish early, replay doesn't inflate success, browser reload continuity.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W21",
-      "theme": "Sound-first progression",
-      "originalImplementationCommits": [],
+      "theme": "Short session completion",
       "amendmentCommits": [],
       "dependencies": [
         "W20"
       ],
-      "affectedRoutes": [],
-      "plannedScope": "Audio practice/quiz, learning-set data.",
+      "affectedRoutes": [
+        "/practice",
+        "/typing",
+        "/morse-code-sentence-practice"
+      ],
+      "plannedScope": "Practice/typing/sentence session lifecycle and summary.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Paused time excluded, finish early, replay doesn't inflate success, browser reload continuity.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -703,55 +958,76 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Known deterministic progression, manual override, no certification; compare actual accuracy without hidden scoring.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W22",
-      "theme": "Accessible non-flash practice",
-      "originalImplementationCommits": [],
+      "theme": "Sound-first progression",
       "amendmentCommits": [],
       "dependencies": [
         "W21"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "/morse-code-audio-practice",
+        "/morse-code-audio-quiz"
+      ],
+      "plannedScope": "Audio practice/quiz, learning-set data.",
+      "classification": "USER-FACING",
+      "userFacing": true,
+      "standaloneProductionEligible": true,
+      "status": "PROPOSED",
+      "acceptance": "Known deterministic progression, manual override, no certification; compare actual accuracy without hidden scoring.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
+        "npm run typecheck",
+        "npm test",
+        "npm run build:netlify",
+        "npm run site:local-final-validation",
+        "npm run test:core-product",
+        "npm run pages:url-indexability-canonical-audit",
+        "npm run pages:gsc-meta-content-quality-audit",
+        "npm run pages:sitemap-count-print-indexability-audit",
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
+      ],
+      "packageSpecificGates": [],
+      "evidence": []
+    },
+    {
+      "packageId": "W23",
+      "theme": "Accessible non-flash practice",
+      "amendmentCommits": [],
+      "dependencies": [
+        "W22"
+      ],
+      "affectedRoutes": [
+        "shared flash safety",
+        "practice and quiz routes"
+      ],
       "plannedScope": "Shared flash safety, quizzes, practice settings.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
-        "npm run typecheck",
-        "npm test",
-        "npm run build:netlify",
-        "npm run site:local-final-validation",
-        "npm run test:core-product",
-        "npm run pages:url-indexability-canonical-audit",
-        "npm run pages:gsc-meta-content-quality-audit",
-        "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
-      ],
+      "status": "PROPOSED",
       "acceptance": "Exact strobe warning, toggle/lamp compound control, reduced motion, no flash before consent.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
-    },
-    {
-      "packageId": "W23",
-      "theme": "Learner data portability",
-      "originalImplementationCommits": [],
-      "amendmentCommits": [],
-      "dependencies": [
-        "W19",
-        "W22"
-      ],
-      "affectedRoutes": [],
-      "plannedScope": "Learning storage and settings UI, import validator.",
-      "classification": "USER-FACING",
-      "userFacing": true,
-      "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -760,27 +1036,43 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Invalid/oversized import rejected, preview before overwrite, backup/reversible import, no network upload.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W24",
-      "theme": "Learning cohort review",
-      "originalImplementationCommits": [],
+      "theme": "Learner data portability and learning integration review",
       "amendmentCommits": [],
       "dependencies": [
         "W17",
+        "W20",
+        "W21",
+        "W22",
         "W23"
       ],
-      "affectedRoutes": [],
-      "plannedScope": "Learn/practice/typing/word/sentence/audio quizzes; journey tests.",
+      "affectedRoutes": [
+        "local learning storage",
+        "/learn-morse-code",
+        "/practice",
+        "practice and quiz routes"
+      ],
+      "plannedScope": "Learning storage and settings UI, import validator. Complete beginner, listening and review journeys; keyboard, reduced motion, privacy and cumulative payload measurement.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Invalid/oversized import rejected, preview before overwrite, backup/reversible import, no network upload. Full W18-W23 journey regression; compact performance evidence; no unsupported learning claims.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -789,27 +1081,37 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Three sample learner journeys, keyboard-only and mobile WebKit; 8-week cohort evidence.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W25",
       "theme": "Alphabet comparison drills",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W06",
         "W24"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "Alphabet/reference shared pattern playback and comparison data."
+      ],
       "plannedScope": "Alphabet/reference shared pattern playback and comparison data.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "All A\u2013Z canonical mappings, one playback owner, meaningful accessible labels.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -818,26 +1120,36 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "All A–Z canonical mappings, one playback owner, meaningful accessible labels.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W26",
       "theme": "Number rhythm practice",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W25"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "Number reference component/data, existing practice handoff."
+      ],
       "plannedScope": "Number reference component/data, existing practice handoff.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "All digits five elements, cut-number caveat sourced, standard encoder unchanged.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -846,26 +1158,36 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "All digits five elements, cut-number caveat sourced, standard encoder unchanged.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W27",
       "theme": "Punctuation interoperability",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W26"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "W06 source registry, punctuation/dictionary routes."
+      ],
       "plannedScope": "W06 source registry, punctuation/dictionary routes.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Encode/decode round-trip, standard scope, slash-versus-word-gap explanation, collision notes.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -874,26 +1196,36 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Encode/decode round-trip, standard scope, slash-versus-word-gap explanation, collision notes.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W28",
       "theme": "Prosign transmission",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W27"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "Prosign reference/player helper and dictionary signals."
+      ],
       "plannedScope": "Prosign reference/player helper and dictionary signals.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Joined marks have intra-element gaps only; letter comparison has real letter gap; source/usage labels.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -902,26 +1234,36 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Joined marks have intra-element gaps only; letter comparison has real letter gap; source/usage labels.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W29",
       "theme": "Q-code context",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W28"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "Q-code data/reference route, source links."
+      ],
       "plannedScope": "Q-code data/reference route, source links.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Verify entries against primary references; no emergency/legal reliability promises.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -930,27 +1272,37 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Verify entries against primary references; no emergency/legal reliability promises.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W30",
       "theme": "Timing exportable reference",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W04",
         "W29"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "Timing lab export, print helpers, existing timing/Farnsworth routes."
+      ],
       "plannedScope": "Timing lab export, print helpers, existing timing/Farnsworth routes.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Desktop/mobile accessible table, PDF/image/print values identical, sources and chosen speeds included.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -959,27 +1311,37 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Desktop/mobile accessible table, PDF/image/print values identical, sources and chosen speeds included.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W31",
       "theme": "Dictionary search quality",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W27",
         "W29"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "Dictionary data/search normalization, category UI."
+      ],
       "plannedScope": "Dictionary data/search normalization, category UI.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Accents, names, dot/dash input, categories, empty query, no-match next step; stable canonical links.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -988,27 +1350,37 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Accents, names, dot/dash input, categories, empty query, no-match next step; stable canonical links.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W32",
       "theme": "Reference accuracy review",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W25",
         "W31"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "Shared mapping/data, charts inventory, Sources route, test audit."
+      ],
       "plannedScope": "Shared mapping/data, charts inventory, Sources route, test audit.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Web/print/playback mappings agree; exceptions explicit; no invented \u201cofficial certification.\u201d",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -1017,27 +1389,37 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Web/print/playback mappings agree; exceptions explicit; no invented “official certification.”",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W33",
       "theme": "Curated library entry",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W07",
         "W32"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "Book/audiobook library hubs, compact descriptors."
+      ],
       "plannedScope": "Book/audiobook library hubs, compact descriptors.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "No new ingestion; filters keyboard accessible and SSR directory links retained; unknown length labelled.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -1046,26 +1428,36 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "No new ingestion; filters keyboard accessible and SSR directory links retained; unknown length labelled.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W34",
       "theme": "Chapter selection ergonomics",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W33"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "`MorseBookPage.tsx` section picker, shared selection utilities."
+      ],
       "plannedScope": "`MorseBookPage.tsx` section picker, shared selection utilities.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Huge book, front matter exclusions, persisted custom scope, selected duration and export match exactly.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -1074,26 +1466,36 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Huge book, front matter exclusions, persisted custom scope, selected duration and export match exactly.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W35",
       "theme": "Resume clarity",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W34"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "Book live progress/hash storage, player UI."
+      ],
       "plannedScope": "Book live progress/hash storage, player UI.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Content-version change, chapter move, elapsed boundary, single-key restart, migration preserved.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -1102,27 +1504,37 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Content-version change, chapter move, elapsed boundary, single-key restart, migration preserved.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W36",
       "theme": "Book/audio task differentiation",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W08",
         "W35"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "Book/audio route composition and shared workspace variants."
+      ],
       "plannedScope": "Book/audio route composition and shared workspace variants.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Book reading/copy/typing versus audio chapter/listen/export first actions; equivalent power/settings retained.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -1131,27 +1543,37 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Book reading/copy/typing versus audio chapter/listen/export first actions; equivalent power/settings retained.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W37",
       "theme": "Library source transparency",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W06",
         "W36"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "Book source data display, Sources, per-title quality report."
+      ],
       "plannedScope": "Book source data display, Sources, per-title quality report.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Missing source explicitly unknown; no worldwide public-domain guarantee; links resolve.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -1160,27 +1582,37 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Missing source explicitly unknown; no worldwide public-domain guarantee; links resolve.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W38",
       "theme": "Small library editorial pilot",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W07",
         "W37"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "At most 6 approved existing summaries; paired pages; report evidence."
+      ],
       "plannedScope": "At most 6 approved existing summaries; paired pages; report evidence.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Human-usefulness review, no plot hallucinations, paired intent preserved; full list in PR.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -1189,26 +1621,36 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Human-usefulness review, no plot hallucinations, paired intent preserved; full list in PR.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W39",
       "theme": "Library eligibility proposals",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W38"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "Quality report, owner exports, decision inventory and inverse redirect map."
+      ],
       "plannedScope": "Quality report, owner exports, decision inventory and inverse redirect map.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Missing external-link/GSC evidence remains unresolved; affected links and rollback documented.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -1217,26 +1659,36 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Missing external-link/GSC evidence remains unresolved; affected links and rollback documented.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W40",
       "theme": "Approved library decisions",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W39"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "Precisely approved route/meta/sitemap/internal-link set, no wildcard changes."
+      ],
       "plannedScope": "Precisely approved route/meta/sitemap/internal-link set, no wildcard changes.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Exact before/after URL ledger, status/canonical/robots, internal links and rollback simulation.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -1245,27 +1697,37 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Exact before/after URL ledger, status/canonical/robots, internal links and rollback simulation.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W41",
       "theme": "Classroom exercise workflow",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W24",
         "W32"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "Worksheet builder/storage/print helpers."
+      ],
       "plannedScope": "Worksheet builder/storage/print helpers.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Private words never enter QR/analytics, printer layout and answer keys match, invalid preset recovery.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -1274,26 +1736,36 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Private words never enter QR/analytics, printer layout and answer keys match, invalid preset recovery.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W42",
       "theme": "Educational pack",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W41"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "Existing chart/worksheet export system; pack manifest/assets."
+      ],
       "plannedScope": "Existing chart/worksheet export system; pack manifest/assets.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Render every page, no clipped Morse, correct answers, licensing/source notes and usable print contrast.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -1302,27 +1774,37 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Render every page, no clipped Morse, correct answers, licensing/source notes and usable print contrast.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W43",
       "theme": "Language provenance",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W06",
         "W32"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "Language shared data/pages and Sources."
+      ],
       "plannedScope": "Language shared data/pages and Sources.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Every change sourced; translator versus adaptation clearly separated; ambiguous cases flagged.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -1331,26 +1813,36 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Every change sourced; translator versus adaptation clearly separated; ambiguous cases flagged.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W44",
       "theme": "Transliteration preview",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W43"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "`internationalMorse.ts`, international translator, shared diagnostics from W09."
+      ],
       "plannedScope": "`internationalMorse.ts`, international translator, shared diagnostics from W09.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Multiple scripts/accents, user editing, current algorithm unchanged unless verified defect; no raw analytics.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -1359,27 +1851,37 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Multiple scripts/accents, user editing, current algorithm unchanged unless verified defect; no raw analytics.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W45",
       "theme": "Open reference data",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W32",
         "W43"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "Shared canonical map serializer, static generated reference file, Sources/docs."
+      ],
       "plannedScope": "Shared canonical map serializer, static generated reference file, Sources/docs.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Generated values match engine, schema/version tests, explicit allowed reuse terms approved by owner.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -1388,26 +1890,36 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Generated values match engine, schema/version tests, explicit allowed reuse terms approved by owner.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W46",
       "theme": "Embed feasibility and pilot",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W45"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "Isolated widget consumer of canonical map, integration docs/test page."
+      ],
       "plannedScope": "Isolated widget consumer of canonical map, integration docs/test page.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "No arbitrary script injection, documented message origin policy, keyboard/mobile/host isolation.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -1416,27 +1928,37 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "No arbitrary script injection, documented message origin policy, keyboard/mobile/host isolation.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W47",
       "theme": "Troubleshooting knowledge",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W11",
         "W46"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "Error message catalog, existing how-to-use/Sources/contact, tool inline links."
+      ],
       "plannedScope": "Error message catalog, existing how-to-use/Sources/contact, tool inline links.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Each advice item reproduces a real failure and matches current behavior; no generic FAQ inflation.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -1445,26 +1967,36 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Each advice item reproduces a real failure and matches current behavior; no generic FAQ inflation.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W48",
       "theme": "International/classroom review",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W47"
       ],
-      "affectedRoutes": [],
-      "plannedScope": "W41–W47 assets/flows and integration tests.",
+      "affectedRoutes": [
+        "W41\u2013W47 assets/flows and integration tests."
+      ],
+      "plannedScope": "W41\u2013W47 assets/flows and integration tests.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Download/print/copy examples all work, keyboard and 390px, no private content in shareable artifacts.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -1473,26 +2005,36 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Download/print/copy examples all work, keyboard and 390px, no private content in shareable artifacts.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W49",
       "theme": "Evidence-led route review",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W48"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "Route registry, search/link exports, proposal ledger."
+      ],
       "plannedScope": "Route registry, search/link exports, proposal ledger.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Exact user-job comparison, link inventory and rollback for every proposal; missing evidence explicit.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -1501,28 +2043,38 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Exact user-job comparison, link inventory and rollback for every proposal; missing evidence explicit.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W50",
       "theme": "Second performance review and budget enforcement",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W09",
         "W16",
         "W49"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "Vite bundles, navigation/library data graph, SSR serialization and heavy dynamic helpers."
+      ],
       "plannedScope": "Vite bundles, navigation/library data graph, SSR serialization and heavy dynamic helpers.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Same-method cold/warm navigation, mobile CPU, SSR, raw/gzip/chunk budgets and field data when available; fix measured regressions.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -1531,26 +2083,36 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Same-method cold/warm navigation, mobile CPU, SSR, raw/gzip/chunk budgets and field data when available; fix measured regressions.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W51",
       "theme": "Accessibility completion",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W50"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "Shared dialogs/buttons/outputs/flash/print components and affected routes."
+      ],
       "plannedScope": "Shared dialogs/buttons/outputs/flash/print components and affected routes.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Keyboard-only journeys, representative screen-reader checks, reduced-motion, WebKit, contrast in both themes.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -1559,27 +2121,37 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Keyboard-only journeys, representative screen-reader checks, reduced-motion, WebKit, contrast in both themes.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
     },
     {
       "packageId": "W52",
       "theme": "Annual consolidation",
-      "originalImplementationCommits": [],
       "amendmentCommits": [],
       "dependencies": [
         "W01",
         "W51"
       ],
-      "affectedRoutes": [],
+      "affectedRoutes": [
+        "Release ledgers, current gate scripts, roadmap/measurement summary."
+      ],
       "plannedScope": "Release ledgers, current gate scripts, roadmap/measurement summary.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED; NOT AUTHORIZED",
-      "testCommands": [
+      "status": "PROPOSED",
+      "acceptance": "Every claimed feature maps to released SHA/evidence; unresolved issues explicit; production smoke and source audit.",
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [],
+      "documentationCommits": [],
+      "reviewBranch": null,
+      "draftPr": null,
+      "commonGates": [
         "npm run typecheck",
         "npm test",
         "npm run build:netlify",
@@ -1588,10 +2160,110 @@
         "npm run pages:url-indexability-canonical-audit",
         "npm run pages:gsc-meta-content-quality-audit",
         "npm run pages:sitemap-count-print-indexability-audit",
-        "git diff --check"
+        "git diff --check",
+        "npm run release:validate-package-manifest",
+        "npm run books:navigation-index:check",
+        "npm run test:release-integrity"
       ],
-      "acceptance": "Every claimed feature maps to released SHA/evidence; unresolved issues explicit; production smoke and source audit.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "packageSpecificGates": [],
+      "evidence": []
+    }
+  ],
+  "internalPackages": [
+    {
+      "packageId": "TRANCHE-A-HARDENING",
+      "status": "VALIDATED",
+      "implementationCommits": [
+        "ffce7ae259a600c418ad210a6399a0a9c18a587e"
+      ],
+      "amendmentCommits": [],
+      "documentationCommits": [],
+      "dependencies": [
+        "W08"
+      ],
+      "evidence": [
+        "ai-issues/2027-release-train/TRANCHE-A-HARDENING.md"
+      ]
+    },
+    {
+      "packageId": "TRANCHE-B-HARDENING",
+      "status": "IN_PROGRESS",
+      "implementationCommits": [],
+      "amendmentCommits": [],
+      "documentationCommits": [],
+      "dependencies": [
+        "W16"
+      ],
+      "evidence": [
+        "ai-issues/2027-release-train/TRANCHE-B-HARDENING.md"
+      ]
+    }
+  ],
+  "commitOrder": [
+    "4577709108bdedb1a04dd520e8fb1b7a74c36a44",
+    "c54a36c9f9b30e154cd337c9c9074ca54e03c429",
+    "1dc108241442189e86eda1884d6cae9ebab60d74",
+    "7b5f6f95b31be424f00d4d586b170d6333c212dc",
+    "9438c51ec88a622154ee6fb8978be872c61fbc33",
+    "42ade9c52351ca072a4250ff198e7b78e3f5097b",
+    "ee780f083f25b300102897f143032d0190b1e5a0",
+    "f29b0c8557094b7f2bb0fb63fcbf80f20a61616e",
+    "33ff79215cc303b66c5f37b9ddaaa954edbd405e",
+    "f3a3e32c38f935796e151edb5a108e3d2fd82ba5",
+    "dcf88d35385c8e85ce9ea0f2db7e8497da2b2a1c",
+    "8a3652d683f301c64ab63c24615bae46625f1718",
+    "afd68084ceac5b6123c7833f44753e7299027437",
+    "ca9f244f70ec30cbfe9f8969e2708e83ebe9648e",
+    "ffce7ae259a600c418ad210a6399a0a9c18a587e",
+    "31425946b27c35a643a99e0bb426cda071fbddd2",
+    "f9d6e7ca8eda7714d3d0f1c96f35db1697a35dc9",
+    "f58d08cce9a704967021c765aae2c2219c8cfa9f",
+    "16a776958ea4fa7039a0a3bb58f2ecd5fd04f205",
+    "8ee1ee7632aac9f46064644eb6fea618b65f0439",
+    "7c58cfa96c01b4eaf6b0e652ad1b6d47634011f4",
+    "c6df055b86a7bd08c4dd31ebe6e0a42189bbbd07",
+    "dff39b499e51c75a89104cddb018f85172cf732b",
+    "c2610bb026ab5f0f7fadfefd90179e8f4ed098d2",
+    "9400be3db37ab3cf477ab8a15160c5e9f4f02f76",
+    "8c7ad40b1ac8e2ec43aa893f6ff38365b87b50c0",
+    "c4d7813c8789a12586b8787e250c83b97973c5d1",
+    "04c0ae090aaced7168441ec3f3a61b6304083349",
+    "3fe850101c1f66699040d66a8d0420ebfd825bfc",
+    "95b84f82099f5a68c3fae9e7af2e3189fd5e9efe",
+    "6a52b6fae01daf8692009c63b1b62ee410c41c53",
+    "754c83c0627f7afa770b0c5848977aec8f11db48",
+    "689d8ea38965b37d70138d761f5407cd01bffcb1",
+    "602802276910ddf5fe3ca083c11acc1155217a77",
+    "050fd3c12146145acbc5b7129c51a8840139b806"
+  ],
+  "persistentGates": [
+    {
+      "introducedBy": "W09",
+      "when": "always",
+      "surfaces": [],
+      "commands": [
+        "npm run books:navigation-index:check"
+      ]
+    },
+    {
+      "introducedBy": "W12",
+      "when": "affected",
+      "surfaces": [
+        "shared-audio"
+      ],
+      "commands": [
+        "npx playwright test --config=playwright.review.config.ts tests/qa-robustness-review/playback-ownership.spec.ts tests/qa-robustness-review/mobile-audio-playback.spec.ts tests/qa-robustness-review/audio-integration.spec.ts"
+      ]
+    },
+    {
+      "introducedBy": "W17",
+      "when": "affected",
+      "surfaces": [
+        "library-runtime"
+      ],
+      "commands": [
+        "npm run release:check-library-payload"
+      ]
     }
   ]
 }
