@@ -1,3 +1,4 @@
+import { useLearningSessionIntent } from "~/client/components/learning/useLearningSessionIntent";
 import * as React from "react";
 
 import { PostPrimaryContentBannerAd } from "~/client/components/ads/AdSenseAds";
@@ -64,18 +65,13 @@ type Props = {
 };
 
 export default function TypingPage({ jsonLd }: Props) {
+  const readSessionIntent = useLearningSessionIntent("/typing");
+  const [hydrated, setHydrated] = React.useState(false);
   const inputRef = React.useRef<HTMLTextAreaElement | null>(null);
 
-  const [inputMode, setInputMode] = React.useState<InputMode>(
-    () => readStoredEnum(LS_INPUT_MODE, INPUT_MODES, "dotdash"),
-  );
-  const [showStats, setShowStats] = React.useState(() =>
-    readStoredBoolean(LS_SHOW_STATS, true),
-  );
-
-  const [durationSec, setDurationSec] = React.useState<number>(() =>
-    readStoredNumberEnum(LS_TYPING_DURATION, TYPING_DURATIONS, 30),
-  );
+  const [inputMode, setInputMode] = React.useState<InputMode>("dotdash");
+  const [showStats, setShowStats] = React.useState(true);
+  const [durationSec, setDurationSec] = React.useState(30);
   const [sessionState, setSessionState] = React.useState<
     "idle" | "running" | "paused" | "done"
   >("idle");
@@ -93,20 +89,30 @@ export default function TypingPage({ jsonLd }: Props) {
   const [raw, setRaw] = React.useState("");
 
   React.useEffect(() => {
+    setInputMode(readStoredEnum(LS_INPUT_MODE, INPUT_MODES, "dotdash"));
+    setShowStats(readStoredBoolean(LS_SHOW_STATS, true));
+    setDurationSec(readSessionIntent()?.id === "typing" ? 30 : readStoredNumberEnum(LS_TYPING_DURATION, TYPING_DURATIONS, 30));
+    setHydrated(true);
+  }, [readSessionIntent]);
+
+  React.useEffect(() => {
+    if (!hydrated) return;
     writeStr(LS_INPUT_MODE, inputMode);
-  }, [inputMode]);
+  }, [inputMode, hydrated]);
 
   React.useEffect(() => {
+    if (!hydrated) return;
     writeBool(LS_SHOW_STATS, showStats);
-  }, [showStats]);
+  }, [showStats, hydrated]);
 
   React.useEffect(() => {
+    if (!hydrated) return;
     writeNum(LS_TYPING_DURATION, durationSec);
-  }, [durationSec]);
+  }, [durationSec, hydrated]);
 
   const decoded = React.useMemo(() => decodeTypingRaw(raw), [raw]);
 
-  const [now, setNow] = React.useState(() => Date.now());
+  const [now, setNow] = React.useState(0);
   React.useEffect(() => {
     const id = window.setInterval(() => setNow(Date.now()), 250);
     return () => window.clearInterval(id);

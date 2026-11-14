@@ -3,7 +3,7 @@ import Button from "~/client/components/shared/Button";
 import ToggleChip from "~/client/components/shared/ToggleChip";
 
 export type DrillMode = "text_to_morse" | "morse_to_text" | "mixed";
-export type Pool = "all" | "letters" | "numbers" | "signals" | "words" | "sentences";
+export type Pool = "starter" | "all" | "letters" | "numbers" | "signals" | "words" | "sentences";
 
 export default function PracticeControls({
   mode,
@@ -48,6 +48,11 @@ export default function PracticeControls({
 
       <div className="mt-4 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">Prompt pool</div>
       <div className="mt-2 flex flex-wrap gap-2">
+        <ToggleChip
+          label="First characters"
+          active={pool === "starter"}
+          onClick={() => setPool("starter")}
+        />
         <ToggleChip
           label="All"
           active={pool === "all"}

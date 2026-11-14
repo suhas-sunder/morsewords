@@ -1,3 +1,5 @@
+import LearningSessionChooser from "~/client/components/learning/LearningSessionChooser";
+import { STARTER_CHARACTERS } from "~/client/components/learning/learningSessions";
 import PrintableCharts from "~/client/components/shared/PrintableCharts";
 import type { ReactNode } from "react";
 import type { Route } from "./+types/learn-morse-code";
@@ -100,16 +102,7 @@ const timingUnits = [
   },
 ] as const;
 
-const starterCharacters = [
-  { letter: "E", morse: ".", reason: "One short signal." },
-  { letter: "T", morse: "-", reason: "One long signal." },
-  { letter: "A", morse: ".-", reason: "Short then long." },
-  { letter: "N", morse: "-.", reason: "Long then short." },
-  { letter: "I", morse: "..", reason: "Two short signals." },
-  { letter: "M", morse: "--", reason: "Two long signals." },
-  { letter: "S", morse: "...", reason: "Three short signals." },
-  { letter: "O", morse: "---", reason: "Three long signals." },
-] as const;
+const starterCharacters = STARTER_CHARACTERS;
 
 const firstSessionSteps = [
   {
@@ -355,6 +348,8 @@ export default function LearnMorseCode() {
             ]}
           />
         </PageHero>
+
+        <LearningSessionChooser />
 
         <SectionCard
           eyebrow="First concepts"
