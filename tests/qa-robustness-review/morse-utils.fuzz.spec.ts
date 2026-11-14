@@ -136,7 +136,7 @@ test("reader and word separator routes use shared repeated-separator behavior", 
   await expect(async () => {
     await separatorInput.fill("... /// //// --- ||| ...");
     await expect(separatorInput).toHaveValue("... /// //// --- ||| ...");
-    await expect(page.getByText("Words: 3 | Letters: 3")).toBeVisible({
+    await expect(page.getByText("3 words · 3 groups · 0 unknown groups · 0 ignored characters", { exact: true })).toBeVisible({
       timeout: 1_000,
     });
     await expect(page.locator("pre").first()).toHaveText("...       ---       ...", {
