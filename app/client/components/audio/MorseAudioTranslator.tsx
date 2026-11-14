@@ -1,4 +1,6 @@
 import * as React from "react";
+import TonePresetComparison from "~/client/components/shared/TonePresetComparison";
+import { usePresetComparison } from "~/client/components/shared/usePresetComparison";
 
 import styles from "~/client/components/shared/audioStyles";
 import useMorseAudio, {
@@ -150,6 +152,10 @@ export default function MorseAudioTranslator({
   const flashLamp = useFlashLampState(hydrated && flash);
   const { disableFlashEffects, flashAllowed } = flashLamp;
   const effectiveFlash = flashAllowed && flash;
+  const comparison = usePresetComparison(player, {
+    code: activeCode, wpm: charWpm, farnsworthWpm, hz: toneHz, volume,
+    attackMs, releaseMs, soundEnabled: soundOn, preset, repeat, flash: effectiveFlash,
+  });
 
   React.useEffect(() => {
     setSourceMode(readStoredEnum("mw_audio_source", SOURCE_MODES, "text"));
@@ -218,7 +224,7 @@ export default function MorseAudioTranslator({
 
   // Live update audio settings during playback/paused
   React.useEffect(() => {
-    if (!hydrated) return;
+    if (!hydrated || comparison.active.current) return;
 
     player.setLiveOptions({
       code: activeCode,
@@ -450,6 +456,7 @@ export default function MorseAudioTranslator({
   const setFeedback = React.useCallback(
     (key: "sound" | "repeat" | "flash", next: boolean) => {
       if (key === "flash" && !flashAllowed) return;
+      comparison.stop();
 
       const current = { sound: soundOn, repeat, flash: effectiveFlash };
       const updated = { ...current, [key]: key === "flash" ? next && flashAllowed : next };
@@ -884,6 +891,8 @@ export default function MorseAudioTranslator({
                       />
                     </div>
                   </div>
+
+                  <TonePresetComparison comparison={comparison} disabled={!hydrated || !canPlay || !player.isSupported} soundOn={soundOn} />
 
                 </div>
               )}

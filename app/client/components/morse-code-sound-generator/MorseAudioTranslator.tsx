@@ -1,4 +1,6 @@
 import * as React from "react";
+import TonePresetComparison from "~/client/components/shared/TonePresetComparison";
+import { usePresetComparison } from "~/client/components/shared/usePresetComparison";
 
 import styles from "~/client/components/shared/audioStyles";
 import useMorseAudio, {
@@ -206,6 +208,10 @@ export default function MorseAudioTranslator({
   const flashLamp = useFlashLampState(hydrated && flash);
   const { disableFlashEffects, flashAllowed } = flashLamp;
   const effectiveFlash = flashAllowed && flash;
+  const comparison = usePresetComparison(player, {
+    code: activeCode, wpm: charWpm, farnsworthWpm, hz: toneHz, volume,
+    attackMs, releaseMs, soundEnabled: soundOn, preset, repeat, flash: effectiveFlash,
+  });
   const showStrobeWarning = flashLamp.shouldShowWholePageFlashWarning;
 
   React.useEffect(() => {
@@ -303,7 +309,7 @@ export default function MorseAudioTranslator({
   }, [enableQueryPrefill]);
 
   React.useEffect(() => {
-    if (!hydrated) return;
+    if (!hydrated || comparison.active.current) return;
     player.setLiveOptions({
       code: activeCode,
       wpm: clampNum(charWpm, AUDIO_SPEED_RANGE.min, AUDIO_SPEED_RANGE.max),
@@ -559,6 +565,7 @@ export default function MorseAudioTranslator({
   const updateFeedbackToggle = React.useCallback(
     (key: "sound" | "repeat" | "flash", next: boolean) => {
       if (key === "flash" && !flashAllowed) return;
+      comparison.stop();
       const current = { sound: soundOn, repeat, flash: effectiveFlash };
       const updated = { ...current, [key]: key === "flash" ? next && flashAllowed : next };
       if (key === "sound") setSoundOn(next);
@@ -798,6 +805,8 @@ export default function MorseAudioTranslator({
                       <SliderRow label="Release" value={releaseMs} min={AUDIO_RELEASE_RANGE.min} max={AUDIO_RELEASE_RANGE.max} step={1} unit="ms" onChange={setReleaseMs} disabled={!soundOn || !presetSupportsPitchControl(preset)} />
                     </div>
                   </div>
+
+                  <TonePresetComparison comparison={comparison} disabled={!hydrated || !canPlay || !player.isSupported} soundOn={soundOn} />
 
                 </div>
               ) : null}
