@@ -33,6 +33,7 @@ import RelatedTools from "./client/components/navigation/RelatedTools";
 import PageBackdrop, {
   paperBackground,
 } from "./client/components/shared/PageBackdrop";
+import PlaybackLifecycleBoundary from "./client/components/shared/PlaybackLifecycleBoundary";
 import PageFlashOverlay from "./client/components/shared/PageFlashOverlay";
 import {
   THEME_COOKIE_MAX_AGE,
@@ -195,7 +196,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return <><PlaybackLifecycleBoundary /><Outlet /></>;
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

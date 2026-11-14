@@ -1,4 +1,5 @@
 import * as React from "react";
+import { claimPlayback, releasePlayback } from "./playbackOwnership";
 import {
   buildMorseEvents,
   estimateMorseDurationMs,
@@ -110,7 +111,7 @@ type InternalPosition = {
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
 }
-const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+export type PlaybackOutcome = "completed" | "cancelled" | "unavailable";
 
 function setAudioParamValue(param: AudioParam, value: number, time: number) {
   if (typeof param.setValueAtTime === "function") {
@@ -164,6 +165,8 @@ function playbackEventMs(event: MorseTimingEvent, opts: PlayOptions) {
  * - vibration removed (ignored)
  */
 export default function useMorseAudio() {
+  const ownerRef = React.useRef({});
+  const pendingWaitsRef = React.useRef(new Set<() => void>());
   const ctxRef = React.useRef<AudioContext | null>(null);
   const masterGainRef = React.useRef<GainNode | null>(null);
 
@@ -185,6 +188,22 @@ export default function useMorseAudio() {
   const [state, setState] = React.useState<MorsePlayerState>("idle");
   const [isSupported, setIsSupported] = React.useState(false);
 
+  function sleep(ms: number) {
+    return new Promise<void>(resolve => {
+      const finish = () => { clearTimeout(timer); pendingWaitsRef.current.delete(finish); resolve(); };
+      const timer = setTimeout(finish, ms);
+      pendingWaitsRef.current.add(finish);
+    });
+  }
+
+  function waitForContext(operation: Promise<AudioContext | null>) {
+    return new Promise<AudioContext | null>(resolve => {
+      const cancel = () => { pendingWaitsRef.current.delete(cancel); resolve(null); };
+      pendingWaitsRef.current.add(cancel);
+      void operation.then(ctx => { pendingWaitsRef.current.delete(cancel); resolve(ctx); }, cancel);
+    });
+  }
+
   function setPlayerState(nextState: MorsePlayerState) {
     if (mountedRef.current) setState(nextState);
   }
@@ -199,7 +218,7 @@ export default function useMorseAudio() {
 
   function trackNode<T extends AudioScheduledSourceNode>(node: T): T {
     activeNodesRef.current.add(node);
-    const cleanup = () => activeNodesRef.current.delete(node);
+    const cleanup = () => { activeNodesRef.current.delete(node); try { node.disconnect(); } catch { /* teardown */ } };
     node.addEventListener?.("ended", cleanup, { once: true });
     const previousOnEnded = node.onended;
     node.onended = (event) => {
@@ -239,6 +258,8 @@ export default function useMorseAudio() {
     repeatRef.current = false;
     playingRef.current = false;
     silenceActiveNodes();
+    for (const cancel of pendingWaitsRef.current) cancel();
+    releasePlayback(ownerRef.current);
   }
 
   React.useEffect(() => {
@@ -266,6 +287,7 @@ export default function useMorseAudio() {
   function ensureCtx() {
     if (typeof window === "undefined") return null;
 
+    if (ctxRef.current?.state === "closed") { ctxRef.current = null; masterGainRef.current = null; }
     if (!ctxRef.current) {
       const Ctx = getAudioContextCtor();
       if (!Ctx) return null;
@@ -352,6 +374,7 @@ export default function useMorseAudio() {
   }
 
   function triggerFlash(ms: number) {
+    if (typeof document !== "undefined" && document.hidden) return;
     dispatchMorseFlash(ms);
   }
 
@@ -423,8 +446,8 @@ export default function useMorseAudio() {
     audible: boolean;
   }) {
     if (!isActiveSession(params.sessionId)) return;
-    const ctx = await ensureRunning();
-    if (!ctx || !isActiveSession(params.sessionId)) return;
+    const ctx = await waitForContext(ensureRunning());
+    if (!ctx || !isActiveSession(params.sessionId)) { if (!ctx && isActiveSession(params.sessionId)) stop(); return; }
 
     const master = masterGainRef.current;
     if (!master) return;
@@ -489,6 +512,7 @@ export default function useMorseAudio() {
     }
 
     await sleep(params.ms);
+    env.disconnect();
   }
 
   async function playNoiseTexture({
@@ -503,8 +527,8 @@ export default function useMorseAudio() {
     sessionId: number;
   }) {
     if (!isActiveSession(sessionId)) return;
-    const ctx = await ensureRunning();
-    if (!ctx || !isActiveSession(sessionId)) return;
+    const ctx = await waitForContext(ensureRunning());
+    if (!ctx || !isActiveSession(sessionId)) { if (!ctx && isActiveSession(sessionId)) stop(); return; }
 
     const master = masterGainRef.current;
     if (!master) return;
@@ -553,6 +577,8 @@ export default function useMorseAudio() {
     } catch {
       // ignore
     }
+    biquad.disconnect();
+    localGain.disconnect();
   }
 
   async function runOnce(sessionId: number, baseOpts: PlayOptions) {
@@ -628,12 +654,13 @@ export default function useMorseAudio() {
     }
   }
 
-  async function play(opts: PlayOptions) {
+  async function play(opts: PlayOptions): Promise<PlaybackOutcome> {
     // Initiate AudioContext activation before playback setup can consume the
     // transient user gesture required by mobile Safari and other mobile
     // browsers. Await it only after the synchronous session state is ready.
-    const runningContext = ensureRunning();
     cancelCurrentPlayback();
+    claimPlayback(ownerRef.current, stop);
+    const runningContext = waitForContext(ensureRunning());
     const sessionId = sessionRef.current;
     const safeOpts = sanitizeOpts(opts);
 
@@ -662,8 +689,10 @@ export default function useMorseAudio() {
         repeatRef.current = false;
         setPlayerState("idle");
       }
-      return;
+      if (sessionRef.current === sessionId) releasePlayback(ownerRef.current);
+      return sessionRef.current === sessionId ? "unavailable" : "cancelled";
     }
+    try {
     applyMasterFromLive(safeOpts);
     safeOpts.onPlaybackStart?.(performance.now());
 
@@ -674,13 +703,20 @@ export default function useMorseAudio() {
       if (repeatRef.current) await sleep(160);
     } while (repeatRef.current && isActiveSession(sessionId));
 
-    if (sessionRef.current !== sessionId) return;
+    } catch {
+      if (sessionRef.current === sessionId) stop();
+      return "unavailable";
+    }
+
+    if (sessionRef.current !== sessionId) return "cancelled";
 
     playingRef.current = false;
     pausedRef.current = false;
     stopRef.current = false;
     repeatRef.current = false;
     setPlayerState("idle");
+    releasePlayback(ownerRef.current);
+    return "completed";
   }
 
   function pause() {
@@ -689,14 +725,17 @@ export default function useMorseAudio() {
     setPlayerState("paused");
   }
 
-  function resume() {
-    void ensureRunning();
-    if (!playingRef.current) return;
+  async function resume() {
+    // Book/video previews also use resume to unlock audio under the click,
+    // before their intentional start buffer. Preserve that activation contract.
+    const wasPlaying = playingRef.current;
+    const sessionId = sessionRef.current;
+    const ctx = await waitForContext(ensureRunning());
+    if (!wasPlaying || !isActiveSession(sessionId)) return;
+    if (!ctx) { stop(); return; }
     pausedRef.current = false;
-
     const live = liveOptsRef.current;
     if (live) applyMasterFromLive(live);
-
     setPlayerState("playing");
   }
 

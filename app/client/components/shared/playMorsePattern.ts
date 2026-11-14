@@ -1,3 +1,4 @@
+import { claimPlayback, releasePlayback } from "./playbackOwnership";
 import {
   buildMorseEvents,
   estimateMorseDurationMs,
@@ -9,6 +10,24 @@ type PlayPatternOptions = {
   frequency?: number;
   farnsworthWpm?: number;
 };
+
+const patternOwner = {};
+let patternSession = 0;
+let patternTimer: number | null = null;
+let patternMaster: GainNode | null = null;
+const patternNodes = new Set<OscillatorNode>();
+export function stopMorsePattern() {
+  patternSession++;
+  if (patternTimer !== null) window.clearTimeout(patternTimer);
+  patternTimer = null;
+  for (const node of patternNodes) {
+    try { node.stop(0); node.disconnect(); } catch { /* already ended */ }
+  }
+  patternNodes.clear();
+  patternMaster?.disconnect();
+  patternMaster = null;
+  releasePlayback(patternOwner);
+}
 
 let patternAudioContext: AudioContext | null = null;
 let patternResumePromise: Promise<boolean> | null = null;
@@ -105,10 +124,12 @@ function scheduleMorsePattern(
   ctx: AudioContext,
   events: ReturnType<typeof buildMorseEvents>,
   frequency: number,
+  session: number,
 ) {
-  if (ctx.state !== "running") return;
+  if (ctx.state !== "running" || session !== patternSession) return;
 
   const master = ctx.createGain();
+  patternMaster = master;
   master.gain.value = 0.18;
   master.connect(ctx.destination);
 
@@ -117,6 +138,7 @@ function scheduleMorsePattern(
     const seconds = event.ms / 1000;
     if (event.type === "mark") {
       const osc = ctx.createOscillator();
+      patternNodes.add(osc);
       const gain = ctx.createGain();
       osc.frequency.value = frequency;
       osc.type = "sine";
@@ -129,14 +151,18 @@ function scheduleMorsePattern(
       gain.gain.linearRampToValueAtTime(0, cursor + seconds);
       osc.connect(gain);
       gain.connect(master);
+      osc.addEventListener("ended", () => { patternNodes.delete(osc); osc.disconnect(); gain.disconnect(); }, { once: true });
       osc.start(cursor);
       osc.stop(cursor + seconds + 0.02);
     }
     cursor += seconds;
   }
 
-  window.setTimeout(() => {
-    master.disconnect?.();
+  patternTimer = window.setTimeout(() => {
+    if (session !== patternSession) return;
+    // Wall-clock completion may happen while the audio context is suspended.
+    // Stop queued sources too, so resuming cannot resurrect an expired sample.
+    stopMorsePattern();
   }, Math.max(250, (cursor - ctx.currentTime + 0.2) * 1000));
 }
 
@@ -144,8 +170,11 @@ export function playMorsePattern(
   pattern: string,
   options?: PlayPatternOptions,
 ) {
+  stopMorsePattern();
+  claimPlayback(patternOwner, stopMorsePattern);
+  const session = patternSession;
   const ctx = getPatternAudioContext();
-  if (!ctx) return;
+  if (!ctx) { releasePlayback(patternOwner); return; }
 
   // Calling this helper starts resume() synchronously while the click/tap still
   // owns transient user activation. Event construction remains unchanged and
@@ -159,12 +188,13 @@ export function playMorsePattern(
   const frequency = clamp(options?.frequency ?? 560, 220, 1000);
 
   if (ctx.state === "running") {
-    scheduleMorsePattern(ctx, events, frequency);
+    scheduleMorsePattern(ctx, events, frequency, session);
     return;
   }
 
   void runningContext.then((running) => {
-    if (running) scheduleMorsePattern(ctx, events, frequency);
+    if (running) scheduleMorsePattern(ctx, events, frequency, session);
+    else if (session === patternSession) releasePlayback(patternOwner);
   });
 }
 

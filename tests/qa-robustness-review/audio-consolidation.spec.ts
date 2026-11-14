@@ -1,5 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
 import fs from "node:fs";
+import { sanitizeAudioGeneratorPreset } from "../../app/client/components/shared/morseSettings";
 import path from "node:path";
 
 import { blockExternalNetwork, waitForRouteReady } from "./helpers";
@@ -59,9 +60,10 @@ test("useAudio remains a compatibility wrapper around useMorseAudio", () => {
   );
 
   expect(source).toContain("useMorseAudio");
-  expect(source).toContain("smooth_sine");
-  expect(source).toContain("bright_square");
-  expect(source).toContain("telegraph_sounder");
+  expect(source).toContain("sanitizeAudioGeneratorPreset");
+  expect(sanitizeAudioGeneratorPreset("smooth_sine")).toBe("sine");
+  expect(sanitizeAudioGeneratorPreset("bright_square")).toBe("square");
+  expect(sanitizeAudioGeneratorPreset("telegraph_sounder")).toBe("sounder");
   expect(source).not.toContain("new AudioContext");
   expect(source).not.toContain("createOscillator");
   expect(source).not.toContain("buildMorseEvents");
@@ -169,6 +171,7 @@ test.describe("consolidated audio behavior", () => {
   ] as const) {
     test(`${route} keeps shared presets and export controls`, async ({ page }) => {
       await page.goto(route, { waitUntil: "domcontentloaded" });
+      await openAdvancedSettings(page);
 
       for (const preset of AUDIO_PRESETS) {
         expect(
@@ -196,6 +199,7 @@ test.describe("consolidated audio behavior", () => {
     await page.waitForFunction(
       () => window.localStorage.getItem("mw_sound_generator_source") === "text",
     );
+    await openAdvancedSettings(page);
     await page.getByRole("button", { name: /Morse to beep tone/ }).click();
     await expect(page.getByText("Morse code to play as a tone")).toBeVisible();
     await page.locator("textarea").first().fill("abc");
@@ -210,6 +214,7 @@ test.describe("consolidated audio behavior", () => {
     await page.waitForFunction(
       () => window.localStorage.getItem("mw_audio_source") === "text",
     );
+    await openAdvancedSettings(page);
     await page.getByRole("button", { name: "Morse input" }).click();
     await page.locator("textarea").first().fill("abc");
     await page.getByRole("button", { name: "Download MP3" }).click();
@@ -247,6 +252,7 @@ test.describe("consolidated audio behavior", () => {
     await source.fill("SOS");
     await expect(source).toHaveValue("SOS");
 
+    await openAdvancedSettings(page);
     await page.getByLabel("Output format").selectOption("wav");
     const wavDownload = page.waitForEvent("download", { timeout: 30_000 });
     await page.getByRole("button", { name: "Download WAV" }).first().click();
@@ -292,6 +298,7 @@ async function installAudioHarness(page: import("@playwright/test").Page) {
     }
 
     class FakeAudioNode extends EventTarget {
+      disconnect() {}
       connect(node: unknown) {
         return node;
       }
@@ -419,3 +426,52 @@ async function readDownloadBlobs(page: import("@playwright/test").Page) {
       }).__mwDownloadBlobs,
   );
 }
+
+
+test("reference samples replace active nodes and route departure silences them", async ({ page }) => {
+  await blockExternalNetwork(page);
+  await installAudioHarness(page);
+  await page.goto("/a-in-morse-code", { waitUntil: "networkidle" });
+  const play = page.getByRole("button", { name: "Play Morse", exact: true });
+  await play.click();
+  await play.click();
+  const running = await readAudioHarness(page);
+  expect(running.starts).toBe(4);
+  expect(running.active).toBeLessThanOrEqual(2);
+  expect(running.stops).toBeGreaterThanOrEqual(2);
+  await page.getByRole("banner").getByRole("link").first().click();
+  await expect(page).toHaveURL(/\/$/);
+  await expect.poll(async () => (await readAudioHarness(page)).active).toBe(0);
+});
+
+test("background visibility clears flash while audio ownership remains stoppable", async ({ page }) => {
+  await blockExternalNetwork(page);
+  await installAudioHarness(page);
+  await page.goto("/", { waitUntil: "networkidle" });
+  await page.getByLabel("Input (Text)").fill("TTTT");
+  await page.getByLabel("Speed").fill("5");
+  await page.locator("button").filter({ hasText: "Flash Light" }).click();
+  await page.getByRole("button", { name: /Play/ }).first().click();
+  await expect(page.getByTestId("mw-flash-lamp").first()).toHaveAttribute("data-active", "true");
+  await page.evaluate(() => { Object.defineProperty(document, "hidden", { configurable: true, value: true }); document.dispatchEvent(new Event("visibilitychange")); });
+  await expect(page.getByTestId("mw-flash-lamp").first()).toHaveAttribute("data-active", "false");
+  await page.getByRole("button", { name: /Stop/ }).first().click();
+  expect((await readAudioHarness(page)).active).toBe(0);
+});
+
+
+for (const width of [390, 768, 1440]) test(`playback controls retain visible state and geometry at ${width}`, async ({ page }, info) => {
+  await blockExternalNetwork(page);
+  await installAudioHarness(page);
+  await page.addInitScript(theme => localStorage.setItem("morsewords-theme", theme), info.project.name.endsWith("dark") ? "dark" : "light");
+  await page.setViewportSize({ width, height: 844 });
+  await page.goto("/audio", { waitUntil: "networkidle" });
+  await page.getByLabel("Input (Text)").fill("TTTT");
+  await page.getByLabel("Character speed").fill("5");
+  await page.getByRole("button", { name: /Play/ }).first().click();
+  await expect(page.getByRole("button", { name: /Stop/ }).first()).toBeEnabled();
+  await page.screenshot({ path: info.outputPath(`playing-${width}.png`) });
+  await page.getByRole("button", { name: /Stop/ }).first().click();
+  expect((await readAudioHarness(page)).active).toBe(0);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
+});
