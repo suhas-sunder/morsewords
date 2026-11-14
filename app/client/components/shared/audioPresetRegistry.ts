@@ -61,13 +61,10 @@ const ALL_ROUTE_AVAILABILITY: Record<AudioPresetAvailabilityFlag, boolean> = {
   longFormExport: true,
 };
 
-const TOOL_ROUTE_AVAILABILITY: Record<AudioPresetAvailabilityFlag, boolean> = {
-  ...ALL_ROUTE_AVAILABILITY,
-  translator: false,
-};
-
+// Translator now uses the same engine and complete picker as the audio tools.
+// Legacy alias IDs below remain migration adapters, not a restricted registry.
 const STANDARD_ROUTE_AVAILABILITY = ALL_ROUTE_AVAILABILITY;
-const CREATIVE_ROUTE_AVAILABILITY = TOOL_ROUTE_AVAILABILITY;
+const CREATIVE_ROUTE_AVAILABILITY = ALL_ROUTE_AVAILABILITY;
 
 function definePreset(
   definition: Omit<

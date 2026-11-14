@@ -224,6 +224,10 @@ async function installPreviewAudioProbe(page: Page) {
         return this;
       }
 
+      disconnect() {
+        events.push("node-disconnect");
+      }
+
       addEventListener() {
         return undefined;
       }
@@ -811,12 +815,18 @@ test.describe("Morse code video generator", () => {
 
     await page.getByRole("radio", { name: /Animated Morse signal/ }).click();
     await expect(page.getByTestId("morse-video-preview-morse-text")).toBeVisible();
-    await expect(page.getByLabel("Tone preset")).toBeVisible();
-    await page.getByRole("button", { name: "Include audio track" }).click();
-    await expect(page.getByLabel("Tone preset")).toHaveCount(0);
-    await expect(page.getByLabel("Pitch")).toHaveCount(0);
-    await page.getByRole("button", { name: "Include audio track" }).click();
-    await expect(page.getByLabel("Tone preset")).toBeVisible();
+    const nativeAudio = await page.evaluate(() => typeof AudioContext !== "undefined" || typeof (window as unknown as { webkitAudioContext?: unknown }).webkitAudioContext !== "undefined");
+    if (!nativeAudio) {
+      await expect(page.getByRole("button", { name: "Include audio track" })).toBeDisabled();
+      await expect(page.getByLabel("Tone preset")).toHaveCount(0);
+    } else {
+      await expect(page.getByLabel("Tone preset")).toBeVisible();
+      await page.getByRole("button", { name: "Include audio track" }).click();
+      await expect(page.getByLabel("Tone preset")).toHaveCount(0);
+      await expect(page.getByLabel("Pitch")).toHaveCount(0);
+      await page.getByRole("button", { name: "Include audio track" }).click();
+      await expect(page.getByLabel("Tone preset")).toBeVisible();
+    }
   });
 
   test("preview syncs visual signal, readable text, and timeline markers", async ({

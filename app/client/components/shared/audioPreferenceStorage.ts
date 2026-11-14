@@ -63,10 +63,28 @@ export const DEFAULT_SHARED_AUDIO_PREFERENCES: SharedAudioPreferences = {
 type LegacyKey = string | readonly string[];
 type LegacyKeys = Partial<Record<SharedAudioPreferenceName, LegacyKey>>;
 
+// Migration must work on the first equivalent tool visited, before its persistence
+// effect writes canonical defaults. Canonical values always win. A caller's old
+// route-specific priority remains first when two legacy namespaces coexist.
+const LEGACY_SHARED_AUDIO_KEYS: LegacyKeys = {
+  characterSpeed: ["mw_char_wpm", "mw_wpm", "mw_sound_generator_wpm"],
+  farnsworthSpeed: ["mw_fwpm", "mw_sound_generator_fwpm"],
+  pitch: ["mw_hz", "mw_sound_generator_hz"],
+  volume: ["mw_vol", "mw_sound_generator_vol"],
+  preset: ["mw_preset", "mw_sound_generator_preset"],
+  attack: "mw_sound_generator_attack",
+  release: "mw_sound_generator_release",
+  repeat: ["mw_repeat", "mw_sound_generator_repeat"],
+  sound: ["mw_sound", "mw_sound_generator_sound"],
+  flash: ["mw_flash", "mw_sound_generator_flash"],
+  advancedOpen: ["mw_adv_open", "mw_sound_generator_adv_open"],
+};
+
 function legacyKeyCandidates(name: SharedAudioPreferenceName, legacyKeys?: LegacyKeys) {
   const legacy = legacyKeys?.[name];
-  if (!legacy) return [];
-  return typeof legacy === "string" ? [legacy] : legacy;
+  const defaults = LEGACY_SHARED_AUDIO_KEYS[name];
+  const list = (value: LegacyKey | undefined) => !value ? [] : typeof value === "string" ? [value] : value;
+  return [...new Set([...list(legacy), ...list(defaults)])];
 }
 
 function sourceKey(name: SharedAudioPreferenceName, legacyKeys?: LegacyKeys) {

@@ -113,8 +113,11 @@ test("comparison stops on feedback changes, closing, settings changes and naviga
   expect((await stats(page)).active).toBe(0);
   await page.getByRole("button", { name: "Sound", exact: true }).click();
   await comparison.getByRole("button", { name: "Play comparison B" }).click();
-  await comparison.locator("summary").click();
-  expect((await stats(page)).active).toBe(0);
+  const activeAtClose = await comparison.locator("summary").evaluate(summary => {
+    (summary as HTMLElement).click();
+    return (window as any).comparisonGraph.active;
+  });
+  expect(activeAtClose).toBe(0);
   await comparison.locator("summary").click();
   await comparison.getByRole("button", { name: "Play comparison A" }).click();
   await page.getByLabel("Character speed").fill("10");

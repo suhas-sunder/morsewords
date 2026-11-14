@@ -17,7 +17,10 @@ export default function TonePresetComparison({ comparison, disabled, soundOn }: 
   React.useEffect(() => () => stop(), [stop]);
   return (
     <details className="mt-5" data-testid="tone-comparison" onToggle={event => { if (!event.currentTarget.open) stop(); }}>
-      <summary className="cursor-pointer rounded-lg bg-[#fffdf8] px-4 py-3 text-sm font-semibold text-sky-950 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
+      <summary onClick={event => {
+        // Native toggle is queued; cancel in the activation task before closing.
+        if (event.currentTarget.closest("details")?.open) stop();
+      }} className="cursor-pointer rounded-lg bg-[#fffdf8] px-4 py-3 text-sm font-semibold text-sky-950 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
         Compare two tones
       </summary>
       <p className="mt-4 max-w-[68ch] text-sm leading-relaxed text-slate-700">

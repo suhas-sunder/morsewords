@@ -157,7 +157,7 @@ test.describe("interactive state and Morse settings contracts", () => {
       "app/routes/morse-code-audio-quiz.tsx",
     ]) {
       const source = readRepoFile(filePath);
-      expect(source, filePath).toContain('<AudioPresetOptions context="livePlayback" />');
+      expect(source, filePath).toContain(filePath.endsWith("TranslatorSectionsBasic.tsx") ? '<AudioPresetOptions context="translator" />' : '<AudioPresetOptions context="livePlayback" />');
       expect(source, filePath).not.toContain('<option value="cw_radio">');
     }
   });

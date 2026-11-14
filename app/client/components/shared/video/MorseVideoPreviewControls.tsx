@@ -1148,11 +1148,11 @@ function MorseVideoPreviewVisual({
       ].join(" ")}
     >
       <LightBulbIcon
-        size={
-          fullscreen
-            ? "clamp(4rem, 14vw, 11rem)"
-            : "clamp(4rem, 12vw, 7.5rem)"
-        }
+        size={120}
+        style={{
+          width: fullscreen ? "clamp(4rem, 14vw, 11rem)" : "clamp(4rem, 12vw, 7.5rem)",
+          height: fullscreen ? "clamp(4rem, 14vw, 11rem)" : "clamp(4rem, 12vw, 7.5rem)",
+        }}
         title={undefined}
         aria-hidden="true"
       />
