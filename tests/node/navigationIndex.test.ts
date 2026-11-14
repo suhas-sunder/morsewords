@@ -20,4 +20,7 @@ test("release freshness check accepts current index and rejects stale/missing wi
   assert.equal(await fs.readFile(target, "utf8"), "stale");
   await fs.writeFile(target, '{"schemaVersion":1,"books":[]}\n');
   assert.ok(await checkNavigationBookIndex(root) > 0);
+  await fs.writeFile(target, '{"schemaVersion":1,"books":[]}\r\n');
+  assert.ok(await checkNavigationBookIndex(root) > 0);
+  assert.equal(await fs.readFile(target, "utf8"), '{"schemaVersion":1,"books":[]}\r\n');
 });

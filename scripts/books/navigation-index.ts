@@ -20,7 +20,8 @@ export async function checkNavigationBookIndex(root = process.cwd()) {
   let actual: string;
   try { actual = await fs.readFile(path.join(root, "public/navigation-books.json"), "utf8"); }
   catch { throw new Error("Navigation index is missing. Run npm run books:navigation-index and review the generated diff."); }
-  if (actual !== expected) throw new Error("Navigation index is stale. Run npm run books:navigation-index and review the generated diff.");
+  // Git's Windows checkout can use CRLF. JSON string escapes stay untouched.
+  if (actual.replace(/\r\n/g, "\n") !== expected) throw new Error("Navigation index is stale. Run npm run books:navigation-index and review the generated diff.");
   return Buffer.byteLength(expected);
 }
 
