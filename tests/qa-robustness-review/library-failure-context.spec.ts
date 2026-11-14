@@ -93,11 +93,17 @@ for (const mode of ["books", "audiobooks"]) {
     await page.getByRole("radio", { name: "Split by duration", exact: true }).click();
     await expect(page.locator("[data-mw-morse-book-download-label]")).toBeEnabled();
     const play = page.getByTestId("morse-book-live-player").getByRole("button", { name: mode === "audiobooks" ? "Play selection" : "Play live player", exact: true });
-    await expect(play).toBeEnabled();
-    await play.click();
-    const stop = page.getByTestId("morse-book-live-player").getByRole("button", { name: mode === "audiobooks" ? "Stop selection" : "Pause live player", exact: true });
-    await expect(stop).toBeVisible();
-    await stop.click();
+    const nativeAudio = await page.evaluate(() => typeof AudioContext !== "undefined" || typeof (window as unknown as { webkitAudioContext?: unknown }).webkitAudioContext !== "undefined");
+    if (mode === "audiobooks" && !nativeAudio) {
+      // Windows WebKit has no native audio context: retain its honest disabled state.
+      await expect(play).toBeDisabled();
+    } else {
+      await expect(play).toBeEnabled();
+      await play.click();
+      const stop = page.getByTestId("morse-book-live-player").getByRole("button", { name: mode === "audiobooks" ? "Stop selection" : "Pause live player", exact: true });
+      await expect(stop).toBeVisible();
+      await stop.click();
+    }
     expect(await page.evaluate(key => localStorage.getItem(key), settingsKey)).toBe(saved);
     expect(await page.evaluate(key => localStorage.getItem(key), progressKey)).toBe("protected-full-book-progress");
     recover();
