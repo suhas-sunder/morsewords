@@ -37,8 +37,15 @@ test("punctuation shows standard versus extension evidence and operating collisi
   expect(errors).toEqual([]);
 });
 
-test("dictionary filtering and copy preserve punctuation while exposing scope", async ({ page, context }) => {
-  await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+test("dictionary filtering and copy preserve punctuation while exposing scope", async ({ page, context, browserName }) => {
+  if (browserName === "chromium") await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+  else await page.addInitScript(() => {
+    // This WebKit runner cannot grant clipboard permissions; verify the browser API payload.
+    let copied = "";
+    Object.defineProperty(navigator, "clipboard", { configurable: true, value: {
+      writeText: async (value: string) => { copied = value; }, readText: async () => copied,
+    } });
+  });
   await page.goto('/dictionary', { waitUntil: 'networkidle' });
   await page.locator('#dictionary-filter').fill('Semicolon');
   const source = page.locator('[data-mw-reference-character=";"]:visible');

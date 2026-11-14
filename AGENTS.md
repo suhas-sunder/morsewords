@@ -380,6 +380,10 @@ Approved button treatment is centralized by `app/app.css` and
   retain route-local preset subsets.
 - Validate parity in rendered browsers, including persistence across equivalent
   routes, rather than relying only on source-level constants.
+- Shared audio preference migration must work on the first equivalent route a
+  returning user visits. Keep known legacy namespace fallbacks in
+  `audioPreferenceStorage.ts`; canonical saved values take precedence.
+  Do not require a visit to the old route before migrating preferences.
 - Shared components must be placement-neutral. They own behavior and semantics;
   routes retain composition where their task genuinely differs.
 - Use the homepage as the visual source when the workflow is equivalent, while

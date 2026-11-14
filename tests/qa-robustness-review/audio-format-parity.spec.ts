@@ -192,6 +192,7 @@ test.describe("audio download controls", () => {
     await page.goto("/morse-code-mp3-generator", { waitUntil: "domcontentloaded" });
     await waitForRouteReady(page);
 
+    await page.getByRole("button", { name: "Show advanced settings" }).click();
     const controls = page.getByTestId("audio-export-format-split-controls");
     await expect(controls).toBeVisible();
     const format = controls.getByLabel("Output format");

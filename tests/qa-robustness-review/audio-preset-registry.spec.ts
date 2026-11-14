@@ -33,7 +33,7 @@ test("shared audio preset registry preserves standard Morse presets", () => {
   }
 });
 
-test("creative presets are optional and hidden from the translator context", () => {
+test("creative presets preserve identity across equivalent translator and audio contexts", () => {
   expect(CREATIVE_AUDIO_TONE_PRESETS).toEqual([
     "soft_bell",
     "warm_tone",
@@ -51,7 +51,7 @@ test("creative presets are optional and hidden from the translator context", () 
   for (const preset of CREATIVE_AUDIO_TONE_PRESETS) {
     expect(audioPresets).toContain(preset);
     expect(bookPresets).toContain(preset);
-    expect(translatorPresets).not.toContain(preset);
+    expect(translatorPresets).toContain(preset);
     expect(AUDIO_TONE_PRESET_REGISTRY[preset].standard).toBe(false);
   }
 
@@ -66,7 +66,7 @@ test("unknown and legacy preset IDs resolve safely", () => {
   expect(sanitizeAudioTonePreset("bright_square")).toBe("square");
   expect(sanitizeAudioTonePreset("telegraph_sounder")).toBe("sounder");
   expect(sanitizeAudioTonePreset("soft_bell", "cw_radio", "translator")).toBe(
-    "cw_radio",
+    "soft_bell",
   );
   expect(mapTranslatorAudioPreset("smooth_sine")).toBe("sine");
   expect(mapTranslatorAudioPreset("telegraph_sounder")).toBe("sounder");

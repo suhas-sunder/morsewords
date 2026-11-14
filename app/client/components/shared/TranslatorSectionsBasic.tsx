@@ -1031,7 +1031,7 @@ export default function TranslatorSectionsBasic({
                             : "cursor-not-allowed opacity-60"
                           }`}
                         >
-                          <AudioPresetOptions context="livePlayback" />
+                          <AudioPresetOptions context="translator" />
                         </select>
                       </div>
 

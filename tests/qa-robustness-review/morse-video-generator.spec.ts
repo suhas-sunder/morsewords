@@ -224,6 +224,10 @@ async function installPreviewAudioProbe(page: Page) {
         return this;
       }
 
+      disconnect() {
+        events.push("node-disconnect");
+      }
+
       addEventListener() {
         return undefined;
       }
