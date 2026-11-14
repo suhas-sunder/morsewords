@@ -34,6 +34,8 @@ export type MorseTextIssue =
   | {
       type: "unknown-morse-token";
       value: string;
+      wordIndex: number;
+      groupIndex: number;
     };
 
 export type MorseNormalizeResult = {
@@ -321,13 +323,13 @@ export function morseToText(
 
   const words = splitMorseWords(normalizedInput);
   const decoded = words
-    .map((word) =>
+    .map((word, wordIndex) =>
       word
-        .map((token) => {
+        .map((token, groupIndex) => {
           const mapped = MORSE_TO_TEXT[token];
           if (mapped) return mapped;
 
-          issues.push({ type: "unknown-morse-token", value: token });
+          issues.push({ type: "unknown-morse-token", value: token, wordIndex, groupIndex });
           return unknownToken === "placeholder" ? "?" : "";
         })
         .join(""),

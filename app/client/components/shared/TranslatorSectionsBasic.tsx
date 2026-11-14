@@ -1,8 +1,9 @@
 import * as React from "react";
+import MorseBoundaryDiagnostics from "./MorseBoundaryDiagnostics";
+import { useMorseHandoff } from "./morseHandoff";
 import TextInputDiagnostics from "./TextInputDiagnostics";
 import { useEffect, useMemo, useState } from "react";
 import {
-  normalizeMorseForDecoding,
   textToMorse,
 } from "~/client/components/shared/morseUtils";
 import { readQueryPrefillValue } from "~/client/components/shared/queryPrefill";
@@ -143,6 +144,7 @@ export default function TranslatorSectionsBasic({
     preferredDirection === "decode" && !allowDecode ? "encode" : preferredDirection,
   );
   const queryPrefillApplied = React.useRef(false);
+  useMorseHandoff(React.useCallback((value: string) => { queryPrefillApplied.current = true; setMorseB(value); setDirection("decode"); }, [setMorseB]));
 
   const player = useAudio();
 
@@ -355,20 +357,6 @@ export default function TranslatorSectionsBasic({
     setCopied(label);
     setTimeout(() => setCopied(null), 1200);
   };
-
-  const morseInputIssues = useMemo(() => {
-    const issues: string[] = [];
-    if (!morseB) return issues;
-
-    const { invalidChars } = normalizeMorseForDecoding(morseB);
-    if (invalidChars.length) {
-      issues.push(
-        `Invalid character${invalidChars.length > 1 ? "s" : ""}: ${invalidChars.join(" ")}`,
-      );
-    }
-
-    return issues;
-  }, [morseB]);
 
   const applyExampleText = (text: string) => {
     if (direction === "encode") {
@@ -765,11 +753,7 @@ export default function TranslatorSectionsBasic({
 
                   {direction === "encode" && <TextInputDiagnostics value={plainValidationValue ?? plainA} inputId={plainValidationValue === undefined ? liveInputId : "mw_transliterated"} transliterated={plainValidationValue !== undefined} />}
 
-                  {direction === "decode" && morseInputIssues.length > 0 && (
-                    <p className="mw-warning-text text-xs font-medium text-amber-700">
-                      {morseInputIssues.join(" ")}
-                    </p>
-                  )}
+                  {direction === "decode" && <MorseBoundaryDiagnostics value={morseB} />}
                 </div>
               </div>
 
