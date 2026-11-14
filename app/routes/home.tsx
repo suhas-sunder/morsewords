@@ -166,7 +166,17 @@ export async function loader() {
     ]),
   );
 
-  return { featuredBookDescriptionsBySlug };
+  const publishedBooks = getPublishedMorseBookSummaries();
+  const printExample = publishedBooks.find(book => book.slug === "treasure-island") ?? publishedBooks[0];
+  return {
+    featuredBookDescriptionsBySlug,
+    featuredBooks: featuredBooks.map(book => ({
+      slug: book.slug, title: book.title, href: morseBookPath(book.slug),
+      authorText: formatMorseBookAuthors(book.author),
+      valueLine: formatFeaturedBookValueLine(book.stats.includedSectionCount, book.stats.wordCount),
+    })),
+    printExamplePath: printExample ? `${morseBookPath(printExample.slug)}/print` : null,
+  };
 }
 
 function SectionEyebrow({ children }: { children: React.ReactNode }) {
@@ -236,13 +246,11 @@ function OfferingsSection() {
 
 function FeaturedBooksSection({
   descriptionsBySlug,
+  featuredBooks,
 }: {
   descriptionsBySlug: Record<string, string>;
+  featuredBooks: Awaited<ReturnType<typeof loader>>["featuredBooks"];
 }) {
-  const featuredBooks = React.useMemo(
-    () => getPublishedMorseBookSummaries().slice(0, FEATURED_BOOK_LIMIT),
-    [],
-  );
 
   if (featuredBooks.length === 0) return null;
 
@@ -286,12 +294,9 @@ function FeaturedBooksSection({
 
         <div className="mt-8 grid items-start gap-4 md:grid-cols-2 md:items-stretch xl:grid-cols-4">
           {featuredBooks.map((book, index) => {
-            const bookPath = morseBookPath(book.slug);
-            const authorText = formatMorseBookAuthors(book.author);
-            const valueLine = formatFeaturedBookValueLine(
-              book.stats.includedSectionCount,
-              book.stats.wordCount,
-            );
+            const bookPath = book.href;
+            const authorText = book.authorText;
+            const valueLine = book.valueLine;
             const description = descriptionsBySlug[book.slug] ?? "";
             const wideScreenOnly = index >= 4;
 
@@ -384,12 +389,7 @@ function FeaturedBooksSection({
   );
 }
 
-function PrintableAndTrustSection() {
-  const printExample =
-    getPublishedMorseBookSummaries().find(
-      (book) => book.slug === "treasure-island",
-    ) ?? getPublishedMorseBookSummaries()[0];
-
+function PrintableAndTrustSection({ printExamplePath }: { printExamplePath: string | null }) {
   return (
     <section
       className="mx-auto grid w-full max-w-[1120px] gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:px-8"
@@ -415,9 +415,9 @@ function PrintableAndTrustSection() {
           >
             Create printable pages
           </Link>
-          {printExample ? (
+          {printExamplePath ? (
             <Link
-              to={`${morseBookPath(printExample.slug)}/print`}
+              to={printExamplePath}
               className="mw-link inline-flex min-h-11 items-center font-semibold text-sky-900 underline-offset-4 hover:underline"
             >
               Example book print page
@@ -546,8 +546,9 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       <OfferingsSection />
       <FeaturedBooksSection
         descriptionsBySlug={loaderData.featuredBookDescriptionsBySlug}
+        featuredBooks={loaderData.featuredBooks}
       />
-      <PrintableAndTrustSection />
+      <PrintableAndTrustSection printExamplePath={loaderData.printExamplePath} />
       <HowItWorks />
 
       <div className="mx-auto w-full max-w-[1040px] px-4 pb-12 sm:px-6 sm:pb-16 lg:px-8">

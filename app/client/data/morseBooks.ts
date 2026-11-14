@@ -29,6 +29,8 @@ import {
   normalizeMorseBookContentBaseUrl,
 } from "./morseBookContentConfig";
 import { getMorseBookSuitability } from "./morseBookSuitability";
+import { isMorseBookPublishReady } from "./morseBookEligibility";
+export { isMorseBookPublishReady } from "./morseBookEligibility";
 
 export const MORSE_BOOKS_BASE_PATH = "/morse-code-books";
 export const MORSE_AUDIOBOOKS_BASE_PATH = "/morse-code-audiobooks";
@@ -456,24 +458,6 @@ export function morseBookPrintPath(slug: string) {
 
 export function morseAudiobookPath(slug: string) {
   return `${MORSE_AUDIOBOOKS_BASE_PATH}/${slug}`;
-}
-
-export function isMorseBookPublishReady(
-  book: Pick<MorseBookLibrarySummary, "source"> | MorseBookManifest,
-) {
-  const approvedBySource =
-    book.source.approvalSource === "file-evidence" ||
-    book.source.approvalSource === "external-authority" ||
-    (book.source.approvalSource === "owner-reviewed" &&
-      book.source.rightsReviewed === true) ||
-    (book.source.approvalSource === undefined &&
-      book.source.rightsReviewed === true);
-  return (
-    approvedBySource &&
-    book.source.publishReady === true &&
-    book.source.rightsStatus === "approved" &&
-    book.source.processingAllowed === true
-  );
 }
 
 const discoverableMorseBooks = libraryManifest.books

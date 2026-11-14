@@ -728,6 +728,11 @@ test.describe("homepage monetization readiness", () => {
     expect(booksBox!.y).toBeGreaterThan(aboutBox!.y + aboutBox!.height / 2);
     expect(booksBox!.width).toBeGreaterThan(aboutBox!.width * 3);
 
+    // W09 keeps the two hubs in the unfiltered menu; the full title inventory
+    // appears on search instead of mounting hundreds of links on every open.
+    await expect(booksSection.locator("a")).toHaveCount(2);
+    await dialog.getByRole("searchbox").fill("Arthur Conan Doyle");
+    await expect(booksSection.locator('a[href^="/morse-code-books/"]').first()).toBeVisible();
     const bookLinkColumns = await booksSection.locator("a").evaluateAll((links) =>
       Array.from(
         new Set(
