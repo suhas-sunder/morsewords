@@ -1,0 +1,1427 @@
+{
+  "baselineHead": "bc73402dbc2cee734dfb80a0c9cb7405ac0a3f3b",
+  "method": "Fresh Chromium contexts, same local built handler, fixed 250ms local asset responses, no third-party resources; lab observations only",
+  "observations": [
+    {
+      "route": "/",
+      "width": 390,
+      "before": {
+        "jsBytes": 828196,
+        "jsGzip": 278551,
+        "htmlBytes": 223245,
+        "htmlGzip": 46231,
+        "serializedStreamBytes": 3095,
+        "loaderState": {
+          "bytes": 2776,
+          "relatedCount": 0
+        },
+        "previewBytes": 0,
+        "readyMs": null,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 828196,
+        "jsGzip": 278551,
+        "htmlBytes": 223245,
+        "htmlGzip": 46231,
+        "serializedStreamBytes": 3095,
+        "loaderState": {
+          "bytes": 2776,
+          "relatedCount": 0
+        },
+        "previewBytes": 0,
+        "readyMs": null,
+        "errors": []
+      },
+      "beforeAssetRequests": [],
+      "afterAssetRequests": []
+    },
+    {
+      "route": "/audio",
+      "width": 390,
+      "before": {
+        "jsBytes": 819651,
+        "jsGzip": 275901,
+        "htmlBytes": 207855,
+        "htmlGzip": 43112,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0,
+        "readyMs": null,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 819651,
+        "jsGzip": 275901,
+        "htmlBytes": 207855,
+        "htmlGzip": 43111,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0,
+        "readyMs": null,
+        "errors": []
+      },
+      "beforeAssetRequests": [],
+      "afterAssetRequests": []
+    },
+    {
+      "route": "/practice",
+      "width": 390,
+      "before": {
+        "jsBytes": 767049,
+        "jsGzip": 255487,
+        "htmlBytes": 178489,
+        "htmlGzip": 38906,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0,
+        "readyMs": null,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 767049,
+        "jsGzip": 255487,
+        "htmlBytes": 178489,
+        "htmlGzip": 38905,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0,
+        "readyMs": null,
+        "errors": []
+      },
+      "beforeAssetRequests": [],
+      "afterAssetRequests": []
+    },
+    {
+      "route": "/learn-morse-code",
+      "width": 390,
+      "before": {
+        "jsBytes": 786337,
+        "jsGzip": 257501,
+        "htmlBytes": 206253,
+        "htmlGzip": 42057,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0,
+        "readyMs": null,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 786337,
+        "jsGzip": 257501,
+        "htmlBytes": 206253,
+        "htmlGzip": 42057,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0,
+        "readyMs": null,
+        "errors": []
+      },
+      "beforeAssetRequests": [],
+      "afterAssetRequests": []
+    },
+    {
+      "route": "/morse-code-audio-practice",
+      "width": 390,
+      "before": {
+        "jsBytes": 805414,
+        "jsGzip": 270764,
+        "htmlBytes": 201092,
+        "htmlGzip": 41429,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0,
+        "readyMs": null,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 805414,
+        "jsGzip": 270764,
+        "htmlBytes": 201092,
+        "htmlGzip": 41428,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0,
+        "readyMs": null,
+        "errors": []
+      },
+      "beforeAssetRequests": [],
+      "afterAssetRequests": []
+    },
+    {
+      "route": "/morse-code-books/alices-adventures-in-wonderland",
+      "width": 390,
+      "before": {
+        "jsBytes": 1744901,
+        "jsGzip": 383289,
+        "htmlBytes": 397784,
+        "htmlGzip": 59669,
+        "serializedStreamBytes": 29141,
+        "loaderState": {
+          "bytes": 40584,
+          "relatedCount": 0
+        },
+        "previewBytes": 12110,
+        "readyMs": 2072.0348000000013,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 928549,
+        "jsGzip": 305181,
+        "htmlBytes": 398298,
+        "htmlGzip": 59890,
+        "serializedStreamBytes": 29595,
+        "loaderState": {
+          "bytes": 40931,
+          "relatedCount": 1
+        },
+        "previewBytes": 12110,
+        "readyMs": 1555.7392999999993,
+        "errors": []
+      },
+      "beforeAssetRequests": [
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 985.3425999999963,
+          "endMs": 1318.880299999997,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "books/alices-adventures-in-wonderland.json",
+          "bytes": 493607,
+          "startMs": 1326.0328999999983,
+          "endMs": 1748.1242999999959,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 1985.1392999999953,
+          "endMs": 2252.1575999999986,
+          "injectedDelayMs": 250
+        }
+      ],
+      "afterAssetRequests": [
+        {
+          "relative": "books/alices-adventures-in-wonderland.json",
+          "bytes": 493607,
+          "startMs": 597.5933999999997,
+          "endMs": 1014.2786999999998,
+          "injectedDelayMs": 250
+        }
+      ]
+    },
+    {
+      "route": "/morse-code-books/the-time-machine",
+      "width": 390,
+      "before": {
+        "jsBytes": 1744901,
+        "jsGzip": 383289,
+        "htmlBytes": 397323,
+        "htmlGzip": 59517,
+        "serializedStreamBytes": 27062,
+        "loaderState": {
+          "bytes": 37027,
+          "relatedCount": 0
+        },
+        "previewBytes": 11107,
+        "readyMs": 1832.7134000000005,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 928549,
+        "jsGzip": 305181,
+        "htmlBytes": 398039,
+        "htmlGzip": 59825,
+        "serializedStreamBytes": 27718,
+        "loaderState": {
+          "bytes": 37533,
+          "relatedCount": 4
+        },
+        "previewBytes": 11107,
+        "readyMs": 1771.9326999999994,
+        "errors": []
+      },
+      "beforeAssetRequests": [
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 960.5624000000025,
+          "endMs": 1234.1036999999997,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "books/the-time-machine.json",
+          "bytes": 582500,
+          "startMs": 1242.5581999999995,
+          "endMs": 1554.2554999999993,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 1765.9300000000003,
+          "endMs": 2038.9351000000024,
+          "injectedDelayMs": 250
+        }
+      ],
+      "afterAssetRequests": [
+        {
+          "relative": "books/the-time-machine.json",
+          "bytes": 582500,
+          "startMs": 614.1203000000005,
+          "endMs": 1171.2716,
+          "injectedDelayMs": 250
+        }
+      ]
+    },
+    {
+      "route": "/morse-code-books/the-old-man-and-his-grandson",
+      "width": 390,
+      "before": {
+        "jsBytes": 1744901,
+        "jsGzip": 383289,
+        "htmlBytes": 376383,
+        "htmlGzip": 54003,
+        "serializedStreamBytes": 8392,
+        "loaderState": {
+          "bytes": 10084,
+          "relatedCount": 0
+        },
+        "previewBytes": 2075,
+        "readyMs": 1462.944199999998,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 928549,
+        "jsGzip": 305181,
+        "htmlBytes": 377072,
+        "htmlGzip": 54303,
+        "serializedStreamBytes": 9021,
+        "loaderState": {
+          "bytes": 10560,
+          "relatedCount": 4
+        },
+        "previewBytes": 2075,
+        "readyMs": 724.4064999999991,
+        "errors": []
+      },
+      "beforeAssetRequests": [
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 589.9539000000004,
+          "endMs": 864.2909,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "books/the-old-man-and-his-grandson.json",
+          "bytes": 11223,
+          "startMs": 871.2747999999992,
+          "endMs": 1243.529300000002,
+          "injectedDelayMs": 250
+        }
+      ],
+      "afterAssetRequests": [
+        {
+          "relative": "books/the-old-man-and-his-grandson.json",
+          "bytes": 11223,
+          "startMs": 353.0013999999992,
+          "endMs": 683.446899999999,
+          "injectedDelayMs": 250
+        }
+      ]
+    },
+    {
+      "route": "/morse-code-books/the-count-of-monte-cristo-gutenberg-1184",
+      "width": 390,
+      "before": {
+        "jsBytes": 1744901,
+        "jsGzip": 383289,
+        "htmlBytes": 398606,
+        "htmlGzip": 60384,
+        "serializedStreamBytes": 30299,
+        "loaderState": {
+          "bytes": 40641,
+          "relatedCount": 0
+        },
+        "previewBytes": 0,
+        "readyMs": 2532.737500000003,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 928549,
+        "jsGzip": 305181,
+        "htmlBytes": 399084,
+        "htmlGzip": 60603,
+        "serializedStreamBytes": 30717,
+        "loaderState": {
+          "bytes": 40960,
+          "relatedCount": 1
+        },
+        "previewBytes": 0,
+        "readyMs": 9728.102899999998,
+        "errors": []
+      },
+      "beforeAssetRequests": [
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 835.7906000000003,
+          "endMs": 1110.4892000000036,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "books/the-count-of-monte-cristo.json",
+          "bytes": 8523901,
+          "startMs": 1116.3571999999986,
+          "endMs": 1984.3824000000022,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 2534.7995999999985,
+          "endMs": 2799.9532000000036,
+          "injectedDelayMs": 250
+        }
+      ],
+      "afterAssetRequests": [
+        {
+          "relative": "books/the-count-of-monte-cristo.json",
+          "bytes": 8523901,
+          "startMs": 588.4051999999992,
+          "endMs": 1682.0663999999997,
+          "injectedDelayMs": 250
+        }
+      ]
+    },
+    {
+      "route": "/morse-code-books/a-scandal-in-bohemia",
+      "width": 390,
+      "before": {
+        "jsBytes": 1744901,
+        "jsGzip": 383289,
+        "htmlBytes": 377123,
+        "htmlGzip": 54424,
+        "serializedStreamBytes": 8529,
+        "loaderState": {
+          "bytes": 10407,
+          "relatedCount": 0
+        },
+        "previewBytes": 1910,
+        "readyMs": 1473.0095000000001,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 928549,
+        "jsGzip": 305181,
+        "htmlBytes": 377914,
+        "htmlGzip": 54754,
+        "serializedStreamBytes": 9260,
+        "loaderState": {
+          "bytes": 10983,
+          "relatedCount": 4
+        },
+        "previewBytes": 1910,
+        "readyMs": 1274.156799999997,
+        "errors": []
+      },
+      "beforeAssetRequests": [
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 565.8395000000019,
+          "endMs": 839.3283000000083,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "books/a-scandal-in-bohemia.json",
+          "bytes": 155064,
+          "startMs": 845.6258999999991,
+          "endMs": 1158.3966000000073,
+          "injectedDelayMs": 250
+        }
+      ],
+      "afterAssetRequests": [
+        {
+          "relative": "books/a-scandal-in-bohemia.json",
+          "bytes": 155064,
+          "startMs": 410.43689999999697,
+          "endMs": 758.1461999999992,
+          "injectedDelayMs": 250
+        }
+      ]
+    },
+    {
+      "route": "/morse-code-books/a-christmas-carol",
+      "width": 390,
+      "before": {
+        "jsBytes": 1744901,
+        "jsGzip": 383289,
+        "htmlBytes": 398756,
+        "htmlGzip": 60071,
+        "serializedStreamBytes": 28624,
+        "loaderState": {
+          "bytes": 38900,
+          "relatedCount": 0
+        },
+        "previewBytes": 11604,
+        "readyMs": 1993.8432999999932,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 928549,
+        "jsGzip": 305181,
+        "htmlBytes": 399388,
+        "htmlGzip": 60359,
+        "serializedStreamBytes": 29196,
+        "loaderState": {
+          "bytes": 39339,
+          "relatedCount": 3
+        },
+        "previewBytes": 11604,
+        "readyMs": 1648.0967999999993,
+        "errors": []
+      },
+      "beforeAssetRequests": [
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 870.4064999999973,
+          "endMs": 1146.176999999996,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "books/a-christmas-carol.json",
+          "bytes": 509414,
+          "startMs": 1155.5304999999935,
+          "endMs": 1583.4241000000038,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 1980.8410000000003,
+          "endMs": 2253.3521000000037,
+          "injectedDelayMs": 250
+        }
+      ],
+      "afterAssetRequests": [
+        {
+          "relative": "books/a-christmas-carol.json",
+          "bytes": 509414,
+          "startMs": 605.2884000000013,
+          "endMs": 988.5110999999997,
+          "injectedDelayMs": 250
+        }
+      ]
+    },
+    {
+      "route": "/morse-code-books/the-secret-garden",
+      "width": 390,
+      "before": {
+        "jsBytes": 1744901,
+        "jsGzip": 383289,
+        "htmlBytes": 395793,
+        "htmlGzip": 58963,
+        "serializedStreamBytes": 26483,
+        "loaderState": {
+          "bytes": 35985,
+          "relatedCount": 0
+        },
+        "previewBytes": 10623,
+        "readyMs": 1788.002999999997,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 928549,
+        "jsGzip": 305181,
+        "htmlBytes": 396303,
+        "htmlGzip": 59177,
+        "serializedStreamBytes": 26933,
+        "loaderState": {
+          "bytes": 36350,
+          "relatedCount": 1
+        },
+        "previewBytes": 10623,
+        "readyMs": 2260.4981000000007,
+        "errors": []
+      },
+      "beforeAssetRequests": [
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 877.4023999999918,
+          "endMs": 1144.2296999999962,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "books/the-secret-garden.json",
+          "bytes": 1396854,
+          "startMs": 1148.9084000000003,
+          "endMs": 1558.1772000000055,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 1775.5319000000018,
+          "endMs": 2039.6843999999983,
+          "injectedDelayMs": 250
+        }
+      ],
+      "afterAssetRequests": [
+        {
+          "relative": "books/the-secret-garden.json",
+          "bytes": 1396854,
+          "startMs": 606.4924000000028,
+          "endMs": 1048.7777000000024,
+          "injectedDelayMs": 250
+        }
+      ]
+    },
+    {
+      "route": "/morse-code-audiobooks/alices-adventures-in-wonderland",
+      "width": 390,
+      "before": {
+        "jsBytes": 1745233,
+        "jsGzip": 383449,
+        "htmlBytes": 296207,
+        "htmlGzip": 54156,
+        "serializedStreamBytes": 29146,
+        "loaderState": {
+          "bytes": 40589,
+          "relatedCount": 0
+        },
+        "previewBytes": 12110,
+        "readyMs": 1691.0773999999947,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 928916,
+        "jsGzip": 305362,
+        "htmlBytes": 296721,
+        "htmlGzip": 54384,
+        "serializedStreamBytes": 29600,
+        "loaderState": {
+          "bytes": 40936,
+          "relatedCount": 1
+        },
+        "previewBytes": 12110,
+        "readyMs": 953.5606000000007,
+        "errors": []
+      },
+      "beforeAssetRequests": [
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 826.7645000000048,
+          "endMs": 1093.2829999999958,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "books/alices-adventures-in-wonderland.json",
+          "bytes": 493607,
+          "startMs": 1100.2014000000054,
+          "endMs": 1370.1284000000014,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 1577.6083999999973,
+          "endMs": 1851.7209000000003,
+          "injectedDelayMs": 250
+        }
+      ],
+      "afterAssetRequests": [
+        {
+          "relative": "books/alices-adventures-in-wonderland.json",
+          "bytes": 493607,
+          "startMs": 537.4242000000013,
+          "endMs": 803.3749000000025,
+          "injectedDelayMs": 250
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "before": {
+        "jsBytes": 828196,
+        "jsGzip": 278551,
+        "htmlBytes": 223245,
+        "htmlGzip": 46231,
+        "serializedStreamBytes": 3095,
+        "loaderState": {
+          "bytes": 2776,
+          "relatedCount": 0
+        },
+        "previewBytes": 0,
+        "readyMs": null,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 828196,
+        "jsGzip": 278551,
+        "htmlBytes": 223245,
+        "htmlGzip": 46231,
+        "serializedStreamBytes": 3095,
+        "loaderState": {
+          "bytes": 2776,
+          "relatedCount": 0
+        },
+        "previewBytes": 0,
+        "readyMs": null,
+        "errors": []
+      },
+      "beforeAssetRequests": [],
+      "afterAssetRequests": []
+    },
+    {
+      "route": "/audio",
+      "width": 1440,
+      "before": {
+        "jsBytes": 819651,
+        "jsGzip": 275901,
+        "htmlBytes": 207855,
+        "htmlGzip": 43112,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0,
+        "readyMs": null,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 819651,
+        "jsGzip": 275901,
+        "htmlBytes": 207855,
+        "htmlGzip": 43111,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0,
+        "readyMs": null,
+        "errors": []
+      },
+      "beforeAssetRequests": [],
+      "afterAssetRequests": []
+    },
+    {
+      "route": "/practice",
+      "width": 1440,
+      "before": {
+        "jsBytes": 767049,
+        "jsGzip": 255487,
+        "htmlBytes": 178489,
+        "htmlGzip": 38906,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0,
+        "readyMs": null,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 767049,
+        "jsGzip": 255487,
+        "htmlBytes": 178489,
+        "htmlGzip": 38905,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0,
+        "readyMs": null,
+        "errors": []
+      },
+      "beforeAssetRequests": [],
+      "afterAssetRequests": []
+    },
+    {
+      "route": "/learn-morse-code",
+      "width": 1440,
+      "before": {
+        "jsBytes": 786337,
+        "jsGzip": 257501,
+        "htmlBytes": 206253,
+        "htmlGzip": 42057,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0,
+        "readyMs": null,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 786337,
+        "jsGzip": 257501,
+        "htmlBytes": 206253,
+        "htmlGzip": 42057,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0,
+        "readyMs": null,
+        "errors": []
+      },
+      "beforeAssetRequests": [],
+      "afterAssetRequests": []
+    },
+    {
+      "route": "/morse-code-audio-practice",
+      "width": 1440,
+      "before": {
+        "jsBytes": 805414,
+        "jsGzip": 270764,
+        "htmlBytes": 201092,
+        "htmlGzip": 41429,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0,
+        "readyMs": null,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 805414,
+        "jsGzip": 270764,
+        "htmlBytes": 201092,
+        "htmlGzip": 41428,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0,
+        "readyMs": null,
+        "errors": []
+      },
+      "beforeAssetRequests": [],
+      "afterAssetRequests": []
+    },
+    {
+      "route": "/morse-code-books/alices-adventures-in-wonderland",
+      "width": 1440,
+      "before": {
+        "jsBytes": 1744901,
+        "jsGzip": 383289,
+        "htmlBytes": 397784,
+        "htmlGzip": 59669,
+        "serializedStreamBytes": 29141,
+        "loaderState": {
+          "bytes": 40584,
+          "relatedCount": 0
+        },
+        "previewBytes": 12110,
+        "readyMs": 1828.1341999999859,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 928549,
+        "jsGzip": 305181,
+        "htmlBytes": 398298,
+        "htmlGzip": 59890,
+        "serializedStreamBytes": 29595,
+        "loaderState": {
+          "bytes": 40931,
+          "relatedCount": 1
+        },
+        "previewBytes": 12110,
+        "readyMs": 1094.4412999999986,
+        "errors": []
+      },
+      "beforeAssetRequests": [
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 917.2137999999977,
+          "endMs": 1190.7622999999876,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "books/alices-adventures-in-wonderland.json",
+          "bytes": 493607,
+          "startMs": 1200.0434999999998,
+          "endMs": 1480.4133999999904,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 1751.217399999994,
+          "endMs": 2026.409799999994,
+          "injectedDelayMs": 250
+        }
+      ],
+      "afterAssetRequests": [
+        {
+          "relative": "books/alices-adventures-in-wonderland.json",
+          "bytes": 493607,
+          "startMs": 653.7472999999991,
+          "endMs": 924.7911999999997,
+          "injectedDelayMs": 250
+        }
+      ]
+    },
+    {
+      "route": "/morse-code-books/the-time-machine",
+      "width": 1440,
+      "before": {
+        "jsBytes": 1744901,
+        "jsGzip": 383289,
+        "htmlBytes": 397323,
+        "htmlGzip": 59517,
+        "serializedStreamBytes": 27062,
+        "loaderState": {
+          "bytes": 37027,
+          "relatedCount": 0
+        },
+        "previewBytes": 11107,
+        "readyMs": 2117.0203000000038,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 928549,
+        "jsGzip": 305181,
+        "htmlBytes": 398039,
+        "htmlGzip": 59825,
+        "serializedStreamBytes": 27718,
+        "loaderState": {
+          "bytes": 37533,
+          "relatedCount": 4
+        },
+        "previewBytes": 11107,
+        "readyMs": 1004.1375999999982,
+        "errors": []
+      },
+      "beforeAssetRequests": [
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 1161.9830000000075,
+          "endMs": 1430.789300000004,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "books/the-time-machine.json",
+          "bytes": 582500,
+          "startMs": 1437.8163000000059,
+          "endMs": 1714.6132999999973,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 2041.9214000000065,
+          "endMs": 2401.4853000000003,
+          "injectedDelayMs": 250
+        }
+      ],
+      "afterAssetRequests": [
+        {
+          "relative": "books/the-time-machine.json",
+          "bytes": 582500,
+          "startMs": 597.0936000000002,
+          "endMs": 856.6879000000008,
+          "injectedDelayMs": 250
+        }
+      ]
+    },
+    {
+      "route": "/morse-code-books/the-old-man-and-his-grandson",
+      "width": 1440,
+      "before": {
+        "jsBytes": 1744901,
+        "jsGzip": 383289,
+        "htmlBytes": 376383,
+        "htmlGzip": 54003,
+        "serializedStreamBytes": 8392,
+        "loaderState": {
+          "bytes": 10084,
+          "relatedCount": 0
+        },
+        "previewBytes": 2075,
+        "readyMs": 1673.6180000000022,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 928549,
+        "jsGzip": 305181,
+        "htmlBytes": 377072,
+        "htmlGzip": 54303,
+        "serializedStreamBytes": 9021,
+        "loaderState": {
+          "bytes": 10560,
+          "relatedCount": 4
+        },
+        "previewBytes": 2075,
+        "readyMs": 734.0312000000049,
+        "errors": []
+      },
+      "beforeAssetRequests": [
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 733.9446999999927,
+          "endMs": 1012.7663999999932,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "books/the-old-man-and-his-grandson.json",
+          "bytes": 11223,
+          "startMs": 1027.3647999999957,
+          "endMs": 1292.602700000003,
+          "injectedDelayMs": 250
+        }
+      ],
+      "afterAssetRequests": [
+        {
+          "relative": "books/the-old-man-and-his-grandson.json",
+          "bytes": 11223,
+          "startMs": 369.38590000000113,
+          "endMs": 630.8641000000061,
+          "injectedDelayMs": 250
+        }
+      ]
+    },
+    {
+      "route": "/morse-code-books/the-count-of-monte-cristo-gutenberg-1184",
+      "width": 1440,
+      "before": {
+        "jsBytes": 1744901,
+        "jsGzip": 383289,
+        "htmlBytes": 398606,
+        "htmlGzip": 60384,
+        "serializedStreamBytes": 30299,
+        "loaderState": {
+          "bytes": 40641,
+          "relatedCount": 0
+        },
+        "previewBytes": 0,
+        "readyMs": 2271.689799999993,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 928549,
+        "jsGzip": 305181,
+        "htmlBytes": 399084,
+        "htmlGzip": 60603,
+        "serializedStreamBytes": 30717,
+        "loaderState": {
+          "bytes": 40960,
+          "relatedCount": 1
+        },
+        "previewBytes": 0,
+        "readyMs": 8832.181100000002,
+        "errors": []
+      },
+      "beforeAssetRequests": [
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 1066.073299999989,
+          "endMs": 1336.236499999999,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "books/the-count-of-monte-cristo.json",
+          "bytes": 8523901,
+          "startMs": 1344.296399999992,
+          "endMs": 1763.6334999999963,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 2273.762499999997,
+          "endMs": 2553.0273999999918,
+          "injectedDelayMs": 250
+        }
+      ],
+      "afterAssetRequests": [
+        {
+          "relative": "books/the-count-of-monte-cristo.json",
+          "bytes": 8523901,
+          "startMs": 691.7797999999966,
+          "endMs": 1128.6938999999984,
+          "injectedDelayMs": 250
+        }
+      ]
+    },
+    {
+      "route": "/morse-code-books/a-scandal-in-bohemia",
+      "width": 1440,
+      "before": {
+        "jsBytes": 1744901,
+        "jsGzip": 383289,
+        "htmlBytes": 377123,
+        "htmlGzip": 54424,
+        "serializedStreamBytes": 8529,
+        "loaderState": {
+          "bytes": 10407,
+          "relatedCount": 0
+        },
+        "previewBytes": 1910,
+        "readyMs": 1474.5376000000106,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 928549,
+        "jsGzip": 305181,
+        "htmlBytes": 377914,
+        "htmlGzip": 54754,
+        "serializedStreamBytes": 9260,
+        "loaderState": {
+          "bytes": 10983,
+          "relatedCount": 4
+        },
+        "previewBytes": 1910,
+        "readyMs": 944.4305000000022,
+        "errors": []
+      },
+      "beforeAssetRequests": [
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 567.1861000000063,
+          "endMs": 838.7981,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "books/a-scandal-in-bohemia.json",
+          "bytes": 155064,
+          "startMs": 844.6493000000046,
+          "endMs": 1108.7639000000054,
+          "injectedDelayMs": 250
+        }
+      ],
+      "afterAssetRequests": [
+        {
+          "relative": "books/a-scandal-in-bohemia.json",
+          "bytes": 155064,
+          "startMs": 391.46190000000206,
+          "endMs": 647.6037999999971,
+          "injectedDelayMs": 250
+        }
+      ]
+    },
+    {
+      "route": "/morse-code-books/a-christmas-carol",
+      "width": 1440,
+      "before": {
+        "jsBytes": 1744901,
+        "jsGzip": 383289,
+        "htmlBytes": 398756,
+        "htmlGzip": 60071,
+        "serializedStreamBytes": 28624,
+        "loaderState": {
+          "bytes": 38900,
+          "relatedCount": 0
+        },
+        "previewBytes": 11604,
+        "readyMs": 2036.602199999994,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 928549,
+        "jsGzip": 305181,
+        "htmlBytes": 399388,
+        "htmlGzip": 60359,
+        "serializedStreamBytes": 29196,
+        "loaderState": {
+          "bytes": 39339,
+          "relatedCount": 3
+        },
+        "previewBytes": 11604,
+        "readyMs": 1130.0636999999988,
+        "errors": []
+      },
+      "beforeAssetRequests": [
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 990.6668000000063,
+          "endMs": 1259.9600000000064,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "books/a-christmas-carol.json",
+          "bytes": 509414,
+          "startMs": 1269.0014999999985,
+          "endMs": 1540.5016000000032,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 2036.1024000000034,
+          "endMs": 2319.058499999999,
+          "injectedDelayMs": 250
+        }
+      ],
+      "afterAssetRequests": [
+        {
+          "relative": "books/a-christmas-carol.json",
+          "bytes": 509414,
+          "startMs": 603.0279999999984,
+          "endMs": 872.3649000000005,
+          "injectedDelayMs": 250
+        }
+      ]
+    },
+    {
+      "route": "/morse-code-books/the-secret-garden",
+      "width": 1440,
+      "before": {
+        "jsBytes": 1744901,
+        "jsGzip": 383289,
+        "htmlBytes": 395793,
+        "htmlGzip": 58963,
+        "serializedStreamBytes": 26483,
+        "loaderState": {
+          "bytes": 35985,
+          "relatedCount": 0
+        },
+        "previewBytes": 10623,
+        "readyMs": 2110.541200000007,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 928549,
+        "jsGzip": 305181,
+        "htmlBytes": 396303,
+        "htmlGzip": 59177,
+        "serializedStreamBytes": 26933,
+        "loaderState": {
+          "bytes": 36350,
+          "relatedCount": 1
+        },
+        "previewBytes": 10623,
+        "readyMs": 2041.8035999999993,
+        "errors": []
+      },
+      "beforeAssetRequests": [
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 1138.7516000000032,
+          "endMs": 1415.3315000000002,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "books/the-secret-garden.json",
+          "bytes": 1396854,
+          "startMs": 1423.4677999999985,
+          "endMs": 1703.8427999999985,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 1897.94200000001,
+          "endMs": 2152.558799999999,
+          "injectedDelayMs": 250
+        }
+      ],
+      "afterAssetRequests": [
+        {
+          "relative": "books/the-secret-garden.json",
+          "bytes": 1396854,
+          "startMs": 561.377999999997,
+          "endMs": 838.2684000000008,
+          "injectedDelayMs": 250
+        }
+      ]
+    },
+    {
+      "route": "/morse-code-audiobooks/alices-adventures-in-wonderland",
+      "width": 1440,
+      "before": {
+        "jsBytes": 1745233,
+        "jsGzip": 383449,
+        "htmlBytes": 296207,
+        "htmlGzip": 54156,
+        "serializedStreamBytes": 29146,
+        "loaderState": {
+          "bytes": 40589,
+          "relatedCount": 0
+        },
+        "previewBytes": 12110,
+        "readyMs": 1766.7898999999888,
+        "errors": []
+      },
+      "after": {
+        "jsBytes": 928916,
+        "jsGzip": 305362,
+        "htmlBytes": 296721,
+        "htmlGzip": 54384,
+        "serializedStreamBytes": 29600,
+        "loaderState": {
+          "bytes": 40936,
+          "relatedCount": 1
+        },
+        "previewBytes": 12110,
+        "readyMs": 965.2562000000034,
+        "errors": []
+      },
+      "beforeAssetRequests": [
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 898.3332999999984,
+          "endMs": 1167.812699999995,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "books/alices-adventures-in-wonderland.json",
+          "bytes": 493607,
+          "startMs": 1174.402900000001,
+          "endMs": 1444.811699999991,
+          "injectedDelayMs": 250
+        },
+        {
+          "relative": "public-manifest.json",
+          "bytes": 674199,
+          "startMs": 1621.3095999999932,
+          "endMs": 1895.2828000000009,
+          "injectedDelayMs": 250
+        }
+      ],
+      "afterAssetRequests": [
+        {
+          "relative": "books/alices-adventures-in-wonderland.json",
+          "bytes": 493607,
+          "startMs": 548.1663000000044,
+          "endMs": 813.6445000000022,
+          "injectedDelayMs": 250
+        }
+      ]
+    }
+  ],
+  "largestRemainingAliceAudiobookChunks": [
+    [
+      "/assets/entry.client-qgpYjTgx.js",
+      {
+        "bytes": 183222,
+        "gzip": 58382,
+        "hasFullManifest": false
+      }
+    ],
+    [
+      "/assets/array.no-external-CgJ7MXwd.js",
+      {
+        "bytes": 170102,
+        "gzip": 53666,
+        "hasFullManifest": false
+      }
+    ],
+    [
+      "/assets/chunk-EVOBXE3Y-DpuJhuNZ.js",
+      {
+        "bytes": 127714,
+        "gzip": 42870,
+        "hasFullManifest": false
+      }
+    ],
+    [
+      "/assets/root-DeQOlVE5.js",
+      {
+        "bytes": 92287,
+        "gzip": 38803,
+        "hasFullManifest": false
+      }
+    ],
+    [
+      "/assets/MorseBookPage-DyRq2-06.js",
+      {
+        "bytes": 72500,
+        "gzip": 19229,
+        "hasFullManifest": false
+      }
+    ],
+    [
+      "/assets/morseVideoTypes-Dc772Fso.js",
+      {
+        "bytes": 48102,
+        "gzip": 15398,
+        "hasFullManifest": false
+      }
+    ],
+    [
+      "/assets/bookPreviewAudio-SbjR5LF2.js",
+      {
+        "bytes": 39740,
+        "gzip": 12997,
+        "hasFullManifest": false
+      }
+    ],
+    [
+      "/assets/Icons-D6rcEq1n.js",
+      {
+        "bytes": 34449,
+        "gzip": 11925,
+        "hasFullManifest": false
+      }
+    ]
+  ],
+  "beforeManifestChunk": [
+    [
+      "/assets/morseBooks-CPMk2E19.js",
+      {
+        "bytes": 832411,
+        "gzip": 83465,
+        "hasFullManifest": true
+      }
+    ]
+  ],
+  "afterManifestChunks": [],
+  "notes": [
+    "Measurements preceded any W18 implementation.",
+    "Production app entry and router manifest remain large; export helpers are preserved.",
+    "One observation per route/width. Readiness times include host load and are not field CWV or an isolated CPU benchmark.",
+    "Preview payload bytes are unchanged; HTML adds only one profile and up to four compact related records.",
+    "Source-version matching books fetch only their own payload. Mismatched asset versions use the existing remote export-index validation path."
+  ],
+  "implementationHead": "6b059417459a40c3c243d18748aecd3e13d24860"
+}
