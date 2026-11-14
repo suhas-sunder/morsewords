@@ -575,6 +575,8 @@ export default function BookTranslatorTool() {
   } | null>(null);
   const exportVersionRef = React.useRef(0);
   const exportAbortRef = React.useRef<AbortController | null>(null);
+  const completedPartSourceRef = React.useRef("");
+  const completedPartPlanRef = React.useRef<BookExportPart[] | null>(null);
   const completedPartDownloadsRef = React.useRef<{
     indexes: number[];
     signature: string;
@@ -1287,7 +1289,10 @@ export default function BookTranslatorTool() {
           : "Rendering audio...";
   const downloadButtonLabel = exportRunning
     ? runningDownloadLabel
-    : primaryDownloadLabel;
+    : (exportProgress.phase === "failed" || exportProgress.phase === "cancelled") && downloadKind === "parts"
+        && completedPartSourceRef.current === preflight.cleanedText && completedPartPlanRef.current === activeDownloadParts
+      ? "Continue remaining audio parts"
+      : primaryDownloadLabel;
 
   React.useEffect(() => {
     if (!exportRunning || exportStartedAtMs === null) return undefined;
@@ -2246,7 +2251,9 @@ export default function BookTranslatorTool() {
           filenames: activeDownloadParts.map((part) => part.estimatedFilename),
           settings: activeSegmentationSettings,
         });
-        if (completedPartDownloadsRef.current.signature !== partSignature) {
+        if (completedPartSourceRef.current !== preflight.cleanedText || completedPartPlanRef.current !== activeDownloadParts || completedPartDownloadsRef.current.signature !== partSignature) {
+          completedPartPlanRef.current = activeDownloadParts;
+          completedPartSourceRef.current = preflight.cleanedText;
           completedPartDownloadsRef.current = {
             indexes: [],
             signature: partSignature,
@@ -2269,6 +2276,9 @@ export default function BookTranslatorTool() {
             ];
           },
           onPartReady: ({ blob, filename }) => {
+            if (!mountedRef.current || exportVersionRef.current !== version || controller.signal.aborted) {
+              throw new DOMException("Book download cancelled.", "AbortError");
+            }
             const download = downloadBlobFile({ blob, filename });
             if (!download.ok) throw new Error(download.message);
             completedPartDownloadsRef.current.totalBytes += blob.size;
@@ -2288,6 +2298,9 @@ export default function BookTranslatorTool() {
           totalSelectedRuntimeMs: exportAnalysis.totalRuntimeMs,
           onProgress: progressHandler,
         });
+        if (!mountedRef.current || exportVersionRef.current !== version || controller.signal.aborted) {
+          throw new DOMException("Book download cancelled.", "AbortError");
+        }
         const download = downloadBlobFile({
           blob: result.blob,
           filename: result.filename,
@@ -3106,6 +3119,8 @@ export default function BookTranslatorTool() {
                 {showExportStatus && exportStatus ? (
                   <StatusMessage kind={exportStatus.kind} live>
                     {exportStatus.message}
+                    {downloadKind === "parts" && completedPartSourceRef.current === preflight.cleanedText && completedPartDownloadsRef.current.indexes.length > 0
+                      ? ` ${completedPartDownloadsRef.current.indexes.length} part requests already sent; Continue skips them.` : ""}
                   </StatusMessage>
                 ) : null}
 

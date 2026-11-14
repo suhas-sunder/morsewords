@@ -10,7 +10,7 @@ export function bookExportProgressPercent(progress: BookExportProgress) {
     return Math.max(
       0,
       Math.min(
-        100,
+        progress.phase === "complete" ? 100 : 99,
         Math.round((progress.renderedDurationMs / progress.totalDurationMs) * 100),
       ),
     );
@@ -18,7 +18,7 @@ export function bookExportProgressPercent(progress: BookExportProgress) {
   if (progress.totalParts > 0) {
     return Math.max(
       0,
-      Math.min(100, Math.round((progress.currentPart / progress.totalParts) * 100)),
+      Math.min(progress.phase === "complete" ? 100 : 99, Math.round((progress.currentPart / progress.totalParts) * 100)),
     );
   }
   return progress.phase === "complete" ? 100 : 0;
@@ -61,9 +61,11 @@ export function bookExportRemainingTimeLabel(
     return `${elapsedLabel} / estimating time remaining...`;
   }
 
+  const renderedThisAttempt = Math.max(0, progress.renderedDurationMs - (progress.resumedDurationMs ?? 0));
+  const durationThisAttempt = Math.max(1, progress.totalDurationMs - (progress.resumedDurationMs ?? 0));
   const progressRatio = Math.max(
     0,
-    Math.min(0.99, progress.renderedDurationMs / progress.totalDurationMs),
+    Math.min(0.99, renderedThisAttempt / durationThisAttempt),
   );
   if (progressRatio <= 0.02) {
     return `${elapsedLabel} / estimating time remaining...`;

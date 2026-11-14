@@ -83,7 +83,10 @@ test.describe("homepage translator audio export", () => {
     const controls = page
       .getByTestId("translator-audio-export-settings")
       .getByTestId("audio-export-format-split-controls");
-    await expect(page.getByTestId("morse-export-plan")).toHaveCount(0);
+    await expect(controls.getByRole("radio", { name: "No split", exact: true })).toHaveAttribute("aria-checked", "true");
+    await expect(page.getByTestId("morse-export-plan")).toHaveAttribute("data-export-part-count", "1");
+    await expect(page.getByTestId("morse-export-no-split-warning")).toBeVisible();
+    await expect(page.getByRole("button", { name: "Save WAV audio", exact: true })).toBeDisabled();
     await controls.getByRole("radio", { name: "Split by duration" }).click();
     await controls.getByLabel("Part duration").selectOption("5");
     const plan = page.getByTestId("morse-export-plan");
@@ -92,5 +95,6 @@ test.describe("homepage translator audio export", () => {
       .poll(async () => Number(await plan.getAttribute("data-export-part-count")))
       .toBeGreaterThan(1);
     await expect(page.getByTestId("morse-export-split-note")).toBeVisible();
+    await expect(page.getByRole("button", { name: "Save WAV audio", exact: true })).toBeEnabled();
   });
 });

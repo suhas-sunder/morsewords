@@ -65,7 +65,7 @@ export function ExportJobStatus({
 }) {
   if (state.status === "idle") return null;
   const progress = state.progress;
-  const percent = Math.round((progress?.overallProgress ?? 0) * 100);
+  const percent = Math.min(state.status === "complete" ? 100 : 99, Math.round((progress?.overallProgress ?? 0) * 100));
   const statusText =
     state.status === "running" && progress
       ? `${capitalize(progress.stage)} part ${progress.currentPart} of ${progress.totalParts}`
@@ -79,7 +79,7 @@ export function ExportJobStatus({
         <p className="text-sm font-semibold text-slate-700" role="status" aria-live="polite">
           {statusText}
           {progress ? ` · ${formatDuration(progress.elapsedMs)} elapsed` : ""}
-          {progress?.remainingMs !== undefined
+          {state.status === "running" && progress?.remainingMs !== undefined
             ? ` · about ${formatDuration(progress.remainingMs)} remaining`
             : ""}
         </p>
@@ -96,6 +96,12 @@ export function ExportJobStatus({
               Retry part {state.failedPart}
             </ToolButton>
           ) : null}
+          {state.status === "cancelled" ? (
+            <ToolButton tone="dark" onClick={onRetry} disabled={isActive}>
+              <RefreshIcon size={16} title={undefined} aria-hidden="true" />
+              Continue remaining parts
+            </ToolButton>
+          ) : null}
           {state.status === "complete" || state.status === "cancelled" ? (
             <ToolButton className="min-h-10 px-3 py-1.5 text-sm" tone="light" onClick={onReset} disabled={isActive}>
               <DownloadIcon size={16} title={undefined} aria-hidden="true" />
@@ -104,6 +110,7 @@ export function ExportJobStatus({
           ) : null}
         </div>
       </div>
+      {state.status === "cancelled" && isActive ? <p className="mt-2 text-sm text-slate-600" role="status">Releasing export resources…</p> : null}
       {state.status === "running" ? (
         <progress
           className="mt-3 h-2 w-full accent-sky-500"
@@ -112,10 +119,16 @@ export function ExportJobStatus({
           value={percent}
         />
       ) : null}
-      {state.status === "complete" && state.completedFiles.length > 0 ? (
-        <p className="mt-2 text-xs leading-relaxed text-slate-600">
-          {state.completedFiles.join(", ")}
-        </p>
+      {state.completedFiles.length > 0 ? (
+        <details className="mt-2 text-sm text-slate-700">
+          <summary className="cursor-pointer rounded-lg px-3 py-2 hover:bg-[#fffaf2] focus-visible:outline focus-visible:outline-2">
+            {state.completedFiles.length} download request{state.completedFiles.length === 1 ? "" : "s"} already sent
+          </summary>
+          <ul className="mt-2 max-h-32 overflow-auto break-all text-xs leading-relaxed">
+            {state.completedFiles.map(filename => <li key={filename}>{filename}</li>)}
+          </ul>
+          <p className="mt-2 text-xs">Continue or Retry skips these files. Check your browser downloads; a request does not confirm a saved file.</p>
+        </details>
       ) : null}
     </div>
   );

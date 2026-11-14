@@ -3557,7 +3557,8 @@ function MorseBookWorkspace({
                 ) : (
                   <DownloadIcon size={18} title={undefined} aria-hidden="true" />
                 )}
-                {activeDownloadLabel}
+                {!exportRunning && downloadKind === "parts" && (exportProgress.phase === "failed" || exportProgress.phase === "cancelled")
+                  ? "Continue remaining audio parts" : activeDownloadLabel}
               </button>
               {exportRunning ? (
                 <ToolButton
@@ -3607,6 +3608,8 @@ function MorseBookWorkspace({
                 {exportRunning
                   ? exportProgress.message || downloadStatus.message
                   : downloadStatus.message}
+                {!exportRunning && completedPartDownloadsRef.current.indexes.length > 0
+                  ? ` ${completedPartDownloadsRef.current.indexes.length} part requests already sent; Continue skips them.` : ""}
               </p>
             ) : null}
 
