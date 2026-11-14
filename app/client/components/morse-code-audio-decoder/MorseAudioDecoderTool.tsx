@@ -25,16 +25,18 @@ import {
 import { clampNumber } from "~/client/components/shared/settingsStorage";
 import { DEFAULT_SHARED_AUDIO_PREFERENCES } from "~/client/components/shared/audioPreferenceStorage";
 import {
-  analyzeSamplesToMorse,
+  analyzeSamplesToMorseAsync,
   AUDIO_DECODER_LIMITS,
   createAudioDecodeResult,
-  mixAudioBufferToMono,
+  mixAudioBufferToMonoAsync,
   type AudioDecodeResult,
   type GapMode,
   type TextSpacingMode,
   validateAudioDecoderFile,
   validateDecodedAudioBuffer,
 } from "./audioDecodeUtils";
+
+import { SignalInspectionView, signalCheckLabel } from "./SignalInspectionView";
 
 const HOME_SOFT_CONTROL =
   "mw-button-home-soft bg-white/85 text-slate-800 hover:bg-slate-900 hover:text-sky-100";
@@ -79,6 +81,7 @@ export default function MorseAudioDecoderTool() {
   const inputRef = React.useRef<HTMLInputElement | null>(null);
   const decodeJobRef = React.useRef(0);
   const mountedRef = React.useRef(false);
+  const analysisAbortRef = React.useRef<AbortController | null>(null);
   const sampleAbortRef = React.useRef<AbortController | null>(null);
   const previewRef = React.useRef<HTMLAudioElement | null>(null);
   const [sampleLoading, setSampleLoading] = React.useState(false);
@@ -106,6 +109,7 @@ export default function MorseAudioDecoderTool() {
       mountedRef.current = false;
       decodeJobRef.current += 1;
       sampleAbortRef.current?.abort();
+      analysisAbortRef.current?.abort();
     };
   }, []);
 
@@ -114,6 +118,7 @@ export default function MorseAudioDecoderTool() {
   const navigate = useNavigate();
 
   const setNextFile = React.useCallback((file: File | null) => {
+    analysisAbortRef.current?.abort();
     sampleAbortRef.current?.abort();
     setSampleLoading(false);
     previewRef.current?.pause();
@@ -173,6 +178,9 @@ export default function MorseAudioDecoderTool() {
   }, [setNextFile]);
 
   const processFile = React.useCallback(async () => {
+    analysisAbortRef.current?.abort();
+    const controller = new AbortController();
+    analysisAbortRef.current = controller;
     previewRef.current?.pause();
     const file = selectedFile;
     const jobId = decodeJobRef.current + 1;
@@ -234,8 +242,8 @@ export default function MorseAudioDecoderTool() {
         return;
       }
 
-      const monoSamples = mixAudioBufferToMono(decodedBuffer);
-      const nextResult = analyzeSamplesToMorse(
+      const monoSamples = await mixAudioBufferToMonoAsync(decodedBuffer, controller.signal);
+      const nextResult = await analyzeSamplesToMorseAsync(
         monoSamples,
         decodedBuffer.sampleRate,
         {
@@ -251,6 +259,7 @@ export default function MorseAudioDecoderTool() {
           windowMs: clampNumber(analysisWindowMs, 4, 40),
           wordGapScale: clampNumber(wordGapStrictness, 60, 160) / 100,
         },
+        controller.signal,
       );
 
       applyIfCurrent(() => {
@@ -258,6 +267,7 @@ export default function MorseAudioDecoderTool() {
         setPhase(nextResult.status === "success" || nextResult.status === "low-confidence" ? "done" : "error");
       });
     } catch {
+      if (controller.signal.aborted) return;
       applyIfCurrent(() => {
         setPhase("error");
         setResult(
@@ -295,9 +305,9 @@ export default function MorseAudioDecoderTool() {
       `Decoded text: ${result.decodedText}`,
       `Raw Morse: ${result.rawMorse || "(none)"}`,
       "",
-      `Estimated speed: ${formatWpm(result.timing.estimatedWpm)}`,
-      `Estimated dot length: ${formatMs(result.timing.estimatedUnitMs)}`,
-      `Confidence: ${formatPercent(result.confidence)}`,
+      `${result.inspection?.timingSource === "selected" ? "Selected" : "Estimated"} speed: ${formatWpm(result.timing.estimatedWpm)}`,
+      `Dot length used: ${formatMs(result.timing.estimatedUnitMs)}`,
+      `Signal check: ${signalCheckLabel(result)} (a timing/noise heuristic, not a transcription accuracy estimate)`,
     ].join("\n");
     downloadTextFile({
       filename: "morse-audio-decoder-result.txt",
@@ -518,9 +528,9 @@ export default function MorseAudioDecoderTool() {
 
         <ToolPanel label="Timing summary" badge="Detection">
           <div className="grid gap-4 px-4 pb-4 sm:grid-cols-2">
-            <SummaryStat label="Confidence" value={formatPercent(result.confidence)} />
-            <SummaryStat label="Estimated speed" value={formatWpm(result.timing.estimatedWpm)} />
-            <SummaryStat label="Estimated dot length" value={formatMs(result.timing.estimatedUnitMs)} />
+            <SummaryStat label="Signal check" value={signalCheckLabel(result)} />
+            <SummaryStat label={result.inspection?.timingSource === "selected" ? "Selected speed" : "Estimated speed"} value={formatWpm(result.timing.estimatedWpm)} />
+            <SummaryStat label="Dot length used" value={formatMs(result.timing.estimatedUnitMs)} />
             <SummaryStat label="Audio length" value={formatSeconds(result.timing.durationSeconds)} />
             <SummaryStat label="Tone regions" value={String(result.timing.toneCount)} />
             <SummaryStat label="Silence gaps" value={String(result.timing.gapCount)} />
@@ -528,6 +538,8 @@ export default function MorseAudioDecoderTool() {
           </div>
         </ToolPanel>
       </div>
+
+      {result.inspection && <SignalInspectionView result={result} />}
 
       <div className="mt-4">
         <button
@@ -757,11 +769,6 @@ function decodeAudioData(audioContext: AudioContext, arrayBuffer: ArrayBuffer) {
       maybePromise.then(resolve).catch(reject);
     }
   });
-}
-
-function formatPercent(value: number) {
-  if (!Number.isFinite(value) || value <= 0) return "0%";
-  return `${Math.round(value * 100)}%`;
 }
 
 function formatMs(value: number) {
