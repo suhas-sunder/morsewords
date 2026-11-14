@@ -430,7 +430,7 @@
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "AUTHORIZED; NOT IMPLEMENTED",
+      "status": "VALIDATED / READY FOR OWNER REVIEW; NOT RELEASED",
       "testCommands": [
         "npm run typecheck",
         "npm test",
@@ -443,7 +443,11 @@
         "git diff --check"
       ],
       "acceptance": "Actual part/duration progress, sequential release, stale-job guard, failed-part or truthful whole-job retry, no duplicate downloads, URL cleanup.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [
+        "c2610bb026ab5f0f7fadfefd90179e8f4ed098d2",
+        "9400be3db37ab3cf477ab8a15160c5e9f4f02f76"
+      ]
     },
     {
       "packageId": "W14",
