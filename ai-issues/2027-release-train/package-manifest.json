@@ -363,7 +363,7 @@
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "AUTHORIZED; NOT IMPLEMENTED",
+      "status": "VALIDATED / READY FOR OWNER REVIEW; NOT RELEASED",
       "testCommands": [
         "npm run typecheck",
         "npm test",
@@ -376,7 +376,10 @@
         "git diff --check"
       ],
       "acceptance": "Unknown group identity, no invented gaps, source preserved on navigation/back, storage failure fallback.",
-      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore."
+      "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
+      "implementationCommits": [
+        "8ee1ee7632aac9f46064644eb6fea618b65f0439"
+      ]
     },
     {
       "packageId": "W12",
