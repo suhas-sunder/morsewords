@@ -1136,7 +1136,9 @@ test.describe("Morse code video generator", () => {
   }, testInfo) => {
     await installFastVideoRecorder(page);
     await openVideoGenerator(page);
-    await page.getByRole("button", { name: "Include audio track" }).click();
+    const audioTrack = page.getByRole("button", { name: "Include audio track" });
+    if (await audioTrack.isEnabled()) await audioTrack.click();
+    await expect(audioTrack).toHaveAttribute("aria-pressed", "false");
     await page.getByLabel("Message to turn into a Morse code video").fill("SOS");
     await page.getByLabel("File name").fill("short-sos-video");
 
@@ -1187,6 +1189,13 @@ test.describe("Morse code video generator", () => {
       });
     });
     await openVideoGenerator(page);
+    const nativeRecording = await page.evaluate(() => typeof MediaRecorder !== "undefined");
+    if (!nativeRecording) {
+      await expect(page.getByRole("button", { name: "Download WebM" })).toBeDisabled();
+      await expect(page.getByLabel("Video format").locator('option[value="mp4"]')).toHaveAttribute("disabled", "");
+      await expect(page.getByText("This browser does not support MediaRecorder video export.")).toBeVisible();
+      test.skip(true, "This browser build has no native MediaRecorder; unsupported UI verified, native recording cannot be certified.");
+    }
     await page.getByLabel("Video format").selectOption("webm");
     await page.getByLabel("Message to turn into a Morse code video").fill("E");
     await page.getByLabel("File name").fill("native-morse-video");
