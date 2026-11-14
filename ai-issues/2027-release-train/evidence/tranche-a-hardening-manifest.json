@@ -1,0 +1,49 @@
+{
+  "generatedAt": "2026-11-13T23:58:38.967Z",
+  "checkoutSha": "ca9f244f70ec30cbfe9f8969e2708e83ebe9648e",
+  "scope": {
+    "ssr": "all",
+    "payloads": "sample",
+    "ssrOrigin": "local built Netlify handler",
+    "liveAssetOrigin": "https://assets.morsewords.com",
+    "liveManifestState": "observed",
+    "sampleSlugs": [
+      "the-time-machine",
+      "the-war-of-the-worlds",
+      "alices-adventures-in-wonderland",
+      "a-christmas-carol",
+      "anne-of-green-gables",
+      "the-count-of-monte-cristo"
+    ]
+  },
+  "totals": {
+    "titles": 524,
+    "detailPages": 1048,
+    "sitemapUrls": 1179,
+    "sourceLinksMissing": 41,
+    "titlesWithFindings": 341,
+    "ssrObserved": 1048,
+    "payloadsObserved": 6
+  },
+  "limitations": [
+    "Local built SSR is not a deployed-SHA assertion.",
+    "Unprobed payloads and browser interactions remain unknown, not passes.",
+    "Summary uniqueness is textual identity only; usefulness requires human review.",
+    "Same source can be a legitimate excerpt/edition; duplicates require investigation.",
+    "Rights records must be checked against source evidence and jurisdiction before policy changes."
+  ],
+  "fullReport": {
+    "algorithm": "sha256",
+    "serialization": "canonicalEvidenceJson + LF",
+    "sha256": "998324da5d36a27281c30a5f5f55995e797484267aa955a4edcdacf87cd23943",
+    "bytes": 2906500
+  },
+  "evidenceDigest": "a31ef21d9e2a723980fce8cf4122d3380b3cffd65ae79f8f25fc6bed43ca971f",
+  "retention": "Full snapshot and compact delta remain in ignored output/tranche-b; historical W07 snapshot unchanged.",
+  "findingCounts": {
+    "shared-source-review": 297,
+    "source-link-missing": 41,
+    "live-payload-version-or-cors-review": 1,
+    "duplicate-title-review": 2
+  }
+}
