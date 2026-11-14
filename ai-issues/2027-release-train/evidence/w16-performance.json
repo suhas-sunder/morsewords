@@ -1,0 +1,5284 @@
+{
+  "method": "Same W09 local built-handler/browser response-body method; external services blocked; 390/1440 widths. Navigation three cold/warm trials per width, not field CWV. CPU supplemental one observation per route/rate at 390; simulation has known host timing noise, not a benchmark verdict.",
+  "codeHead": "754c83c0627f7afa770b0c5848977aec8f11db48",
+  "routes": [
+    {
+      "route": "/",
+      "hardenedA": {
+        "jsBytes": 1650605,
+        "jsGzip": 357828,
+        "htmlBytes": 221380,
+        "htmlGzip": 45608
+      },
+      "W09": {
+        "jsBytes": 817620,
+        "jsGzip": 274126,
+        "htmlBytes": 222663,
+        "htmlGzip": 46021
+      },
+      "W16": {
+        "jsBytes": 828196,
+        "jsGzip": 278551,
+        "htmlBytes": 223245,
+        "htmlGzip": 46231
+      }
+    },
+    {
+      "route": "/audio",
+      "hardenedA": {
+        "jsBytes": 1645549,
+        "jsGzip": 356737,
+        "htmlBytes": 207802,
+        "htmlGzip": 43083
+      },
+      "W09": {
+        "jsBytes": 812963,
+        "jsGzip": 273281,
+        "htmlBytes": 207514,
+        "htmlGzip": 43023
+      },
+      "W16": {
+        "jsBytes": 819651,
+        "jsGzip": 275901,
+        "htmlBytes": 207855,
+        "htmlGzip": 43112
+      }
+    },
+    {
+      "route": "/practice",
+      "hardenedA": {
+        "jsBytes": 1598975,
+        "jsGzip": 338633,
+        "htmlBytes": 178505,
+        "htmlGzip": 38890
+      },
+      "W09": {
+        "jsBytes": 766389,
+        "jsGzip": 255177,
+        "htmlBytes": 178217,
+        "htmlGzip": 38830
+      },
+      "W16": {
+        "jsBytes": 767049,
+        "jsGzip": 255487,
+        "htmlBytes": 178489,
+        "htmlGzip": 38906
+      }
+    },
+    {
+      "route": "/morse-code-alphabet",
+      "hardenedA": {
+        "jsBytes": 1797873,
+        "jsGzip": 382687,
+        "htmlBytes": 250257,
+        "htmlGzip": 41559
+      },
+      "W09": {
+        "jsBytes": 965287,
+        "jsGzip": 299231,
+        "htmlBytes": 249969,
+        "htmlGzip": 41502
+      },
+      "W16": {
+        "jsBytes": 965947,
+        "jsGzip": 299546,
+        "htmlBytes": 250243,
+        "htmlGzip": 41569
+      }
+    },
+    {
+      "route": "/morse-code-books/alices-adventures-in-wonderland",
+      "hardenedA": {
+        "jsBytes": 1740868,
+        "jsGzip": 381718,
+        "htmlBytes": 397574,
+        "htmlGzip": 59608
+      },
+      "W09": {
+        "jsBytes": 1742702,
+        "jsGzip": 382527,
+        "htmlBytes": 397432,
+        "htmlGzip": 59604
+      },
+      "W16": {
+        "jsBytes": 1744901,
+        "jsGzip": 383289,
+        "htmlBytes": 397784,
+        "htmlGzip": 59669
+      }
+    },
+    {
+      "route": "/morse-code-audiobooks/alices-adventures-in-wonderland",
+      "hardenedA": {
+        "jsBytes": 1741198,
+        "jsGzip": 381879,
+        "htmlBytes": 296030,
+        "htmlGzip": 54115
+      },
+      "W09": {
+        "jsBytes": 1743032,
+        "jsGzip": 382688,
+        "htmlBytes": 295888,
+        "htmlGzip": 54115
+      },
+      "W16": {
+        "jsBytes": 1745233,
+        "jsGzip": 383449,
+        "htmlBytes": 296207,
+        "htmlGzip": 54156
+      }
+    }
+  ],
+  "allFinalWidths": [
+    {
+      "width": 390,
+      "path": "/",
+      "status": 200,
+      "htmlBytes": 223245,
+      "htmlGzip": 46231,
+      "jsBytes": 828196,
+      "jsGzip": 278551,
+      "ssr": {
+        "h1": [
+          "Morse Code Translator"
+        ],
+        "canonical": "https://www.morsewords.com/",
+        "mainText": 9929,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 390,
+      "path": "/audio",
+      "status": 200,
+      "htmlBytes": 207855,
+      "htmlGzip": 43112,
+      "jsBytes": 819651,
+      "jsGzip": 275901,
+      "ssr": {
+        "h1": [
+          "Morse Code Audio Generator"
+        ],
+        "canonical": "https://www.morsewords.com/audio",
+        "mainText": 9577,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 390,
+      "path": "/practice",
+      "status": 200,
+      "htmlBytes": 178489,
+      "htmlGzip": 38906,
+      "jsBytes": 767049,
+      "jsGzip": 255487,
+      "ssr": {
+        "h1": [
+          "Morse Code Practice"
+        ],
+        "canonical": "https://www.morsewords.com/practice",
+        "mainText": 3753,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 390,
+      "path": "/morse-code-alphabet",
+      "status": 200,
+      "htmlBytes": 250243,
+      "htmlGzip": 41569,
+      "jsBytes": 965947,
+      "jsGzip": 299546,
+      "ssr": {
+        "h1": [
+          "Morse Code Alphabet"
+        ],
+        "canonical": "https://www.morsewords.com/morse-code-alphabet",
+        "mainText": 7076,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 390,
+      "path": "/morse-code-books/alices-adventures-in-wonderland",
+      "status": 200,
+      "htmlBytes": 397784,
+      "htmlGzip": 59669,
+      "jsBytes": 1744901,
+      "jsGzip": 383289,
+      "ssr": {
+        "h1": [
+          "Alice's Adventures in Wonderland"
+        ],
+        "canonical": "https://www.morsewords.com/morse-code-books/alices-adventures-in-wonderland",
+        "mainText": 12288,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 390,
+      "path": "/morse-code-audiobooks/alices-adventures-in-wonderland",
+      "status": 200,
+      "htmlBytes": 296207,
+      "htmlGzip": 54156,
+      "jsBytes": 1745233,
+      "jsGzip": 383449,
+      "ssr": {
+        "h1": [
+          "Alice's Adventures in Wonderland"
+        ],
+        "canonical": "https://www.morsewords.com/morse-code-audiobooks/alices-adventures-in-wonderland",
+        "mainText": 11155,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "path": "/",
+      "status": 200,
+      "htmlBytes": 223245,
+      "htmlGzip": 46231,
+      "jsBytes": 828196,
+      "jsGzip": 278551,
+      "ssr": {
+        "h1": [
+          "Morse Code Translator"
+        ],
+        "canonical": "https://www.morsewords.com/",
+        "mainText": 9929,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "path": "/audio",
+      "status": 200,
+      "htmlBytes": 207855,
+      "htmlGzip": 43112,
+      "jsBytes": 819651,
+      "jsGzip": 275901,
+      "ssr": {
+        "h1": [
+          "Morse Code Audio Generator"
+        ],
+        "canonical": "https://www.morsewords.com/audio",
+        "mainText": 9577,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "path": "/practice",
+      "status": 200,
+      "htmlBytes": 178489,
+      "htmlGzip": 38906,
+      "jsBytes": 767049,
+      "jsGzip": 255487,
+      "ssr": {
+        "h1": [
+          "Morse Code Practice"
+        ],
+        "canonical": "https://www.morsewords.com/practice",
+        "mainText": 3753,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "path": "/morse-code-alphabet",
+      "status": 200,
+      "htmlBytes": 250243,
+      "htmlGzip": 41569,
+      "jsBytes": 965947,
+      "jsGzip": 299546,
+      "ssr": {
+        "h1": [
+          "Morse Code Alphabet"
+        ],
+        "canonical": "https://www.morsewords.com/morse-code-alphabet",
+        "mainText": 7076,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "path": "/morse-code-books/alices-adventures-in-wonderland",
+      "status": 200,
+      "htmlBytes": 397784,
+      "htmlGzip": 59669,
+      "jsBytes": 1744901,
+      "jsGzip": 383289,
+      "ssr": {
+        "h1": [
+          "Alice's Adventures in Wonderland"
+        ],
+        "canonical": "https://www.morsewords.com/morse-code-books/alices-adventures-in-wonderland",
+        "mainText": 12288,
+        "navLinks": 8
+      },
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "path": "/morse-code-audiobooks/alices-adventures-in-wonderland",
+      "status": 200,
+      "htmlBytes": 296207,
+      "htmlGzip": 54156,
+      "jsBytes": 1745233,
+      "jsGzip": 383449,
+      "ssr": {
+        "h1": [
+          "Alice's Adventures in Wonderland"
+        ],
+        "canonical": "https://www.morsewords.com/morse-code-audiobooks/alices-adventures-in-wonderland",
+        "mainText": 11155,
+        "navLinks": 8
+      },
+      "errors": []
+    }
+  ],
+  "navigation": [
+    {
+      "phase": "hardenedA",
+      "width": 390,
+      "temperature": "cold",
+      "trials": 3,
+      "openMedianMs": 58.95,
+      "searchMedianMs": 15.74,
+      "resourceCounts": [
+        52,
+        52,
+        52
+      ]
+    },
+    {
+      "phase": "hardenedA",
+      "width": 390,
+      "temperature": "warm",
+      "trials": 3,
+      "openMedianMs": 52.03,
+      "searchMedianMs": 6.9,
+      "resourceCounts": [
+        53,
+        53,
+        53
+      ]
+    },
+    {
+      "phase": "hardenedA",
+      "width": 1440,
+      "temperature": "cold",
+      "trials": 3,
+      "openMedianMs": 74.04,
+      "searchMedianMs": 21.69,
+      "resourceCounts": [
+        51,
+        51,
+        51
+      ]
+    },
+    {
+      "phase": "hardenedA",
+      "width": 1440,
+      "temperature": "warm",
+      "trials": 3,
+      "openMedianMs": 34.59,
+      "searchMedianMs": 6.12,
+      "resourceCounts": [
+        51,
+        51,
+        51
+      ]
+    },
+    {
+      "phase": "W09",
+      "width": 390,
+      "temperature": "cold",
+      "trials": 3,
+      "openMedianMs": 52.91,
+      "searchMedianMs": 16.29,
+      "resourceCounts": [
+        51,
+        51,
+        51
+      ]
+    },
+    {
+      "phase": "W09",
+      "width": 390,
+      "temperature": "warm",
+      "trials": 3,
+      "openMedianMs": 61.39,
+      "searchMedianMs": 5.62,
+      "resourceCounts": [
+        52,
+        52,
+        52
+      ]
+    },
+    {
+      "phase": "W09",
+      "width": 1440,
+      "temperature": "cold",
+      "trials": 3,
+      "openMedianMs": 56.32,
+      "searchMedianMs": 18.14,
+      "resourceCounts": [
+        50,
+        50,
+        50
+      ]
+    },
+    {
+      "phase": "W09",
+      "width": 1440,
+      "temperature": "warm",
+      "trials": 3,
+      "openMedianMs": 54.68,
+      "searchMedianMs": 6.64,
+      "resourceCounts": [
+        50,
+        50,
+        50
+      ]
+    },
+    {
+      "phase": "W16",
+      "width": 390,
+      "temperature": "cold",
+      "trials": 3,
+      "openMedianMs": 60.03,
+      "searchMedianMs": 15.1,
+      "resourceCounts": [
+        54,
+        54,
+        54
+      ]
+    },
+    {
+      "phase": "W16",
+      "width": 390,
+      "temperature": "warm",
+      "trials": 3,
+      "openMedianMs": 63.87,
+      "searchMedianMs": 6.63,
+      "resourceCounts": [
+        55,
+        55,
+        55
+      ]
+    },
+    {
+      "phase": "W16",
+      "width": 1440,
+      "temperature": "cold",
+      "trials": 3,
+      "openMedianMs": 49.44,
+      "searchMedianMs": 18.89,
+      "resourceCounts": [
+        53,
+        53,
+        53
+      ]
+    },
+    {
+      "phase": "W16",
+      "width": 1440,
+      "temperature": "warm",
+      "trials": 3,
+      "openMedianMs": 40.17,
+      "searchMedianMs": 6.58,
+      "resourceCounts": [
+        53,
+        53,
+        53
+      ]
+    }
+  ],
+  "navigationRaw": [
+    {
+      "width": 390,
+      "run": 0,
+      "temperature": "cold",
+      "openMs": 67.53019999999992,
+      "searchMs": 51.164400000000114,
+      "resourceCount": 54
+    },
+    {
+      "width": 390,
+      "run": 0,
+      "temperature": "warm",
+      "openMs": 55.143800000000056,
+      "searchMs": 7.061500000000024,
+      "resourceCount": 55
+    },
+    {
+      "width": 390,
+      "run": 1,
+      "temperature": "cold",
+      "openMs": 59.94360000000006,
+      "searchMs": 14.551699999999983,
+      "resourceCount": 54
+    },
+    {
+      "width": 390,
+      "run": 1,
+      "temperature": "warm",
+      "openMs": 63.86900000000014,
+      "searchMs": 5.781700000000001,
+      "resourceCount": 55
+    },
+    {
+      "width": 390,
+      "run": 2,
+      "temperature": "cold",
+      "openMs": 60.034799999999905,
+      "searchMs": 15.102699999999913,
+      "resourceCount": 54
+    },
+    {
+      "width": 390,
+      "run": 2,
+      "temperature": "warm",
+      "openMs": 64.16720000000032,
+      "searchMs": 6.631800000000112,
+      "resourceCount": 55
+    },
+    {
+      "width": 1440,
+      "run": 0,
+      "temperature": "cold",
+      "openMs": 49.4386999999997,
+      "searchMs": 16.11199999999917,
+      "resourceCount": 53
+    },
+    {
+      "width": 1440,
+      "run": 0,
+      "temperature": "warm",
+      "openMs": 40.17150000000038,
+      "searchMs": 7.557099999999991,
+      "resourceCount": 53
+    },
+    {
+      "width": 1440,
+      "run": 1,
+      "temperature": "cold",
+      "openMs": 52.40589999999975,
+      "searchMs": 21.542699999999968,
+      "resourceCount": 53
+    },
+    {
+      "width": 1440,
+      "run": 1,
+      "temperature": "warm",
+      "openMs": 37.11490000000049,
+      "searchMs": 6.583999999999833,
+      "resourceCount": 53
+    },
+    {
+      "width": 1440,
+      "run": 2,
+      "temperature": "cold",
+      "openMs": 46.3118000000004,
+      "searchMs": 18.89180000000033,
+      "resourceCount": 53
+    },
+    {
+      "width": 1440,
+      "run": 2,
+      "temperature": "warm",
+      "openMs": 40.428100000000086,
+      "searchMs": 6.423699999999371,
+      "resourceCount": 53
+    }
+  ],
+  "navigationIndex": {
+    "raw": 42220,
+    "gzip": 12182,
+    "fetch": "First open only; cached thereafter; no full manifest on core initial path"
+  },
+  "chunks": [
+    {
+      "name": "morseBooks-CPMk2E19.js",
+      "bytes": 832411,
+      "gzip": 83554
+    },
+    {
+      "name": "index-CAmQs0ul.js",
+      "bytes": 438023,
+      "gzip": 181069
+    },
+    {
+      "name": "manifest-271b56c8.js",
+      "bytes": 393346,
+      "gzip": 19837
+    },
+    {
+      "name": "pdf-CcZYcL52.js",
+      "bytes": 365121,
+      "gzip": 107018
+    },
+    {
+      "name": "morseContent-DXgrKt91.js",
+      "bytes": 186298,
+      "gzip": 44168
+    },
+    {
+      "name": "entry.client-qgpYjTgx.js",
+      "bytes": 183222,
+      "gzip": 58171
+    },
+    {
+      "name": "array.no-external-CgJ7MXwd.js",
+      "bytes": 170102,
+      "gzip": 53415
+    },
+    {
+      "name": "lamejs-CegDX3Wq.js",
+      "bytes": 168954,
+      "gzip": 57959
+    },
+    {
+      "name": "chunk-EVOBXE3Y-DpuJhuNZ.js",
+      "bytes": 127714,
+      "gzip": 42827
+    },
+    {
+      "name": "morse-code-book-translator-Cx5t2jCN.js",
+      "bytes": 102623,
+      "gzip": 29008
+    },
+    {
+      "name": "root-DeQOlVE5.js",
+      "bytes": 92287,
+      "gzip": 38840
+    },
+    {
+      "name": "MorseBookPage-2yiozaHd.js",
+      "bytes": 72473,
+      "gzip": 19093
+    },
+    {
+      "name": "morse-code-printable-worksheets-BF45msSN.js",
+      "bytes": 71253,
+      "gzip": 17724
+    },
+    {
+      "name": "misc.terms-of-service-VspXjfkX.js",
+      "bytes": 54046,
+      "gzip": 16242
+    },
+    {
+      "name": "morseVideoTypes-Dc772Fso.js",
+      "bytes": 48102,
+      "gzip": 15339
+    },
+    {
+      "name": "morse-code-audio-decoder-C6bnXR7f.js",
+      "bytes": 42738,
+      "gzip": 15015
+    },
+    {
+      "name": "typing-BGTK7O54.js",
+      "bytes": 41939,
+      "gzip": 11763
+    },
+    {
+      "name": "bookPreviewAudio-SbjR5LF2.js",
+      "bytes": 39740,
+      "gzip": 12989
+    },
+    {
+      "name": "morse-code-word-search-builder-DKZyUntg.js",
+      "bytes": 39313,
+      "gzip": 12666
+    },
+    {
+      "name": "morse-code-sound-generator-DRpaW7PD.js",
+      "bytes": 38225,
+      "gzip": 11647
+    },
+    {
+      "name": "morse-code-video-generator-BWh5p95p.js",
+      "bytes": 37860,
+      "gzip": 12587
+    },
+    {
+      "name": "audio-W_0jdQ6E.js",
+      "bytes": 36003,
+      "gzip": 11031
+    },
+    {
+      "name": "Icons-D6rcEq1n.js",
+      "bytes": 34449,
+      "gzip": 11999
+    },
+    {
+      "name": "routes-BPmZh3ko.js",
+      "bytes": 32293,
+      "gzip": 6343
+    },
+    {
+      "name": "browser-BzBbrBKd.js",
+      "bytes": 32140,
+      "gzip": 12236
+    },
+    {
+      "name": "PrintableCharts-BLPJ0qAX.js",
+      "bytes": 31159,
+      "gzip": 5842
+    },
+    {
+      "name": "home-C22rojf2.js",
+      "bytes": 30896,
+      "gzip": 8137
+    },
+    {
+      "name": "settingsStorage-BhQGog3k.js",
+      "bytes": 30148,
+      "gzip": 8182
+    },
+    {
+      "name": "morse-code-sentence-practice-F0h5pUrX.js",
+      "bytes": 28549,
+      "gzip": 8068
+    },
+    {
+      "name": "morse-code-words-BSgdwT6n.js",
+      "bytes": 27805,
+      "gzip": 8858
+    },
+    {
+      "name": "morse-code-mp3-generator-Pa8Kn55q.js",
+      "bytes": 27572,
+      "gzip": 9724
+    },
+    {
+      "name": "morse-code-word-trainer-CFsfPFTr.js",
+      "bytes": 27394,
+      "gzip": 8683
+    },
+    {
+      "name": "morse-code-test-B5BNzchs.js",
+      "bytes": 26668,
+      "gzip": 8227
+    },
+    {
+      "name": "MorseCodeByLanguagePages-DgANOioe.js",
+      "bytes": 26377,
+      "gzip": 7391
+    },
+    {
+      "name": "browser-CcuA4tEH.js",
+      "bytes": 25785,
+      "gzip": 10015
+    },
+    {
+      "name": "MorseContentSections-5A89SRsu.js",
+      "bytes": 25738,
+      "gzip": 5603
+    },
+    {
+      "name": "TranslatorSectionsBasic-DPRvK5tX.js",
+      "bytes": 24674,
+      "gzip": 9000
+    },
+    {
+      "name": "misc.privacy-policy-8ZPU0T8v.js",
+      "bytes": 23707,
+      "gzip": 6888
+    },
+    {
+      "name": "morse-code-word-separator-C4i7mb3X.js",
+      "bytes": 23021,
+      "gzip": 7488
+    },
+    {
+      "name": "morse-code-books-DzGQSh4O.js",
+      "bytes": 22943,
+      "gzip": 7317
+    },
+    {
+      "name": "practice-CtOzl4e7.js",
+      "bytes": 22366,
+      "gzip": 6594
+    },
+    {
+      "name": "morse-code-audio-quiz-DwT0Ljcm.js",
+      "bytes": 21640,
+      "gzip": 7592
+    },
+    {
+      "name": "the-quick-brown-fox-morse-code-BNoXCPNy.js",
+      "bytes": 21251,
+      "gzip": 5821
+    },
+    {
+      "name": "morse-code-audio-practice-tuZpaduh.js",
+      "bytes": 20005,
+      "gzip": 7000
+    },
+    {
+      "name": "PrintableMorsePages-wee2uXkn.js",
+      "bytes": 19736,
+      "gzip": 6163
+    },
+    {
+      "name": "dictionary-DbLtuCs_.js",
+      "bytes": 19096,
+      "gzip": 6087
+    },
+    {
+      "name": "ToolWorkspace-DLxVGWpB.js",
+      "bytes": 18633,
+      "gzip": 6104
+    },
+    {
+      "name": "morse-code-chart-CdxOBysZ.js",
+      "bytes": 17536,
+      "gzip": 5860
+    },
+    {
+      "name": "learn-morse-code-DGd-mxcB.js",
+      "bytes": 17494,
+      "gzip": 5788
+    },
+    {
+      "name": "morse-code-practice-plan-NU_goVjj.js",
+      "bytes": 17277,
+      "gzip": 5382
+    },
+    {
+      "name": "SentencePracticeData-po7XLI5e.js",
+      "bytes": 16196,
+      "gzip": 4750
+    },
+    {
+      "name": "morse-code-visual-quiz-Bh_LhCms.js",
+      "bytes": 15710,
+      "gzip": 5995
+    },
+    {
+      "name": "morse-code-audiobooks-DozQ2Ma6.js",
+      "bytes": 15152,
+      "gzip": 4950
+    },
+    {
+      "name": "morse-code-timing-fdlaShlh.js",
+      "bytes": 14581,
+      "gzip": 5052
+    },
+    {
+      "name": "morse-code-amateur-radio-cw-BKAGPYvG.js",
+      "bytes": 14449,
+      "gzip": 5016
+    },
+    {
+      "name": "morse-code-history-rDIs3RTk.js",
+      "bytes": 14109,
+      "gzip": 4978
+    },
+    {
+      "name": "sitemap-BSyrAG0M.js",
+      "bytes": 14075,
+      "gzip": 4784
+    },
+    {
+      "name": "international-vs-american-morse-code-D-q1wz1j.js",
+      "bytes": 13846,
+      "gzip": 4419
+    },
+    {
+      "name": "index-6sdqbm2o.js",
+      "bytes": 13754,
+      "gzip": 5426
+    },
+    {
+      "name": "morse-code-reader-DB8hGbW1.js",
+      "bytes": 13532,
+      "gzip": 5015
+    },
+    {
+      "name": "farnsworth-timing-RKvOfsiT.js",
+      "bytes": 13128,
+      "gzip": 4657
+    },
+    {
+      "name": "morse-code-emergency-signals-Bze5MAuf.js",
+      "bytes": 12640,
+      "gzip": 4341
+    },
+    {
+      "name": "morse-code-sos-Bachn4kR.js",
+      "bytes": 12463,
+      "gzip": 4277
+    },
+    {
+      "name": "morse-code-alphabet-BeYRABov.js",
+      "bytes": 12452,
+      "gzip": 4063
+    },
+    {
+      "name": "morse-code-visual-practice-C6FdKeiQ.js",
+      "bytes": 12252,
+      "gzip": 4885
+    },
+    {
+      "name": "morse-code-punctuation-B6CMkrXx.js",
+      "bytes": 12043,
+      "gzip": 3826
+    },
+    {
+      "name": "useMorseAudio-r0vtUlFD.js",
+      "bytes": 11200,
+      "gzip": 4046
+    },
+    {
+      "name": "about-Bd8GVn20.js",
+      "bytes": 10780,
+      "gzip": 4131
+    },
+    {
+      "name": "AdSenseAds-D5apU5WJ.js",
+      "bytes": 10644,
+      "gzip": 3719
+    },
+    {
+      "name": "morse-code-international-translator-B6HvMXpz.js",
+      "bytes": 10212,
+      "gzip": 4277
+    },
+    {
+      "name": "name-to-morse-code-VQ_BuPAf.js",
+      "bytes": 10207,
+      "gzip": 3946
+    },
+    {
+      "name": "MorseLearningLayout-D_q0Guwa.js",
+      "bytes": 10160,
+      "gzip": 3263
+    },
+    {
+      "name": "misc.cookies-policy-CVmY-7v6.js",
+      "bytes": 9923,
+      "gzip": 3358
+    },
+    {
+      "name": "international-morse-code-reference-rlH8zEbc.js",
+      "bytes": 9399,
+      "gzip": 3377
+    },
+    {
+      "name": "how-to-use-G7xgBfU9.js",
+      "bytes": 9397,
+      "gzip": 3317
+    },
+    {
+      "name": "morse-code-encoder-C_fmjyT5.js",
+      "bytes": 8883,
+      "gzip": 3471
+    },
+    {
+      "name": "morse-code-decoder-BbX2oQny.js",
+      "bytes": 8739,
+      "gzip": 3503
+    },
+    {
+      "name": "morse-code-prosigns-XUuLnJNv.js",
+      "bytes": 7714,
+      "gzip": 3016
+    },
+    {
+      "name": "morse-code-q-codes-CUTQR5fY.js",
+      "bytes": 7675,
+      "gzip": 2912
+    },
+    {
+      "name": "misc.socials-aufyGhUO.js",
+      "bytes": 7263,
+      "gzip": 2688
+    },
+    {
+      "name": "sequentialExport-BoZnBdyg.js",
+      "bytes": 7118,
+      "gzip": 2960
+    },
+    {
+      "name": "morseAudioExport-BqAttIwi.js",
+      "bytes": 6586,
+      "gzip": 2682
+    },
+    {
+      "name": "practiceEngine-Bwjkno5u.js",
+      "bytes": 6520,
+      "gzip": 2744
+    },
+    {
+      "name": "contact-DBCpCmDe.js",
+      "bytes": 5683,
+      "gzip": 1927
+    },
+    {
+      "name": "morse-code-printable-chart-BDGtdpcL.js",
+      "bytes": 5654,
+      "gzip": 2498
+    },
+    {
+      "name": "sources-D3glDEOT.js",
+      "bytes": 5263,
+      "gzip": 2139
+    },
+    {
+      "name": "MorseTimingLab-DR8W-BeN.js",
+      "bytes": 5167,
+      "gzip": 2128
+    },
+    {
+      "name": "morseExportPlan-C9GqrKW6.js",
+      "bytes": 5133,
+      "gzip": 2254
+    },
+    {
+      "name": "ShareResultsButton-CZuH46ie.js",
+      "bytes": 5099,
+      "gzip": 2251
+    },
+    {
+      "name": "privacy-DKhzXE87.js",
+      "bytes": 5047,
+      "gzip": 2010
+    },
+    {
+      "name": "morseLearning-CQO-wRns.js",
+      "bytes": 4589,
+      "gzip": 1961
+    },
+    {
+      "name": "terms-D137yfCh.js",
+      "bytes": 4339,
+      "gzip": 1771
+    },
+    {
+      "name": "MorseBookPagination-BiWR95e8.js",
+      "bytes": 4010,
+      "gzip": 1682
+    },
+    {
+      "name": "index-CS2_bdyq.js",
+      "bytes": 3918,
+      "gzip": 1534
+    },
+    {
+      "name": "AudioExportFormatSplitControls-7mwCwDZS.js",
+      "bytes": 3827,
+      "gzip": 1287
+    },
+    {
+      "name": "useFlashSafety-Bfiz3W1N.js",
+      "bytes": 3815,
+      "gzip": 1354
+    },
+    {
+      "name": "cookies-8efqnH-w.js",
+      "bytes": 3690,
+      "gzip": 1488
+    },
+    {
+      "name": "useMorseAudioExportJob-DnA4rAik.js",
+      "bytes": 3523,
+      "gzip": 1386
+    },
+    {
+      "name": "usePresetComparison-RijK20Qf.js",
+      "bytes": 3375,
+      "gzip": 1716
+    },
+    {
+      "name": "morse-code-audiobooks._slug-BkXwQOVy.js",
+      "bytes": 3353,
+      "gzip": 1589
+    },
+    {
+      "name": "ToolHowItWorks-DW-Z2ko0.js",
+      "bytes": 3121,
+      "gzip": 1200
+    },
+    {
+      "name": "morseLanguages-xm-HP3N0.js",
+      "bytes": 3097,
+      "gzip": 1374
+    },
+    {
+      "name": "morseVideoSupport-BjoT3ya0.js",
+      "bytes": 3071,
+      "gzip": 1206
+    },
+    {
+      "name": "FaqSectionGeneric-cAS8TPIX.js",
+      "bytes": 3038,
+      "gzip": 1045
+    },
+    {
+      "name": "morse-code-books._slug-DLxinYCZ.js",
+      "bytes": 3021,
+      "gzip": 1428
+    },
+    {
+      "name": "morseUtils-DZi3tkpT.js",
+      "bytes": 2999,
+      "gzip": 1284
+    },
+    {
+      "name": "audioPreferenceStorage-CFXqPJXd.js",
+      "bytes": 2903,
+      "gzip": 1047
+    },
+    {
+      "name": "MorseBoundaryDiagnostics-CkcBSVFx.js",
+      "bytes": 2741,
+      "gzip": 1373
+    },
+    {
+      "name": "audioPromptBank-5P9J0Ky2.js",
+      "bytes": 2608,
+      "gzip": 1285
+    },
+    {
+      "name": "misc-CI1OK0A3.js",
+      "bytes": 2417,
+      "gzip": 1129
+    },
+    {
+      "name": "playMorsePattern-IMa-d1hG.js",
+      "bytes": 2271,
+      "gzip": 1088
+    },
+    {
+      "name": "changelog-D8RNTOuR.js",
+      "bytes": 2256,
+      "gzip": 1147
+    },
+    {
+      "name": "morse-code-books._slug.print-BXjwPAq8.js",
+      "bytes": 2137,
+      "gzip": 1102
+    },
+    {
+      "name": "morseBookCollectionContext-C9chkAhM.js",
+      "bytes": 2009,
+      "gzip": 800
+    },
+    {
+      "name": "printableChartExport.client-D-hC2rmG.js",
+      "bytes": 1869,
+      "gzip": 1055
+    },
+    {
+      "name": "ReferenceSupportSections-D9DZoPWQ.js",
+      "bytes": 1829,
+      "gzip": 693
+    },
+    {
+      "name": "ActionControls-PkqyMfcm.js",
+      "bytes": 1815,
+      "gzip": 890
+    },
+    {
+      "name": "morse-code-numbers-D7XCMGen.js",
+      "bytes": 1805,
+      "gzip": 934
+    },
+    {
+      "name": "Button-BMn-rMFJ.js",
+      "bytes": 1660,
+      "gzip": 660
+    },
+    {
+      "name": "PlaybackToggleGroup-CtVjV4_u.js",
+      "bytes": 1612,
+      "gzip": 713
+    },
+    {
+      "name": "morse-code-printable-pages-DllLyR7d.js",
+      "bytes": 1591,
+      "gzip": 820
+    },
+    {
+      "name": "BreadcrumbTrail-CCsaYfjq.js",
+      "bytes": 1552,
+      "gzip": 641
+    },
+    {
+      "name": "morseTiming-IFxn8yxl.js",
+      "bytes": 1522,
+      "gzip": 740
+    },
+    {
+      "name": "exclamation-mark-in-morse-code--BKMxIi9.js",
+      "bytes": 1479,
+      "gzip": 805
+    },
+    {
+      "name": "how-to-separate-words-in-morse-code-DAnbzuGA.js",
+      "bytes": 1477,
+      "gzip": 798
+    },
+    {
+      "name": "quotation-mark-in-morse-code-DH9IXdPW.js",
+      "bytes": 1477,
+      "gzip": 804
+    },
+    {
+      "name": "question-mark-in-morse-code-Cx-4fhvZ.js",
+      "bytes": 1476,
+      "gzip": 804
+    },
+    {
+      "name": "equals-sign-in-morse-code-vSoYTT2x.js",
+      "bytes": 1474,
+      "gzip": 803
+    },
+    {
+      "name": "hello-world-in-morse-code-Bgi5lede.js",
+      "bytes": 1474,
+      "gzip": 802
+    },
+    {
+      "name": "parentheses-in-morse-code-BP4y6cvU.js",
+      "bytes": 1474,
+      "gzip": 803
+    },
+    {
+      "name": "apostrophe-in-morse-code-B8KDjDAX.js",
+      "bytes": 1473,
+      "gzip": 802
+    },
+    {
+      "name": "i-love-you-in-morse-code-CtdKDtJq.js",
+      "bytes": 1473,
+      "gzip": 802
+    },
+    {
+      "name": "underscore-in-morse-code-Deug_qyg.js",
+      "bytes": 1473,
+      "gzip": 802
+    },
+    {
+      "name": "ampersand-in-morse-code-DGUqOy_X.js",
+      "bytes": 1472,
+      "gzip": 801
+    },
+    {
+      "name": "plus-sign-in-morse-code-no5Y6WaX.js",
+      "bytes": 1472,
+      "gzip": 802
+    },
+    {
+      "name": "semicolon-in-morse-code-Mm0d7agg.js",
+      "bytes": 1472,
+      "gzip": 801
+    },
+    {
+      "name": "at-sign-in-morse-code-DrcRECdJ.js",
+      "bytes": 1470,
+      "gzip": 800
+    },
+    {
+      "name": "help-me-in-morse-code-Baf6BkUA.js",
+      "bytes": 1470,
+      "gzip": 800
+    },
+    {
+      "name": "hyphen-in-morse-code-cxsgCjyz.js",
+      "bytes": 1469,
+      "gzip": 800
+    },
+    {
+      "name": "period-in-morse-code-BIfl6qSV.js",
+      "bytes": 1469,
+      "gzip": 799
+    },
+    {
+      "name": "colon-in-morse-code-B10TqU2j.js",
+      "bytes": 1468,
+      "gzip": 799
+    },
+    {
+      "name": "comma-in-morse-code-BnQClkre.js",
+      "bytes": 1468,
+      "gzip": 799
+    },
+    {
+      "name": "hello-in-morse-code-B13z-kfa.js",
+      "bytes": 1468,
+      "gzip": 798
+    },
+    {
+      "name": "how-to-write-in-morse-code-D1msbwj5.js",
+      "bytes": 1468,
+      "gzip": 794
+    },
+    {
+      "name": "slash-in-morse-code-Bn-u_k7p.js",
+      "bytes": 1468,
+      "gzip": 799
+    },
+    {
+      "name": "sorry-in-morse-code-CXXq-CWE.js",
+      "bytes": 1468,
+      "gzip": 799
+    },
+    {
+      "name": "space-in-morse-code-PlNZfRqC.js",
+      "bytes": 1468,
+      "gzip": 797
+    },
+    {
+      "name": "copy-and-paste-morse-code-jvvDtHxt.js",
+      "bytes": 1467,
+      "gzip": 795
+    },
+    {
+      "name": "help-in-morse-code-D6wvzW17.js",
+      "bytes": 1467,
+      "gzip": 797
+    },
+    {
+      "name": "how-to-type-in-morse-code-oJfTIhD1.js",
+      "bytes": 1467,
+      "gzip": 794
+    },
+    {
+      "name": "love-in-morse-code-Bs5ryiI3.js",
+      "bytes": 1467,
+      "gzip": 798
+    },
+    {
+      "name": "morse-code-without-spaces-DudN1DKN.js",
+      "bytes": 1467,
+      "gzip": 793
+    },
+    {
+      "name": "test-in-morse-code-DX5otrwJ.js",
+      "bytes": 1467,
+      "gzip": 798
+    },
+    {
+      "name": "yes-in-morse-code-BXZ1CCZd.js",
+      "bytes": 1466,
+      "gzip": 797
+    },
+    {
+      "name": "cq-in-morse-code-D1A7o0RZ.js",
+      "bytes": 1465,
+      "gzip": 797
+    },
+    {
+      "name": "hi-in-morse-code-Dxf5O4MD.js",
+      "bytes": 1465,
+      "gzip": 796
+    },
+    {
+      "name": "no-in-morse-code-B-5NKi3r.js",
+      "bytes": 1465,
+      "gzip": 797
+    },
+    {
+      "name": "ok-in-morse-code-SMyMxha5.js",
+      "bytes": 1465,
+      "gzip": 797
+    },
+    {
+      "name": "0-in-morse-code-SAcGZIkE.js",
+      "bytes": 1464,
+      "gzip": 795
+    },
+    {
+      "name": "1-in-morse-code-wMHHBQB2.js",
+      "bytes": 1464,
+      "gzip": 794
+    },
+    {
+      "name": "2-in-morse-code-C9nyki1j.js",
+      "bytes": 1464,
+      "gzip": 795
+    },
+    {
+      "name": "3-in-morse-code-1gZb9hL1.js",
+      "bytes": 1464,
+      "gzip": 794
+    },
+    {
+      "name": "4-in-morse-code-C-L1LP-8.js",
+      "bytes": 1464,
+      "gzip": 795
+    },
+    {
+      "name": "5-in-morse-code-1C9NTZ30.js",
+      "bytes": 1464,
+      "gzip": 793
+    },
+    {
+      "name": "6-in-morse-code-CB2ZYaKN.js",
+      "bytes": 1464,
+      "gzip": 794
+    },
+    {
+      "name": "7-in-morse-code-DxBqjfGP.js",
+      "bytes": 1464,
+      "gzip": 795
+    },
+    {
+      "name": "8-in-morse-code-DHQIuQNp.js",
+      "bytes": 1464,
+      "gzip": 794
+    },
+    {
+      "name": "9-in-morse-code-CrCYI3gK.js",
+      "bytes": 1464,
+      "gzip": 794
+    },
+    {
+      "name": "a-in-morse-code-CdkJX8fK.js",
+      "bytes": 1464,
+      "gzip": 797
+    },
+    {
+      "name": "b-in-morse-code-CC2MLNSv.js",
+      "bytes": 1464,
+      "gzip": 796
+    },
+    {
+      "name": "c-in-morse-code-CHud8TIK.js",
+      "bytes": 1464,
+      "gzip": 797
+    },
+    {
+      "name": "d-in-morse-code-DhL4q3eV.js",
+      "bytes": 1464,
+      "gzip": 796
+    },
+    {
+      "name": "e-in-morse-code-0Fxbz4Tr.js",
+      "bytes": 1464,
+      "gzip": 797
+    },
+    {
+      "name": "f-in-morse-code-lQ2r3JRj.js",
+      "bytes": 1464,
+      "gzip": 798
+    },
+    {
+      "name": "g-in-morse-code-DRmdF-Oz.js",
+      "bytes": 1464,
+      "gzip": 797
+    },
+    {
+      "name": "h-in-morse-code-f-8Hce5o.js",
+      "bytes": 1464,
+      "gzip": 797
+    },
+    {
+      "name": "how-to-read-morse-code-Bf9GVlRJ.js",
+      "bytes": 1464,
+      "gzip": 791
+    },
+    {
+      "name": "i-in-morse-code-CBVQZlCh.js",
+      "bytes": 1464,
+      "gzip": 797
+    },
+    {
+      "name": "j-in-morse-code-6SFOilK_.js",
+      "bytes": 1464,
+      "gzip": 797
+    },
+    {
+      "name": "k-in-morse-code-D2qlo-k9.js",
+      "bytes": 1464,
+      "gzip": 797
+    },
+    {
+      "name": "l-in-morse-code-CU-tDhp_.js",
+      "bytes": 1464,
+      "gzip": 797
+    },
+    {
+      "name": "m-in-morse-code-ZsvObrED.js",
+      "bytes": 1464,
+      "gzip": 797
+    },
+    {
+      "name": "n-in-morse-code-DL2FMzME.js",
+      "bytes": 1464,
+      "gzip": 797
+    },
+    {
+      "name": "o-in-morse-code-Ca4EsHlP.js",
+      "bytes": 1464,
+      "gzip": 797
+    },
+    {
+      "name": "p-in-morse-code-BTR4FBna.js",
+      "bytes": 1464,
+      "gzip": 797
+    },
+    {
+      "name": "q-in-morse-code-4QkbsBD-.js",
+      "bytes": 1464,
+      "gzip": 797
+    },
+    {
+      "name": "r-in-morse-code-CPuWO9u4.js",
+      "bytes": 1464,
+      "gzip": 797
+    },
+    {
+      "name": "s-in-morse-code-Dy9rwT--.js",
+      "bytes": 1464,
+      "gzip": 797
+    },
+    {
+      "name": "t-in-morse-code-wBVi1bR6.js",
+      "bytes": 1464,
+      "gzip": 797
+    },
+    {
+      "name": "u-in-morse-code-DbDEXEED.js",
+      "bytes": 1464,
+      "gzip": 797
+    },
+    {
+      "name": "v-in-morse-code--s7clPRm.js",
+      "bytes": 1464,
+      "gzip": 797
+    },
+    {
+      "name": "w-in-morse-code-COyyYhUx.js",
+      "bytes": 1464,
+      "gzip": 796
+    },
+    {
+      "name": "x-in-morse-code-DeDGdROH.js",
+      "bytes": 1464,
+      "gzip": 797
+    },
+    {
+      "name": "y-in-morse-code-Bg06A0KX.js",
+      "bytes": 1464,
+      "gzip": 797
+    },
+    {
+      "name": "z-in-morse-code-BNNmtF-q.js",
+      "bytes": 1464,
+      "gzip": 797
+    },
+    {
+      "name": "themeStorage-7mBMiT4C.js",
+      "bytes": 1384,
+      "gzip": 649
+    },
+    {
+      "name": "morse-code-by-language-R3KvreH0.js",
+      "bytes": 1330,
+      "gzip": 736
+    },
+    {
+      "name": "japanese-dZZa-5jn.js",
+      "bytes": 1323,
+      "gzip": 734
+    },
+    {
+      "name": "russian-C-nfr8q1.js",
+      "bytes": 1312,
+      "gzip": 735
+    },
+    {
+      "name": "greek-D2Pg4HCd.js",
+      "bytes": 1302,
+      "gzip": 727
+    },
+    {
+      "name": "UtilityPageLayout-sJng7-ur.js",
+      "bytes": 1238,
+      "gzip": 638
+    },
+    {
+      "name": "SliderRow-BQ8fahZK.js",
+      "bytes": 1166,
+      "gzip": 619
+    },
+    {
+      "name": "practiceSessionUtils-CfbAssI5.js",
+      "bytes": 1145,
+      "gzip": 650
+    },
+    {
+      "name": "preload-helper-ckwbz45p.js",
+      "bytes": 1142,
+      "gzip": 665
+    },
+    {
+      "name": "InternationalMorseSourceNote-C62HgMop.js",
+      "bytes": 1114,
+      "gzip": 700
+    },
+    {
+      "name": "FlashLamp-BXtx217S.js",
+      "bytes": 973,
+      "gzip": 554
+    },
+    {
+      "name": "morseHandoff-PVOZ8bcN.js",
+      "bytes": 953,
+      "gzip": 493
+    },
+    {
+      "name": "StrobeWarning-DRFbz-RI.js",
+      "bytes": 927,
+      "gzip": 536
+    },
+    {
+      "name": "searchNormalization-e1LlyGc5.js",
+      "bytes": 855,
+      "gzip": 478
+    },
+    {
+      "name": "jsx-runtime-D_zvdyIk.js",
+      "bytes": 725,
+      "gzip": 457
+    },
+    {
+      "name": "seo-G41R3ija.js",
+      "bytes": 669,
+      "gzip": 336
+    },
+    {
+      "name": "queryPrefill-Dmd6yXgk.js",
+      "bytes": 533,
+      "gzip": 347
+    },
+    {
+      "name": "TogglePill-DMm4aygl.js",
+      "bytes": 526,
+      "gzip": 371
+    },
+    {
+      "name": "StatusMessage-Bsc-NUsk.js",
+      "bytes": 494,
+      "gzip": 340
+    },
+    {
+      "name": "heroStyles-BIStbdZQ.js",
+      "bytes": 464,
+      "gzip": 298
+    },
+    {
+      "name": "pageStyles-WgHGDu5c.js",
+      "bytes": 371,
+      "gzip": 302
+    },
+    {
+      "name": "practiceStyles-C5tk4oOj.js",
+      "bytes": 340,
+      "gzip": 288
+    },
+    {
+      "name": "SectionEyebrow-CLJyKwpX.js",
+      "bytes": 295,
+      "gzip": 219
+    },
+    {
+      "name": "playbackOwnership-D6kLhWe1.js",
+      "bytes": 213,
+      "gzip": 152
+    },
+    {
+      "name": "JsonLdScript-YqNsdv2D.js",
+      "bytes": 188,
+      "gzip": 178
+    },
+    {
+      "name": "a-to-z-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "alphabet-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "anne-of-green-gables-gutenberg-45-CQI4T8Id.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "anne-of-green-gables-gutenberg-45-CqvQWPV-.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "apostrophe-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "at-sign-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "audio-morse-code-decoder-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "audio-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "audio-morse-code-to-text-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "audio-morse-code-to-text-translator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "audio-morse-code-translator-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "audio-morse-decoder-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "audio-morse-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "audio-morse-to-text-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "audio-to-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "audio-to-morse-code-translator-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "audio-to-morse-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "audio-to-text-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "basic-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "build-a-personalized-morse-code-practice-plan-for-a-beginner-BDTpIJqx.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "c-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "code-morse-audio-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "code-morse-sound-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "code-morse-translator-audio-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "code-morse-translator-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "code-to-sound-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "code-words-translator-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "colon-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "comma-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "convert-morse-code-to-text-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "convert-morse-to-text-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "convert-text-to-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "convert-to-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "copy-and-paste-morse-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "copy-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "copy-paste-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "create-morse-code-audio-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "create-morse-code-message-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "decode-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "decode-morse-code-from-audio-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "decode-morse-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "decode-this-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "decoder-morse-audio-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "decoder-morse-code-translator-CGHODfbk.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "decoding-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "decrypt-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "does-morse-code-have-numbers-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "does-morse-code-have-spaces-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "download-morse-code-audio-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "eight-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "english-to-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "english-to-morse-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "example-of-morse-code-sentence-BDTpIJqx.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "exclamation-point-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "f-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "five-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "four-in-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "full-stop-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "g-in-morse-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "generate-morse-code-audio-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "generate-morse-code-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "hear-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "hello-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "help-me-morse-code-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "help-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "hi-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "how-are-words-separated-in-morse-code-CGHODfbk.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "how-do-you-do-a-space-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "how-do-you-write-in-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "how-to-add-space-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "how-to-decode-morse-code-audio-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "how-to-decode-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "how-to-differentiate-letters-in-morse-code-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "how-to-do-space-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "how-to-learn-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "how-to-make-a-space-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "how-to-make-morse-code-sound-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "how-to-put-a-space-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "how-to-put-spaces-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "how-to-read-morse-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "how-to-separate-letters-in-morse-code-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "how-to-separate-morse-code-letters-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "how-to-type-a-space-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "how-to-type-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "how-to-type-space-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "how-to-write-a-space-in-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "how-to-write-in-morse-code-on-paper-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "how-to-write-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "how-to-write-space-in-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "hyphen-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "i-love-u-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "in-morse-code-translator-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "international-morse-code-alphabet-3jNochK1.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "international-morse-code-chart-3jNochK1.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "international-morse-code-reference-chart-BDTpIJqx.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "itu-morse-code-chart-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "itu-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "itu-r-m-1677-1-3jNochK1.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "itu-r-m1677-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "japanese-morse-code-BDTpIJqx.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "japanese-morse-code-translator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "learn-morse-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "learning-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "learning-morse-code-for-beginners-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "letter-a-in-morse-code-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "letter-morse-code-translator-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "letter-o-in-morse-code-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "letter-z-in-morse-code-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "letters-in-morse-code-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "letters-to-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "listen-to-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "live-morse-code-translator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "make-morse-code-audio-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "make-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "make-morse-code-sound-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-alphabet-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-alphabet-learning-3jNochK1.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-audio-decoder-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-audio-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-audio-generator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-audio-to-text-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-audio-translator-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-a-to-z-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-a-z-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-abc-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-alphabet-a-to-z-copy-and-paste-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-alphabet-a-to-z-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-alphabet-a-to-z-printable-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-alphabet-chart-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-alphabet-chart-printable-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-alphabet-copy-and-paste-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-alphabet-copy-paste-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-alphabet-translator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-ampersand-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-apostrophe-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-at-sign-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-audio-converter-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-audio-decoder-online-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-audio-download-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-audio-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-audio-encoder-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-audio-file-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-audio-generator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-audio-maker-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-audio-mp3-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-audio-numbers-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-audio-player-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-audio-reader-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-audio-test-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-audio-to-text-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-audio-to-text-translator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-audio-translate-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-audio-translater-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-audio-translator-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-audio-translator-to-text-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-basic-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-beat-maker-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-beep-generator-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-beep-sound-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-beeper-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-beginner-BDTpIJqx.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-beginners-BDTpIJqx.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-by-ear-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-by-language-translator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-by-sound-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-c-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-chart-a-to-z-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-chart-a-z-0-9-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-chart-a-z-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-chart-letters-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-chart-letters-numbers-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-chart-letters-numbers-punctuation-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-chart-pdf-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-chart-printable-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-colon-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-comma-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-converter-audio-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-converter-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-copy-and-paste-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-copy-paste-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-creator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-decipher-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-decode-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-decoder-audio-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-decoder-audio-to-text-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-decoder-mp3-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-decrypter-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-dictionary-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-digit-chart-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-digits-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-download-audio-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-ebook-translator-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-equals-sign-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-example-sentence-BDTpIJqx.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-examples-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-exclamation-mark-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-exclamation-point-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-exercise-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-exercises-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-finder-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-for-beginners-CGHODfbk.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-for-letter-a-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-for-ok-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-for-question-mark-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-for-z-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-from-audio-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-from-sound-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-from-video-translator-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-generator-audio-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-generator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-generator-mp3-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-generator-sound-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-guide-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-hearing-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-hearing-practice-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-hello-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-how-to-separate-letters-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-how-to-type-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-how-to-write-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-hyphen-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-in-sound-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-in-text-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-input-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-input-translator-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-interpreter-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-into-audio-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-into-sound-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-into-words-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-language-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-language-translator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-languages-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-learning-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-letter-chart-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-letters-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-letters-chart-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-listen-and-read-BDTpIJqx.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-listen-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-listener-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-listening-practice-3jNochK1.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-listening-test-3jNochK1.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-live-translator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-lookup-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-maker-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-message-maker-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-mp3-decoder-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-mp3-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-mp3-generator-online-BDTpIJqx.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-mp3-to-text-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-music-generator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-no-spaces-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-noise-maker-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-noise-translator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-number-chart-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-number-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-number-sheet-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-numbers-0-9-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-numbers-1-10-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-numbers-chart-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-of-v-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-official-chart-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-official-reference-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-online-test-BDTpIJqx.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-parentheses-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-period-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-player-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-plus-sign-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-practice-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-practice-sentences-BDTpIJqx.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-practice-sheet-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-practice-sheets-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-practice-test-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-practice-typing-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-practice-words-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-printable-chart-pdf-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-printable-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-printable-pdf-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-printable-sheet-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-printable-sheets-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-punctuation-chart-3jNochK1.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-punctuation-marks-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-punctuation-symbols-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-q-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-question-mark-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-quiz-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-quiz-sound-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-quizzes-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-quotation-mark-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-read-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-reader-online-BDTpIJqx.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-reading-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-recording-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-reference-chart-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-semicolon-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-sentence-BDTpIJqx.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-sentences-BDTpIJqx.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-sentences-practice-BDTpIJqx.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-sheet-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-sheet-numbers-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-slash-between-words-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-slash-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-slash-punctuation-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-slash-separator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-slash-separator-word-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-slash-separator-words-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-slash-word-separator-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-solver-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-sos-translator-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-sound-button-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-sound-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-sound-decoder-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-sound-download-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-sound-effect-generator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-sound-effects-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-sound-generator-online-CGHODfbk.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-sound-maker-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-sound-mp3-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-sound-to-text-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-sound-translate-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-sound-translator-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-sounds-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-source-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-space-between-words-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-space-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-spaces-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-spacing-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-speaker-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-speed-test-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-symbol-chart-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-symbols-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-t-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-table-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-test-online-BDTpIJqx.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-test-visual-version-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-tester-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-tests-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-text-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-text-to-audio-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-text-to-sound-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-text-to-sound-translator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-text-to-speech-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-texting-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-to-audio-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-to-audio-generator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-to-english-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-to-letters-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-to-mp3-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-to-music-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-to-sound-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-to-text-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-to-video-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-to-word-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-to-words-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-to-words-translator-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-tone-generator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-tool-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-trainer-CGHODfbk.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-training-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translate-audio-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translate-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translate-to-english-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translate-to-text-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translate-to-words-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-audio-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-audio-mp3-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-audio-numbers-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-audio-to-numbers-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-audio-to-text-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-by-sound-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-chart-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-chart-letters-a-z-DaSyFyjI.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-from-audio-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-from-sound-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-listen-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-morse-to-text-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-mp3-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-sound-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-sound-to-text-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-text-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-text-to-morse-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-to-english-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-to-text-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-to-words-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-video-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-video-to-text-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-voice-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-with-audio-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translator-with-sound-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-translators-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-tts-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-typer-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-typewriter-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-typing-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-typing-practice-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-typing-test-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-underscore-CGHODfbk.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-unscrambler-CGHODfbk.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-video-creator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-video-maker-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-video-to-text-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-video-translator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-vidual-quiz-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-visual-quiz-test-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-visual-test-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-vocabulary-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-voice-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-voice-translator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-wav-decoder-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-with-no-spaces-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-with-sound-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-word-break-CGHODfbk.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-word-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-word-game-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-word-list-trainer-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-word-lookup-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-word-practice-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-word-separator-slash-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-words-practice-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-worksheet-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-world-translator-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-write-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-code-writer-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-decoder-audio-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-decoder-audio-to-text-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-decoder-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-dictionary-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-generator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-language-translator-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-numbers-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-practice-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-punctuation-DaSyFyjI.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-quiz-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-reader-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-sentences-BDTpIJqx.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-sound-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-sound-generator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-sound-to-text-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-to-audio-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-to-english-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-to-english-translator-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-to-mp3-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-to-sound-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-to-text-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-to-text-translator-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-to-word-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-to-words-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-translator-audio-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-type-test-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-typer-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-typing-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-typing-practice-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-typing-trainer-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-video-generator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-without-spaces-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-word-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-word-trainer-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-words-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morse-words-trainer-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morsecode-maker-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morsecode-sound-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "morsewords-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "mp3-morse-code-decoder-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "mp3-to-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "mp4-to-morse-code-translator-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "nine-in-morse-code-CGHODfbk.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "normal-text-to-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "number-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "number-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "numbers-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "official-morse-code-chart-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "one-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "online-morse-code-audio-generator-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "p-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "period-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "play-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "play-morse-code-sound-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "practice-morse-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "practice-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "print-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "print-Cx0dALbO.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "printable-morse-code-chart-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "printable-morse-code-clue-sheet-generator-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "punctuation-in-morse-code-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "q-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "question-mark-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "quotation-mark-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "read-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "read-morse-code-online-BDTpIJqx.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "read-morse-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "real-time-morse-code-decoder-CZbpSHVJ.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "semicolon-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "sentence-to-morse-code-BDTpIJqx.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "seven-in-morse-code-BDTpIJqx.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "six-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "slash-in-morse-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "slash-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "slash-used-to-separate-words-in-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "sos-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "sos-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "sos-in-morse-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "sos-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "sos-morse-code-translator-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "sos-morse-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "sos-translator-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "sound-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "sound-to-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "sound-to-morse-code-translator-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "spaces-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "standard-international-morse-code-alphabet-3jNochK1.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "text-into-morse-code-3jNochK1.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "text-morse-code-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "text-to-audio-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "text-to-morse-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "text-to-morse-audio-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "text-to-morse-code-audio-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "text-to-morse-code-audio-generator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "text-to-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "text-to-morse-code-mp3-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "text-to-morse-code-sound-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "text-to-morse-code-video-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "text-to-morse-mp3-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "the-count-of-monte-cristo-gutenberg-1184-3IzxAmXL.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "the-count-of-monte-cristo-gutenberg-1184-3jNochK1.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "three-in-morse-code-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "to-morse-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "translate-morse-code-0RhT_XPE.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "translate-morse-code-audio-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "translate-morse-code-audio-to-text-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "translate-morse-code-from-audio-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "translate-morse-code-from-video-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "translate-morse-code-to-words-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "translate-to-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "translate-word-to-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "translate-words-into-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "translate-words-to-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "two-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "type-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "type-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "typing-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "u-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "unmorse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "video-morse-code-translator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "video-to-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "video-to-morse-code-translator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "w-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "wabun-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "wabun-code-translator-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "wav-morse-code-decoder-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "wav-to-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "wav-to-morse-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "what-are-the-slashes-in-morse-code-D7O63dmS.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "what-does-a-slash-mean-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "what-does-slash-mean-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "what-is-space-in-morse-code-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "word-code-translator-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "word-into-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "word-list-trainer-DaSyFyjI.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "word-to-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "words-into-morse-code-translator-CPBghSvv.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "words-to-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "write-in-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "write-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "writing-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "z-in-morse-CyXtbatR.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "zero-in-morse-code-Dp_XMAkg.js",
+      "bytes": 106,
+      "gzip": 121
+    },
+    {
+      "name": "siteTrust-BL0Rzcx0.js",
+      "bytes": 72,
+      "gzip": 87
+    },
+    {
+      "name": "llms-full-l0sNRNKZ.js",
+      "bytes": 1,
+      "gzip": 21
+    },
+    {
+      "name": "llms-l0sNRNKZ.js",
+      "bytes": 1,
+      "gzip": 21
+    },
+    {
+      "name": "morse-book-content.books._slug-l0sNRNKZ.js",
+      "bytes": 1,
+      "gzip": 21
+    }
+  ],
+  "cpuBefore": [
+    {
+      "route": "/",
+      "rate": 1,
+      "domContentLoadedMs": 426.70000000298023,
+      "longTasks": [
+        66
+      ],
+      "resourceCount": 51,
+      "overflow": false
+    },
+    {
+      "route": "/audio",
+      "rate": 1,
+      "domContentLoadedMs": 125.20000000298023,
+      "longTasks": [
+        54
+      ],
+      "resourceCount": 52,
+      "overflow": false
+    },
+    {
+      "route": "/practice",
+      "rate": 1,
+      "domContentLoadedMs": 108.20000000298023,
+      "longTasks": [],
+      "resourceCount": 41,
+      "overflow": false
+    },
+    {
+      "route": "/",
+      "rate": 4,
+      "domContentLoadedMs": 552,
+      "longTasks": [
+        274,
+        118,
+        59,
+        65
+      ],
+      "resourceCount": 51,
+      "overflow": false
+    },
+    {
+      "route": "/audio",
+      "rate": 4,
+      "domContentLoadedMs": 445.3999999910593,
+      "longTasks": [
+        221,
+        90,
+        58,
+        61
+      ],
+      "resourceCount": 52,
+      "overflow": false
+    },
+    {
+      "route": "/practice",
+      "rate": 4,
+      "domContentLoadedMs": 404.70000000298023,
+      "longTasks": [
+        218,
+        73,
+        59,
+        67
+      ],
+      "resourceCount": 41,
+      "overflow": false
+    }
+  ],
+  "cpuAfter": [
+    {
+      "route": "/",
+      "rate": 1,
+      "domContentLoadedMs": 245.90000000596046,
+      "longTasks": [
+        58
+      ],
+      "resourceCount": 52,
+      "overflow": false
+    },
+    {
+      "route": "/audio",
+      "rate": 1,
+      "domContentLoadedMs": 121.8999999910593,
+      "longTasks": [
+        52
+      ],
+      "resourceCount": 51,
+      "overflow": false
+    },
+    {
+      "route": "/practice",
+      "rate": 1,
+      "domContentLoadedMs": 104.70000000298023,
+      "longTasks": [],
+      "resourceCount": 40,
+      "overflow": false
+    },
+    {
+      "route": "/",
+      "rate": 4,
+      "domContentLoadedMs": 532.2000000029802,
+      "longTasks": [
+        288,
+        88,
+        51,
+        62
+      ],
+      "resourceCount": 52,
+      "overflow": false
+    },
+    {
+      "route": "/audio",
+      "rate": 4,
+      "domContentLoadedMs": 487.70000000298023,
+      "longTasks": [
+        251,
+        83,
+        66
+      ],
+      "resourceCount": 51,
+      "overflow": false
+    },
+    {
+      "route": "/practice",
+      "rate": 4,
+      "domContentLoadedMs": 416.20000000298023,
+      "longTasks": [
+        223,
+        77,
+        76
+      ],
+      "resourceCount": 40,
+      "overflow": false
+    }
+  ],
+  "audioMemory": [
+    {
+      "cycle": 0,
+      "heap": {
+        "usedSize": 4984676,
+        "totalSize": 5808128,
+        "embedderHeapUsedSize": 3603136,
+        "backingStorageSize": 1033740
+      }
+    },
+    {
+      "cycle": 1,
+      "initMs": 87.78939999999989,
+      "contexts": 1,
+      "active": 0,
+      "starts": 1
+    },
+    {
+      "cycle": 2,
+      "initMs": 30.452399999999898,
+      "contexts": 1,
+      "active": 0,
+      "starts": 2
+    },
+    {
+      "cycle": 3,
+      "initMs": 32.17840000000001,
+      "contexts": 1,
+      "active": 0,
+      "starts": 3
+    },
+    {
+      "cycle": 4,
+      "initMs": 32.74599999999987,
+      "contexts": 1,
+      "active": 0,
+      "starts": 4
+    },
+    {
+      "cycle": 5,
+      "initMs": 31.91689999999994,
+      "contexts": 1,
+      "active": 0,
+      "starts": 5
+    },
+    {
+      "cycle": 5,
+      "heap": {
+        "usedSize": 6058404,
+        "totalSize": 6373376,
+        "embedderHeapUsedSize": 3374376,
+        "backingStorageSize": 1034638
+      }
+    },
+    {
+      "cycle": 6,
+      "initMs": 39.84939999999983,
+      "contexts": 1,
+      "active": 0,
+      "starts": 6
+    },
+    {
+      "cycle": 7,
+      "initMs": 32.25520000000006,
+      "contexts": 1,
+      "active": 0,
+      "starts": 7
+    },
+    {
+      "cycle": 8,
+      "initMs": 32.6092000000001,
+      "contexts": 1,
+      "active": 0,
+      "starts": 8
+    },
+    {
+      "cycle": 9,
+      "initMs": 31.52390000000014,
+      "contexts": 1,
+      "active": 0,
+      "starts": 9
+    },
+    {
+      "cycle": 10,
+      "initMs": 32.65560000000005,
+      "contexts": 1,
+      "active": 0,
+      "starts": 10
+    },
+    {
+      "cycle": 10,
+      "heap": {
+        "usedSize": 6157860,
+        "totalSize": 6635520,
+        "embedderHeapUsedSize": 3379408,
+        "backingStorageSize": 1034638
+      }
+    },
+    {
+      "cycle": 11,
+      "initMs": 26.511600000000044,
+      "contexts": 1,
+      "active": 0,
+      "starts": 11
+    },
+    {
+      "cycle": 12,
+      "initMs": 30.916999999999916,
+      "contexts": 1,
+      "active": 0,
+      "starts": 12
+    },
+    {
+      "cycle": 13,
+      "initMs": 33.40890000000013,
+      "contexts": 1,
+      "active": 0,
+      "starts": 13
+    },
+    {
+      "cycle": 14,
+      "initMs": 32.09400000000005,
+      "contexts": 1,
+      "active": 0,
+      "starts": 14
+    },
+    {
+      "cycle": 15,
+      "initMs": 32.44860000000017,
+      "contexts": 1,
+      "active": 0,
+      "starts": 15
+    },
+    {
+      "cycle": 15,
+      "heap": {
+        "usedSize": 6193104,
+        "totalSize": 6897664,
+        "embedderHeapUsedSize": 3448216,
+        "backingStorageSize": 1034649
+      }
+    },
+    {
+      "cycle": 16,
+      "initMs": 44.32999999999993,
+      "contexts": 1,
+      "active": 0,
+      "starts": 16
+    },
+    {
+      "cycle": 17,
+      "initMs": 33.45510000000013,
+      "contexts": 1,
+      "active": 0,
+      "starts": 17
+    },
+    {
+      "cycle": 18,
+      "initMs": 32.33690000000024,
+      "contexts": 1,
+      "active": 0,
+      "starts": 18
+    },
+    {
+      "cycle": 19,
+      "initMs": 34.89980000000014,
+      "contexts": 1,
+      "active": 0,
+      "starts": 19
+    },
+    {
+      "cycle": 20,
+      "initMs": 32.609699999999975,
+      "contexts": 1,
+      "active": 0,
+      "starts": 20
+    },
+    {
+      "cycle": 20,
+      "heap": {
+        "usedSize": 6212784,
+        "totalSize": 6897664,
+        "embedderHeapUsedSize": 3386640,
+        "backingStorageSize": 1034649
+      }
+    }
+  ],
+  "audioMemoryInterpretation": "One context, zero active oscillators after every stop. Post-GC heap 4.98 MB before initialization, 6.06 MB after 5, 6.21 MB after 20; later increments diminish. Short-run evidence, not proof of no leaks. Click-to-first-node includes browser automation latency.",
+  "netlifyPackage": {
+    "zipBytes": 3250515,
+    "sha256": "6c42eb2346dabe4ee465ce8ce15d2ac8043cd9a65ec6174e3122f8c42bb4cbe9",
+    "entries": 223,
+    "uncompressedBytes": 12733115,
+    "requiredSummaryJson": 1,
+    "fullBookPayloads": [],
+    "chartAssets": [],
+    "w07Evidence": []
+  },
+  "protectedCheckout": {
+    "protectedFiles": 191,
+    "mismatches": [],
+    "statusIdentical": true,
+    "head": "8627d04ec3b6d2f561a29032f508f5f3410b11d5"
+  },
+  "visual": [
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "light",
+      "route": "/",
+      "h1": {
+        "size": "36px",
+        "line": "45px",
+        "weight": "900",
+        "font": "\"Space Grotesk\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "background": "rgb(245, 242, 235)",
+      "overflow": false
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "light",
+      "route": "/audio",
+      "h1": {
+        "size": "36px",
+        "line": "45px",
+        "weight": "900",
+        "font": "\"Space Grotesk\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "background": "rgb(245, 242, 235)",
+      "overflow": false
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "route": "/",
+      "h1": {
+        "size": "36px",
+        "line": "45px",
+        "weight": "900",
+        "font": "\"Space Grotesk\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "background": "rgb(7, 17, 31)",
+      "overflow": false
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "route": "/audio",
+      "h1": {
+        "size": "36px",
+        "line": "45px",
+        "weight": "900",
+        "font": "\"Space Grotesk\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "background": "rgb(7, 17, 31)",
+      "overflow": false
+    },
+    {
+      "engine": "chromium",
+      "width": 768,
+      "theme": "light",
+      "route": "/",
+      "h1": {
+        "size": "48px",
+        "line": "60px",
+        "weight": "900",
+        "font": "\"Space Grotesk\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "background": "rgb(245, 242, 235)",
+      "overflow": false
+    },
+    {
+      "engine": "chromium",
+      "width": 768,
+      "theme": "light",
+      "route": "/audio",
+      "h1": {
+        "size": "48px",
+        "line": "60px",
+        "weight": "900",
+        "font": "\"Space Grotesk\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "background": "rgb(245, 242, 235)",
+      "overflow": false
+    },
+    {
+      "engine": "chromium",
+      "width": 768,
+      "theme": "dark",
+      "route": "/",
+      "h1": {
+        "size": "48px",
+        "line": "60px",
+        "weight": "900",
+        "font": "\"Space Grotesk\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "background": "rgb(7, 17, 31)",
+      "overflow": false
+    },
+    {
+      "engine": "chromium",
+      "width": 768,
+      "theme": "dark",
+      "route": "/audio",
+      "h1": {
+        "size": "48px",
+        "line": "60px",
+        "weight": "900",
+        "font": "\"Space Grotesk\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "background": "rgb(7, 17, 31)",
+      "overflow": false
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "route": "/",
+      "h1": {
+        "size": "60px",
+        "line": "75px",
+        "weight": "900",
+        "font": "\"Space Grotesk\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "background": "rgb(245, 242, 235)",
+      "overflow": false
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "route": "/audio",
+      "h1": {
+        "size": "60px",
+        "line": "75px",
+        "weight": "900",
+        "font": "\"Space Grotesk\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "background": "rgb(245, 242, 235)",
+      "overflow": false
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "route": "/",
+      "h1": {
+        "size": "60px",
+        "line": "75px",
+        "weight": "900",
+        "font": "\"Space Grotesk\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "background": "rgb(7, 17, 31)",
+      "overflow": false
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "route": "/audio",
+      "h1": {
+        "size": "60px",
+        "line": "75px",
+        "weight": "900",
+        "font": "\"Space Grotesk\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "background": "rgb(7, 17, 31)",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "route": "/",
+      "h1": {
+        "size": "36px",
+        "line": "45px",
+        "weight": "900",
+        "font": "\"Space Grotesk\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "background": "rgb(245, 242, 235)",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "route": "/audio",
+      "h1": {
+        "size": "36px",
+        "line": "45px",
+        "weight": "900",
+        "font": "\"Space Grotesk\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "background": "rgb(245, 242, 235)",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "dark",
+      "route": "/",
+      "h1": {
+        "size": "36px",
+        "line": "45px",
+        "weight": "900",
+        "font": "\"Space Grotesk\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "background": "rgb(7, 17, 31)",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "dark",
+      "route": "/audio",
+      "h1": {
+        "size": "36px",
+        "line": "45px",
+        "weight": "900",
+        "font": "\"Space Grotesk\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "background": "rgb(7, 17, 31)",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "width": 768,
+      "theme": "light",
+      "route": "/",
+      "h1": {
+        "size": "48px",
+        "line": "60px",
+        "weight": "900",
+        "font": "\"Space Grotesk\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "background": "rgb(245, 242, 235)",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "width": 768,
+      "theme": "light",
+      "route": "/audio",
+      "h1": {
+        "size": "48px",
+        "line": "60px",
+        "weight": "900",
+        "font": "\"Space Grotesk\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "background": "rgb(245, 242, 235)",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "width": 768,
+      "theme": "dark",
+      "route": "/",
+      "h1": {
+        "size": "48px",
+        "line": "60px",
+        "weight": "900",
+        "font": "\"Space Grotesk\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "background": "rgb(7, 17, 31)",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "width": 768,
+      "theme": "dark",
+      "route": "/audio",
+      "h1": {
+        "size": "48px",
+        "line": "60px",
+        "weight": "900",
+        "font": "\"Space Grotesk\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "background": "rgb(7, 17, 31)",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "light",
+      "route": "/",
+      "h1": {
+        "size": "60px",
+        "line": "75px",
+        "weight": "900",
+        "font": "\"Space Grotesk\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "background": "rgb(245, 242, 235)",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "light",
+      "route": "/audio",
+      "h1": {
+        "size": "60px",
+        "line": "75px",
+        "weight": "900",
+        "font": "\"Space Grotesk\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "background": "rgb(245, 242, 235)",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "route": "/",
+      "h1": {
+        "size": "60px",
+        "line": "75px",
+        "weight": "900",
+        "font": "\"Space Grotesk\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "background": "rgb(7, 17, 31)",
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "route": "/audio",
+      "h1": {
+        "size": "60px",
+        "line": "75px",
+        "weight": "900",
+        "font": "\"Space Grotesk\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "background": "rgb(7, 17, 31)",
+      "overflow": false
+    }
+  ],
+  "adVisual": [
+    {
+      "width": 390,
+      "theme": "light",
+      "visibleFallbacks": 0,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "visibleFallbacks": 0,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "visibleFallbacks": 0,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "visibleFallbacks": 0,
+      "overflow": false
+    },
+    {
+      "width": 1536,
+      "theme": "light",
+      "visibleFallbacks": 0,
+      "overflow": false
+    },
+    {
+      "width": 1536,
+      "theme": "dark",
+      "visibleFallbacks": 0,
+      "overflow": false
+    }
+  ]
+}
