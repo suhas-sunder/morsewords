@@ -74,3 +74,10 @@ neither executes tests nor changes branches, commits, deployment or files.
 The navigation check is also inside the normal built-handler release gate. It
 accepts Git's LF/CRLF checkout newlines, rejects stale/missing content and never
 regenerates it. Only the explicit `books:navigation-index` command generates it.
+
+## Tranche C review evidence
+
+The W17–W24 review stack and its cumulative local validation are recorded in
+[TRANCHE-C-FINAL-REVIEW.md](TRANCHE-C-FINAL-REVIEW.md). These remain draft review
+packages, not production releases. The existing fresh-main, exact-SHA hosted
+preview and owner-decision procedure still applies. W25–W52 remain proposed.

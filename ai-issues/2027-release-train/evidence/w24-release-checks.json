@@ -1,0 +1,135 @@
+{
+  "applicationSha": "8a859fd39fd4ad2c5ad676a5a0a2ea62262c2eb0",
+  "testAmendmentSha": "707f872445e1d66153a29a5c04cf0f6e710fd44b",
+  "production": {
+    "mainSha": "8c83c8214d515565c314ff99bc3df8af88e73121",
+    "publishedDeployId": "6af699314552c4b5a47d0889",
+    "state": "ready/current"
+  },
+  "protectedOriginal": {
+    "head": "8627d04ec3b6d2f561a29032f508f5f3410b11d5",
+    "filesChecked": 191,
+    "changed": [],
+    "statusMatches": true
+  },
+  "protectedSources": {
+    "protectedSourceChanges": [],
+    "checked": [
+      "app/routes/home.tsx",
+      "app/routes/audio.tsx",
+      "app/root.tsx",
+      "app/client/components/navigation/NavBar.tsx",
+      "app/client/components/navigation/Footer.tsx",
+      "app/client/components/shared/PageBackdrop.tsx",
+      "app/client/components/shared/useMorseAudio.tsx",
+      "app/client/components/shared/morseSettings.ts",
+      "app/client/components/shared/morseTonePresets.ts",
+      "netlify.toml",
+      "package-lock.json",
+      "app/routes.ts"
+    ]
+  },
+  "builtGates": [
+    {
+      "command": "site:local-final-validation",
+      "exitCode": 0
+    },
+    {
+      "command": "release:check-library-payload",
+      "exitCode": 0
+    },
+    {
+      "command": "release:check-library-details",
+      "exitCode": 0
+    }
+  ],
+  "staticGates": [
+    {
+      "exitCode": 0,
+      "command": "books:navigation-index:check"
+    },
+    {
+      "exitCode": 0,
+      "command": "test:release-integrity"
+    },
+    {
+      "exitCode": 0,
+      "command": "pages:url-indexability-canonical-audit"
+    },
+    {
+      "exitCode": 0,
+      "command": "pages:gsc-meta-content-quality-audit"
+    },
+    {
+      "exitCode": 0,
+      "command": "pages:sitemap-count-print-indexability-audit"
+    }
+  ],
+  "adVisual": [
+    {
+      "width": 390,
+      "theme": "light",
+      "visibleFallbacks": 0,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "visibleFallbacks": 0,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "visibleFallbacks": 0,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "visibleFallbacks": 0,
+      "overflow": false
+    },
+    {
+      "width": 1536,
+      "theme": "light",
+      "visibleFallbacks": 0,
+      "overflow": false
+    },
+    {
+      "width": 1536,
+      "theme": "dark",
+      "visibleFallbacks": 0,
+      "overflow": false
+    }
+  ],
+  "homeAudioVisual": {
+    "observations": 24,
+    "overflow": false,
+    "widths": [
+      390,
+      768,
+      1440
+    ],
+    "engines": [
+      "Chromium",
+      "WebKit"
+    ],
+    "themes": [
+      "light",
+      "dark"
+    ]
+  },
+  "sitemap": {
+    "total": 1179,
+    "books": 524,
+    "audiobooks": 524,
+    "other": 131,
+    "print": 0
+  },
+  "notes": [
+    "Counts in the owner review are overlapping groups, not a unique summed total.",
+    "No hosted preview; one-time CLI auth limitation, offline package/local built handler validated.",
+    "No main push, merge or deployment."
+  ]
+}

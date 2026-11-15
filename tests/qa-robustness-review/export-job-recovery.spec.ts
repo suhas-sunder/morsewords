@@ -188,7 +188,8 @@ test("book source replacement cannot reuse completed parts with the same filenam
   expect(await page.evaluate(() => (window as any).bookRecoveryDownloads.sent.length)).toBe(1);
   await page.getByLabel("Paste long-form source text").fill("OSO ".repeat(70));
   await tool.getByRole("button", { name: /Download \d+ WAV parts/ }).click();
-  await expect(tool.getByText(/ordered WAV download requests sent/).first()).toBeVisible();
+  // Seven sequential real WAV renders can exceed the default assertion window.
+  await expect(tool.getByText(/ordered WAV download requests sent/).first()).toBeVisible({ timeout: 30_000 });
   const sent = await page.evaluate(() => (window as any).bookRecoveryDownloads.sent as string[]);
   expect(sent.length).toBeGreaterThan(2);
   expect(sent[1]).toBe(sent[0]); // new source must request its first part again
