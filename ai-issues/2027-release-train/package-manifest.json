@@ -950,7 +950,9 @@
       "implementationCommits": [
         "76cc6479721b39c84f1798b94e86df85946b446e"
       ],
-      "documentationCommits": [],
+      "documentationCommits": [
+        "18df9fd5b719dc0d30afb998b0ee7d59717a819d"
+      ],
       "reviewBranch": "release/2027-W20-weak-spot-review",
       "draftPr": "https://github.com/suhas-sunder/morsewords/pull/23",
       "commonGates": [
@@ -979,26 +981,32 @@
     {
       "packageId": "W21",
       "theme": "Short session completion",
-      "amendmentCommits": [],
+      "amendmentCommits": [
+        "685ed837db245dc567aee0f55da62854a03ae2bb"
+      ],
       "dependencies": [
         "W20"
       ],
       "affectedRoutes": [
         "/practice",
         "/typing",
-        "/morse-code-sentence-practice"
+        "/morse-code-sentence-practice",
+        "/morse-code-audio-practice",
+        "shared dialog focus and navigation"
       ],
-      "plannedScope": "Practice/typing/sentence session lifecycle and summary.",
+      "plannedScope": "Truthful short/early session completion, one-credit scoring, active typing time, local review outcomes and accessible nested results dialogs.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED",
+      "status": "VALIDATED",
       "acceptance": "Paused time excluded, finish early, replay doesn't inflate success, browser reload continuity.",
       "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
-      "implementationCommits": [],
+      "implementationCommits": [
+        "08676b25e882d001f71a1a04c13b699a45a29616"
+      ],
       "documentationCommits": [],
-      "reviewBranch": null,
-      "draftPr": null,
+      "reviewBranch": "release/2027-W21-session-completion",
+      "draftPr": "https://github.com/suhas-sunder/morsewords/pull/24",
       "commonGates": [
         "npm run typecheck",
         "npm test",
@@ -1013,8 +1021,13 @@
         "npm run books:navigation-index:check",
         "npm run test:release-integrity"
       ],
-      "packageSpecificGates": [],
-      "evidence": []
+      "packageSpecificGates": [
+        "npx playwright test --config=playwright.review.config.ts tests/qa-robustness-review/session-completion.spec.ts tests/qa-robustness-review/typing-share.spec.ts tests/qa-robustness-review/navigation-dialog-quality.spec.ts tests/qa-robustness-review/learning-review.spec.ts",
+        "npx playwright test tests/qa-robustness-review/practice-flow-hardening.spec.ts tests/qa-robustness-review/practice-reset-actions.spec.ts tests/qa-robustness-review/route-smoke-practice-quiz.spec.ts"
+      ],
+      "evidence": [
+        "ai-issues/2027-release-train/W21.md"
+      ]
     },
     {
       "packageId": "W22",
@@ -2317,7 +2330,10 @@
     "f6c3f2ca4dbd18ad4b6271bf4af73846b0cc15c4",
     "60f7af157c9fb99a42bf362a5f94bdcb9d20c5e6",
     "43c5082a61720872c3945f8e621b925a31c26749",
-    "76cc6479721b39c84f1798b94e86df85946b446e"
+    "76cc6479721b39c84f1798b94e86df85946b446e",
+    "18df9fd5b719dc0d30afb998b0ee7d59717a819d",
+    "08676b25e882d001f71a1a04c13b699a45a29616",
+    "685ed837db245dc567aee0f55da62854a03ae2bb"
   ],
   "persistentGates": [
     {
