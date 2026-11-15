@@ -1052,7 +1052,9 @@
       "implementationCommits": [
         "cfaffdf5161b83cdcb912b31cafe1ccb383ff34a"
       ],
-      "documentationCommits": [],
+      "documentationCommits": [
+        "f7d19989f8023f831d05643536dabd43740a2a1b"
+      ],
       "reviewBranch": "release/2027-W22-sound-first-progression",
       "draftPr": "https://github.com/suhas-sunder/morsewords/pull/25",
       "commonGates": [
@@ -1087,20 +1089,25 @@
         "W22"
       ],
       "affectedRoutes": [
-        "shared flash safety",
-        "practice and quiz routes"
+        "/morse-code-visual-practice",
+        "/morse-code-visual-quiz",
+        "/morse-code-audio-practice",
+        "/morse-code-audio-quiz",
+        "/practice"
       ],
-      "plannedScope": "Shared flash safety, quizzes, practice settings.",
+      "plannedScope": "Equivalent static targets, shared cancellable visual playback, warnings before flash, accessible support contrast and semantics.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED",
+      "status": "VALIDATED",
       "acceptance": "Exact strobe warning, toggle/lamp compound control, reduced motion, no flash before consent.",
       "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
-      "implementationCommits": [],
+      "implementationCommits": [
+        "dcd07dfd62ec6ed9539f523afc02b73b0fb30bc3"
+      ],
       "documentationCommits": [],
-      "reviewBranch": null,
-      "draftPr": null,
+      "reviewBranch": "release/2027-W23-non-flash-practice",
+      "draftPr": "https://github.com/suhas-sunder/morsewords/pull/26",
       "commonGates": [
         "npm run typecheck",
         "npm test",
@@ -1115,8 +1122,13 @@
         "npm run books:navigation-index:check",
         "npm run test:release-integrity"
       ],
-      "packageSpecificGates": [],
-      "evidence": []
+      "packageSpecificGates": [
+        "npx playwright test --config=playwright.review.config.ts tests/qa-robustness-review/non-flash-practice.spec.ts tests/qa-robustness-review/learning-review.spec.ts tests/qa-robustness-review/sound-first-path.spec.ts",
+        "npx playwright test tests/qa-robustness-review/flash-lamp.spec.ts tests/qa-robustness-review/practice-flow-hardening.spec.ts tests/qa-robustness-review/practice-reset-actions.spec.ts"
+      ],
+      "evidence": [
+        "ai-issues/2027-release-train/W23.md"
+      ]
     },
     {
       "packageId": "W24",
@@ -1179,7 +1191,7 @@
       "userFacing": true,
       "standaloneProductionEligible": true,
       "status": "PROPOSED",
-      "acceptance": "All A–Z canonical mappings, one playback owner, meaningful accessible labels.",
+      "acceptance": "All A\u2013Z canonical mappings, one playback owner, meaningful accessible labels.",
       "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
       "implementationCommits": [],
       "documentationCommits": [],
@@ -1448,7 +1460,7 @@
       "userFacing": true,
       "standaloneProductionEligible": true,
       "status": "PROPOSED",
-      "acceptance": "Web/print/playback mappings agree; exceptions explicit; no invented “official certification.”",
+      "acceptance": "Web/print/playback mappings agree; exceptions explicit; no invented \u201cofficial certification.\u201d",
       "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
       "implementationCommits": [],
       "documentationCommits": [],
@@ -2057,9 +2069,9 @@
         "W47"
       ],
       "affectedRoutes": [
-        "W41–W47 assets/flows and integration tests."
+        "W41\u2013W47 assets/flows and integration tests."
       ],
-      "plannedScope": "W41–W47 assets/flows and integration tests.",
+      "plannedScope": "W41\u2013W47 assets/flows and integration tests.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
@@ -2346,7 +2358,9 @@
     "08676b25e882d001f71a1a04c13b699a45a29616",
     "685ed837db245dc567aee0f55da62854a03ae2bb",
     "ccfc3bfa52223e6e49244f979c02f47da08f269f",
-    "cfaffdf5161b83cdcb912b31cafe1ccb383ff34a"
+    "cfaffdf5161b83cdcb912b31cafe1ccb383ff34a",
+    "f7d19989f8023f831d05643536dabd43740a2a1b",
+    "dcd07dfd62ec6ed9539f523afc02b73b0fb30bc3"
   ],
   "persistentGates": [
     {
