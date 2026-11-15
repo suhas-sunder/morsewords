@@ -1,3 +1,4 @@
+import { captureReviewAnswer } from "~/client/components/learning/reviewSubmission";
 import AnswerComparison, { type SubmittedAnswer } from "~/client/components/learning/AnswerComparison";
 import * as React from "react";
 import type { Route } from "./+types/morse-code-visual-quiz";
@@ -241,7 +242,7 @@ export default function MorseCodeVisualQuiz() {
     if (runStartedAt === null) setRunStartedAt(Date.now());
     setAttempts((value) => value + 1);
     setChecked(true);
-    setSubmitted({ expected: normalizePlainAnswer(prompt), attempted: normalizedAnswer, correct: isCorrect, kind: "text" });
+    setSubmitted(captureReviewAnswer({ expected: normalizePlainAnswer(prompt), attempted: normalizedAnswer, correct: isCorrect, kind: "text" }, { source: "visual-quiz", mode: "morse_to_text", target: normalizePlainAnswer(prompt), private: false }));
     if (isCorrect) {
       setSolved(true);
       setCorrect((value) => value + 1);

@@ -20,6 +20,7 @@ export type LearningSession = {
   practice?: { pool: Pool; mode: DrillMode };
 };
 export const LEARNING_SESSIONS: readonly LearningSession[] = [
+  { id: "review", label: "Review missed items", description: "Revisit saved targets in this browser. Keep or remove each target after practice.", href: "/practice#review-queue" },
   { id: "first", label: "Learn first characters", description: "Try 10 static recognition prompts using E, T, A, N, I, M, S and O. No timer or flashing.", href: "/practice#practice-workspace", practice: { pool: "starter", mode: "morse_to_text" } },
   { id: "listening", label: "Practice listening", description: "Start with beginner audio prompts. Press Play when you are ready, then type what you hear.", href: "/morse-code-audio-practice" },
   { id: "visual", label: "Recognize written Morse", description: "Read 10 letter patterns and type their letters. The patterns stay still while you work.", href: "/practice#practice-workspace", practice: { pool: "letters", mode: "morse_to_text" } },

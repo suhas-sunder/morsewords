@@ -1,3 +1,4 @@
+import { captureReviewAnswer } from "~/client/components/learning/reviewSubmission";
 import AnswerComparison, { type SubmittedAnswer } from "~/client/components/learning/AnswerComparison";
 import * as React from "react";
 import type { Route } from "./+types/morse-code-audio-quiz";
@@ -331,7 +332,7 @@ export default function MorseCodeAudioQuiz() {
     }
     answeredQuestionRef.current = true;
     if (runStartedAt === null) setRunStartedAt(Date.now());
-    setSubmitted({ expected: expectedAnswer, attempted: normalizedAnswer, correct: normalizedAnswer === expectedAnswer, kind: "text" });
+    setSubmitted(captureReviewAnswer({ expected: expectedAnswer, attempted: normalizedAnswer, correct: normalizedAnswer === expectedAnswer, kind: "text" }, { source: "audio-quiz", mode: "morse_to_text", target: expectedAnswer, private: false }));
     setAttempts((value) => value + 1);
     if (isCorrect) {
       setFeedback("correct");

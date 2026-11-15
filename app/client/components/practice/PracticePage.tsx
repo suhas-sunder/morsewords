@@ -1,3 +1,5 @@
+import { useLocation } from "react-router";
+import { captureReviewAnswer } from "~/client/components/learning/reviewSubmission";
 import AnswerComparison, { type SubmittedAnswer } from "~/client/components/learning/AnswerComparison";
 import { useLearningSessionIntent } from "~/client/components/learning/useLearningSessionIntent";
 import LearningSessionChooser from "~/client/components/learning/LearningSessionChooser";
@@ -47,6 +49,8 @@ import {
   deterministicPrompt,
   randomPrompt,
 } from "~/client/components/practice/practiceEngine";
+
+const ReviewQueuePanel = React.lazy(() => import("~/client/components/learning/ReviewQueuePanel"));
 
 const LS_POOL = "mw_practice_pool";
 const lsModeKey = (pool: string) => `mw_practice_mode_${pool}`;
@@ -101,6 +105,11 @@ function writeInt(key: string, val: number) {
 }
 
 export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
+  const location = useLocation();
+  const [reviewOpen, setReviewOpen] = React.useState(false);
+  const reviewRef = React.useRef<HTMLElement>(null);
+  function openReview() { setReviewOpen(true); requestAnimationFrame(() => { reviewRef.current?.focus(); reviewRef.current?.scrollIntoView({ block: "start" }); }); }
+  React.useEffect(() => { if (location.hash === "#review-queue") openReview(); }, [location.hash]);
   const readSessionIntent = useLearningSessionIntent("/practice");
   const answerRef = React.useRef<HTMLInputElement>(null);
   const [submitted, setSubmitted] = React.useState<SubmittedAnswer | null>(null);
@@ -143,6 +152,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
     requestAnimationFrame(() => { const target = answerRef.current ?? document.getElementById("practice-workspace"); target?.focus(); target?.scrollIntoView({ block: "center", behavior: "auto" }); });
   }
   function startSession(session: LearningSession) {
+    if (session.id === "review") { openReview(); return true; }
     if (!session.practice) return false;
     configureDrill(session.practice.pool, session.practice.mode);
     focusExercise();
@@ -228,7 +238,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
     setAttempts((n) => n + 1);
 
     const res = checkAnswer(prompt, answer);
-    setSubmitted({ expected: res.normalizedExpected, attempted: res.normalizedGot, correct: res.ok, kind: prompt.kind === "text_to_morse" ? "morse" : "text" });
+    setSubmitted(captureReviewAnswer({ expected: res.normalizedExpected, attempted: res.normalizedGot, correct: res.ok, kind: prompt.kind === "text_to_morse" ? "morse" : "text" }, { source: "practice", mode: prompt.kind, target: prompt.plain, private: false }));
 
     if (res.ok) {
       // Only count the first correct solve per question.
@@ -305,6 +315,10 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
         </div>
 
         <LearningSessionChooser onChoose={startSession} onSkip={focusExercise} />
+        <section ref={reviewRef} id="review-queue" tabIndex={-1} className="my-6" aria-label="Review queue">
+          <ToolButton aria-expanded={reviewOpen} aria-controls="review-queue-content" onClick={() => setReviewOpen(value => !value)}>{reviewOpen ? "Hide review queue" : "Show review queue"}</ToolButton>
+          {reviewOpen && <div id="review-queue-content"><h2 className="mt-4 text-2xl font-extrabold text-sky-950">Your review queue</h2><React.Suspense fallback={<p role="status">Opening review queue...</p>}><ReviewQueuePanel /></React.Suspense></div>}
+        </section>
         <div id="practice-workspace" tabIndex={-1} className="pb-2 pt-4 sm:pb-3 sm:pt-4">
         {/* Top control bar */}
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
