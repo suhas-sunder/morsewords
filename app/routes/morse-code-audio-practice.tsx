@@ -1,4 +1,7 @@
 import SessionNextStep, { useSessionResultFocus } from "~/client/components/learning/SessionNextStep";
+import SoundFirstPath from "~/client/components/learning/SoundFirstPath";
+import { soundFirstPrompts, SOUND_FIRST_SETS } from "~/client/components/learning/soundFirstSchema";
+import { useSoundFirstProgress } from "~/client/components/learning/useSoundFirstProgress";
 import { useReviewAudioIntent } from "~/client/components/learning/reviewAudioHandoff";
 import type { ReviewItem } from "~/client/components/learning/learningReviewSchema";
 import { Link } from "react-router";
@@ -129,11 +132,13 @@ export default function MorseCodeAudioPractice() {
   const readSessionIntent = useLearningSessionIntent("/morse-code-audio-practice");
   const player = useMorseAudio();
   const playerRef = React.useRef(player);
-  const didSyncInitialDifficulty = React.useRef(false);
+  const pathProgress = useSoundFirstProgress();
+  const [pathIndex, setPathIndex] = React.useState<number | null>(null);
+  const [staticPattern, setStaticPattern] = React.useState(false);
   const [hydrated, setHydrated] = React.useState(false);
   const [difficulty, setDifficulty] =
     React.useState<AudioDifficulty>(DEFAULT_AUDIO_DIFFICULTY);
-  const promptPool = React.useMemo(() => getAudioPrompts(difficulty), [difficulty]);
+  const promptPool = React.useMemo(() => pathIndex === null ? getAudioPrompts(difficulty) : soundFirstPrompts(pathIndex), [difficulty, pathIndex]);
   const [prompt, setPrompt] = React.useState<AudioPrompt>(() =>
     getAudioPrompts(DEFAULT_AUDIO_DIFFICULTY)[0],
   );
@@ -166,9 +171,9 @@ export default function MorseCodeAudioPractice() {
   const [soundOn, setSoundOn] = React.useState(true);
   const [flash, setFlash] = React.useState(false);
   const [advancedOpen, setAdvancedOpen] = React.useState(false);
-  const flashLamp = useFlashLampState(flash);
+  const flashLamp = useFlashLampState(flash && !staticPattern);
   const { disableFlashEffects, flashAllowed } = flashLamp;
-  const effectiveFlash = flashAllowed && flash;
+  const effectiveFlash = flashAllowed && flash && !staticPattern;
   const showStrobeWarning = flashLamp.shouldShowWholePageFlashWarning;
 
   const morse = React.useMemo(() => textToMorse(prompt.text), [prompt.text]);
@@ -257,15 +262,6 @@ export default function MorseCodeAudioPractice() {
       advancedOpen,
     });
   }, [hydrated, charWpm, farnsworthWpm, toneHz, volume, preset, attackMs, releaseMs, repeat, soundOn, flash, advancedOpen]);
-
-  React.useEffect(() => {
-    if (!hydrated) return;
-    if (!didSyncInitialDifficulty.current) {
-      didSyncInitialDifficulty.current = true;
-      return;
-    }
-    resetSession();
-  }, [difficulty, promptPool, hydrated]); // eslint-disable-line react-hooks/exhaustive-deps
 
   React.useEffect(() => {
     const anyPlayer = player as typeof player & {
@@ -363,7 +359,10 @@ export default function MorseCodeAudioPractice() {
     const nextCompleted = completed + 1;
     setCompleted(nextCompleted);
     if (!promptScore.current.solved) { setSkipped(value => value + 1); setStreak(0); }
-    if (roundTarget && nextCompleted >= roundTarget) { setSessionEnded(true); return; }
+    if (roundTarget && nextCompleted >= roundTarget) {
+      if (pathIndex !== null) pathProgress.finishRound(pathIndex);
+      setSessionEnded(true); return;
+    }
     promptScore.current = { solved: false, attempted: false, revealed: false }; checkLocked.current = false;
     setReviewItem(null);
     setPrompt(current => pickPrompt(promptPool, current.text));
@@ -376,16 +375,17 @@ export default function MorseCodeAudioPractice() {
     if (promptScore.current.attempted || promptScore.current.revealed || promptScore.current.solved) {
       setCompleted(value => value + 1);
       if (!promptScore.current.solved) { setSkipped(value => value + 1); setStreak(0); }
+      if (pathIndex !== null && roundTarget && completed + 1 >= roundTarget) pathProgress.finishRound(pathIndex);
     }
     setSessionEnded(true);
   }
 
-  function resetSession() {
+  function resetSession(pool = promptPool) {
     player.stop();
     promptScore.current = { solved: false, attempted: false, revealed: false };
     checkLocked.current = false; advanceLocked.current = false; setSessionEnded(false);
     setReviewItem(null);
-    setPrompt((current) => pickPrompt(promptPool, current.text));
+    setPrompt((current) => pickPrompt(pool, current.text));
     setAnswer("");
     setFeedback("idle"); setSubmitted(null);
     setAttempts(0);
@@ -393,6 +393,16 @@ export default function MorseCodeAudioPractice() {
     setCompleted(0);
     setSkipped(0);
     setStreak(0);
+  }
+
+  function startPath(index: number) {
+    pathProgress.choose(index); setPathIndex(index); setRoundTarget(10);
+    resetSession(soundFirstPrompts(index));
+  }
+
+  function leavePath() {
+    setPathIndex(null); setRoundTarget(null); setStaticPattern(false);
+    resetSession(getAudioPrompts(difficulty));
   }
 
   const jsonLd = {
@@ -454,17 +464,20 @@ export default function MorseCodeAudioPractice() {
           <h2 className="text-2xl font-extrabold text-sky-950">Choose a stopping point</h2>
           <div className="mt-3 flex flex-wrap gap-3">
             <ToolButton active={roundTarget === 10} onClick={() => { setRoundTarget(10); resetSession(); }}>Start 10-prompt session</ToolButton>
-            <ToolButton active={roundTarget === null} onClick={() => { setRoundTarget(null); resetSession(); }}>Start open-ended practice</ToolButton>
+            <ToolButton active={roundTarget === null} onClick={leavePath}>Start open-ended practice</ToolButton>
             <ToolButton disabled={sessionEnded} onClick={finishSession}>Finish listening session</ToolButton>
           </div>
           <p className="mt-3 max-w-[68ch] text-sm text-slate-600">Replay never adds points. Next or Skip counts an unsolved target as skipped. Finishing includes the current target if checked or revealed; untouched targets stay unfinished. A correct target earns credit once. Changing difficulty starts a fresh session. Reloading keeps settings, best scores and review targets, and starts fresh open-ended practice.</p>
         </section>
+        <SoundFirstPath saved={pathProgress} activeSet={pathIndex} onStart={startPath} onLeave={leavePath} />
         {sessionEnded && <section className="mt-6" aria-label="Listening session results">
           <h2 ref={summaryRef} tabIndex={-1} className="text-2xl font-extrabold text-sky-950">{roundTarget && completed >= roundTarget ? "Listening session complete" : "Listening session ended"}</h2>
           <p className="mt-3 max-w-[68ch]" role="status">{completed}{roundTarget ? ` of ${roundTarget}` : ""} prompts finished: {correct} solved, {skipped} skipped. {attempts} answer {attempts === 1 ? "check" : "checks"}. Answer-check accuracy: {attempts ? `${accuracy}%` : "no checked answers"}.</p>
           {roundTarget && completed < roundTarget && <p className="mt-2 text-sm text-slate-600">{roundTarget - completed} planned prompts unfinished. Finishing early does not add unanswered targets to your score.</p>}
           <SessionNextStep />
-          <ToolButton className="mt-3" onClick={resetSession}>Restart listening session</ToolButton>
+          {pathIndex !== null && <p className="mt-3 max-w-[68ch] text-sm text-slate-600">Set {pathIndex + 1}: {SOUND_FIRST_SETS[pathIndex].letters.split("").join(" ")}. Prompts can be heard or read as static patterns. A completed round records practice, not mastery.</p>}
+          <div className="mt-3 flex flex-wrap gap-3"><ToolButton onClick={() => resetSession()}>Restart listening session</ToolButton>
+          {pathIndex !== null && pathIndex < SOUND_FIRST_SETS.length - 1 && <ToolButton onClick={() => startPath(pathIndex + 1)}>Try next character set</ToolButton>}</div>
         </section>}
         {reviewItem && <p className="mt-5 max-w-[68ch] text-slate-700" role="status">Reviewing one saved listening target. Press Play when ready. Next prompt returns to your selected difficulty. <Link className="font-semibold text-sky-900 underline underline-offset-4" to="/practice#review-queue">Back to review queue</Link></p>}
         <section className="mw-static-surface-soft mt-8 rounded-xl bg-[#fffaf2]/45 px-5 py-6 sm:px-8 lg:px-10">
@@ -474,12 +487,12 @@ export default function MorseCodeAudioPractice() {
                 <button
                   key={option.value}
                   type="button"
-                  onClick={() => { if (reviewItem && option.value === difficulty) nextPrompt(); setDifficulty(option.value); }}
+                  onClick={() => { if (pathIndex !== null || option.value !== difficulty) { setPathIndex(null); setStaticPattern(false); setDifficulty(option.value); resetSession(getAudioPrompts(option.value)); } else if (reviewItem) nextPrompt(); }}
                   className={toolControlButtonClass({
-                    active: difficulty === option.value,
+                    active: pathIndex === null && difficulty === option.value,
                     rounded: "xl",
                   })}
-                  aria-pressed={difficulty === option.value}
+                  aria-pressed={pathIndex === null && difficulty === option.value}
                   title={option.description}
                 >
                   {option.label}
@@ -502,6 +515,11 @@ export default function MorseCodeAudioPractice() {
               </span>
             </div>
           </div>
+
+          {pathIndex !== null && <div className="mt-4 flex flex-wrap gap-3" aria-label="Path presentation">
+            <ToolButton active={!staticPattern} aria-pressed={!staticPattern} onClick={() => { player.stop(); setStaticPattern(false); }}>Listen first</ToolButton>
+            <ToolButton active={staticPattern} aria-pressed={staticPattern} onClick={() => { player.stop(); setStaticPattern(true); }}>Read static pattern</ToolButton>
+          </div>}
 
           <div className="mt-5 grid gap-5 lg:grid-cols-2">
             <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-4">
@@ -531,7 +549,7 @@ export default function MorseCodeAudioPractice() {
                     checkAnswer();
                   }
                 }}
-                placeholder="Type what you hear"
+                placeholder={staticPattern ? "Type the letter" : "Type what you hear"}
                 className="min-h-[10rem] w-full resize-y bg-transparent font-mono text-lg text-slate-950 outline-none placeholder:text-slate-500 focus:ring-0 focus-visible:outline-none"
               />
             </div>
@@ -539,7 +557,7 @@ export default function MorseCodeAudioPractice() {
             <div className="rounded-xl bg-slate-950 p-4 text-sky-100">
               <div className="mb-3 flex items-center justify-between gap-3">
                 <h2 className="text-sm font-extrabold text-slate-100">
-                  Hidden audio prompt
+                  {staticPattern ? "Static Morse prompt" : "Hidden audio prompt"}
                 </h2>
                 <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-300">
                   Prompt
@@ -547,14 +565,13 @@ export default function MorseCodeAudioPractice() {
               </div>
               <div className="min-h-[10rem] text-sm leading-relaxed text-slate-200">
                 <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-300">
-                  {audioDifficultyOptions.find((option) => option.value === difficulty)
-                    ?.label}{" "}
+                  {pathIndex !== null ? `Set ${pathIndex + 1}` : audioDifficultyOptions.find((option) => option.value === difficulty)?.label}{" "}
                   {promptTypeLabel(prompt.type)}
                 </p>
                 <p className="mt-4 max-w-lg text-base">
-                  Play the signal, copy it by ear, then check your answer. The text
-                  and Morse pattern stay hidden while you practice.
+                  {staticPattern ? "Read the pattern and type its letter. The answer stays hidden until you check or reveal it. Flashing stays off in this mode." : "Play the signal, copy it by ear, then check your answer. The text and Morse pattern stay hidden while you practice."}
                 </p>
+                {staticPattern && <p aria-label="Static Morse pattern" className="mt-4 whitespace-pre-wrap break-words font-mono text-2xl font-bold tracking-[0.16em] text-sky-100">{morse}</p>}
                 {feedback !== "idle" ? (
                   <div className="mt-5 rounded-lg bg-slate-900/80 p-3">
                     <p className="font-semibold text-sky-100">
@@ -579,10 +596,10 @@ export default function MorseCodeAudioPractice() {
               }
             >
               {feedback === "correct"
-                ? "Correct. Move to the next hidden prompt when ready."
+                ? staticPattern ? "Correct. Move to the next pattern when ready." : "Correct. Move to the next hidden prompt when ready."
                 : feedback === "revealed"
-                  ? "Answer revealed. Use it as a listening reference, then try the next prompt."
-                  : "Not quite. Compare the answer, replay the sound, then continue."}
+                  ? staticPattern ? "Answer revealed. Compare the letter with its pattern, then try the next prompt." : "Answer revealed. Use it as a listening reference, then try the next prompt."
+                  : staticPattern ? "Not quite. Compare the letter and its pattern, then try again." : "Not quite. Compare the answer, replay the sound, then continue."}
             </div>
           ) : null}
 
@@ -656,7 +673,7 @@ export default function MorseCodeAudioPractice() {
             </div>
             <button
               type="button"
-              onClick={resetSession}
+              onClick={() => resetSession()}
               className={toolControlButtonClass({ rounded: "xl" })}
             >
               <LoopIcon size={18} title="Reset session" />
@@ -691,11 +708,13 @@ export default function MorseCodeAudioPractice() {
                     active: flashLamp.active,
                     label: "Audio practice flash lamp",
                   },
-                  describedBy: disableFlashEffects ? FLASH_DISABLED_NOTICE_ID : showStrobeWarning ? STROBE_WARNING_ID : undefined,
-                  disabled: !flashAllowed,
+                  describedBy: disableFlashEffects ? FLASH_DISABLED_NOTICE_ID : staticPattern ? "audio-practice-static-notice" : showStrobeWarning ? STROBE_WARNING_ID : undefined,
+                  disabled: !flashAllowed || staticPattern,
                 }}
               />
             </div>
+
+            {staticPattern && <p id="audio-practice-static-notice" className="mt-3 max-w-[68ch] text-sm text-slate-600">Static pattern mode keeps Flash Light off. Choose Listen first to restore your flash preference. Playing sound is optional.</p>}
 
             {disableFlashEffects ? (
               <FlashEffectsDisabledNotice id={FLASH_DISABLED_NOTICE_ID} className="mt-4" />

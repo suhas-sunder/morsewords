@@ -1,4 +1,5 @@
 import { CHARACTER_SPEED_RANGE } from "~/client/components/shared/morseSettings";
+import { emptySoundFirstProgress, parseSoundFirstProgress, SOUND_FIRST_JSON_LIMIT, SOUND_FIRST_STORAGE_KEY } from "~/client/components/learning/soundFirstSchema";
 import { parseReviewQueue, REVIEW_JSON_LIMIT, REVIEW_STORAGE_KEY, REVIEW_TARGET_LIMIT, serializeReviewQueue } from "~/client/components/learning/learningReviewSchema";
 
 export type StorageSensitivity =
@@ -678,6 +679,20 @@ export const STORAGE_KEY_REGISTRY: readonly StorageKeyDefinition[] = [
     versionStrategy: "version 1; new key, no legacy progress or custom-word keys overwritten",
     maxLength: REVIEW_JSON_LIMIT,
     notes: "At most 100 missed targets; never stores submitted learner answers. Custom targets stay private on this device.",
+  },
+
+  {
+    key: SOUND_FIRST_STORAGE_KEY,
+    routeScope: "sound-first learning path",
+    valueType: "json-object",
+    defaultValue: JSON.stringify(emptySoundFirstProgress()),
+    validatorName: "versionedBoundedSoundFirstProgress",
+    validate: raw => parseSoundFirstProgress(raw) !== null,
+    sensitivity: "preference",
+    clearBehaviors: ["clear all site data"],
+    versionStrategy: "version 1; independent path progress, no legacy keys changed",
+    maxLength: SOUND_FIRST_JSON_LIMIT,
+    notes: "Selected set and seven round counts only. Explicit path clear preserves other progress and audio preferences.",
   },
 
   {
