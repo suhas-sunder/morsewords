@@ -2,6 +2,10 @@ import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { blockExternalNetwork, collectConsoleErrors } from "./helpers";
 
+test.beforeEach(async ({ page }, info) => {
+  await page.addInitScript(theme => localStorage.setItem("morsewords-theme", theme), info.project.name.endsWith("dark") ? "dark" : "light");
+});
+
 for (const width of [390, 768, 1440]) {
   test(`navigation focus, search and close at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
@@ -48,7 +52,8 @@ for (const width of [390, 768, 1440]) {
     await dialog.getByRole("link", { name: /Morse audio decoder/ }).press("Enter");
     await expect(page).toHaveURL(/\/morse-code-audio-decoder$/);
     await expect(page.getByRole("heading", { level: 1 })).toHaveText("Morse Code Audio Decoder");
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await page.evaluate(() => document.fonts.ready);
+    await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     expect(errors).toEqual([]);
   });
 }
