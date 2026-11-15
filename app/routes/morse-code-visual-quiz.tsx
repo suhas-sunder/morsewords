@@ -22,13 +22,12 @@ import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace
 import SliderRow from "~/client/components/shared/ui/SliderRow";
 import FlashLamp from "~/client/components/shared/FlashLamp";
 import {
-  dispatchFlashClear,
-  dispatchMorseFlash,
   isFlashAllowedNow,
   useFlashSafety,
 } from "~/client/components/shared/useFlashSafety";
 import { textToMorse } from "~/client/components/shared/morseUtils";
-import { morseVisualEvents } from "~/client/components/shared/playMorsePattern";
+import { useVisualMorsePlayback } from "~/client/components/shared/useVisualMorsePlayback";
+import StaticMorsePractice, { useStaticPracticePreference } from "~/client/components/learning/StaticMorsePractice";
 import {
   VISUAL_SPEED_RANGE,
   clampFarnsworthWpm,
@@ -74,7 +73,7 @@ const VISUAL_QUIZ_FALLBACK_PROMPTS = ["sos"] as const;
 const faqItems = [
   {
     q: "Is the visual Morse quiz scored?",
-    a: "Yes. The quiz flashes a hidden prompt, checks your typed answer, and tracks attempts, accuracy, streak, and a shareable result card.",
+    a: "Yes. The quiz presents the same hidden target as a static Morse pattern or optional flashes, checks your typed answer, and tracks attempts, accuracy, streak, and a shareable result card. Scores include either presentation.",
   },
   {
     q: "Should I use visual practice or visual quiz first?",
@@ -113,52 +112,6 @@ export function meta({}: Route.MetaArgs) {
   });
 }
 
-function useFlash(pattern: string, wpm: number, farnsworthWpm: number) {
-  const [active, setActive] = React.useState(false);
-  const [playing, setPlaying] = React.useState(false);
-  const timers = React.useRef<number[]>([]);
-
-  React.useEffect(() => {
-    return () => {
-      timers.current.forEach((timer) => window.clearTimeout(timer));
-    };
-  }, []);
-
-  const stop = React.useCallback(() => {
-    timers.current.forEach((timer) => window.clearTimeout(timer));
-    timers.current = [];
-    setActive(false);
-    setPlaying(false);
-    dispatchFlashClear();
-  }, []);
-
-  const play = React.useCallback(() => {
-    stop();
-    let cursor = 0;
-    const events = morseVisualEvents(pattern, wpm, farnsworthWpm);
-    if (events.length === 0) return;
-    setPlaying(true);
-    for (const event of events) {
-      timers.current.push(
-        window.setTimeout(() => {
-          setActive(event.on);
-          if (event.on) dispatchMorseFlash(event.ms);
-          else dispatchFlashClear();
-        }, cursor),
-      );
-      cursor += event.ms;
-    }
-    timers.current.push(
-      window.setTimeout(() => {
-        setActive(false);
-        setPlaying(false);
-        dispatchFlashClear();
-      }, cursor + 80),
-    );
-  }, [farnsworthWpm, pattern, stop, wpm]);
-
-  return { active, playing, play, stop };
-}
 
 export function buildVisualQuizPromptDeck(seed: number) {
   return buildPromptDeck(VISUAL_QUIZ_PROMPTS, TOTAL_QUESTIONS, seed, {
@@ -170,7 +123,9 @@ function createVisualQuizSeed() {
 }
 
 export default function MorseCodeVisualQuiz() {
-  const { disableFlashEffects, flashAllowed } = useFlashSafety();
+  const { disableFlashEffects, flashAllowed, reducedMotion } = useFlashSafety();
+  const [showStatic, setShowStatic] = useStaticPracticePreference(reducedMotion, disableFlashEffects);
+  const [hydrated, setHydrated] = React.useState(false);
   const didHydratePromptOrder = React.useRef(false);
   const [roundSeed, setRoundSeed] = React.useState(INITIAL_VISUAL_QUIZ_SEED);
   const [index, setIndex] = React.useState(0);
@@ -182,9 +137,7 @@ export default function MorseCodeVisualQuiz() {
   const [completed, setCompleted] = React.useState(0);
   const [solved, setSolved] = React.useState(false);
   const [streak, setStreak] = React.useState(0);
-  const [bestStreak, setBestStreak] = React.useState(() =>
-    readStoredInt("mw_visual_quiz_best_streak", 0),
-  );
+  const [bestStreak, setBestStreak] = React.useState(0);
   const [runStartedAt, setRunStartedAt] = React.useState<number | null>(null);
   const [wpm, setWpm] = React.useState(14);
   const [farnsworthWpm, setFarnsworthWpm] = React.useState(10);
@@ -197,7 +150,7 @@ export default function MorseCodeVisualQuiz() {
     promptDeck[Math.min(index, Math.max(0, promptDeck.length - 1))] ??
     VISUAL_QUIZ_FALLBACK_PROMPTS[0];
   const morse = textToMorse(prompt);
-  const { active, play, stop } = useFlash(morse, wpm, farnsworthWpm);
+  const { active, play, stop } = useVisualMorsePlayback(morse, wpm, farnsworthWpm);
   const showStrobeWarning = flashAllowed;
   const normalizedAnswer = normalizePlainAnswer(answer);
   const isCorrect = comparePlainAnswers(answer, prompt);
@@ -226,11 +179,12 @@ export default function MorseCodeVisualQuiz() {
     if (didHydratePromptOrder.current) return;
     didHydratePromptOrder.current = true;
     setRoundSeed(createVisualQuizSeed());
+    setBestStreak(readStoredInt("mw_visual_quiz_best_streak", 0)); setHydrated(true);
   }, []);
 
   React.useEffect(() => {
-    safeWriteStorage("mw_visual_quiz_best_streak", String(bestStreak));
-  }, [bestStreak]);
+    if (hydrated) safeWriteStorage("mw_visual_quiz_best_streak", String(bestStreak));
+  }, [bestStreak, hydrated]);
 
   React.useEffect(() => {
     if (flashAllowed) return;
@@ -285,7 +239,7 @@ export default function MorseCodeVisualQuiz() {
 
   function flashPrompt() {
     if (!morse || !flashAllowed || !isFlashAllowedNow()) return;
-    play();
+    setShowStatic(false); play();
   }
 
   const jsonLd = {
@@ -323,13 +277,13 @@ export default function MorseCodeVisualQuiz() {
 
   return (
     <div className="mw-non-home-page" style={styles.page}>
-      <main style={styles.wrap}>
+      <main className="mw-readable-support" style={styles.wrap}>
         <PageHero
           eyebrow="Visual test"
           title="Morse Code Visual Quiz"
-          description="Test dot-dash recognition with hidden flashing prompts, score feedback, and follow-up review for missed patterns."
+          description="Test dot-dash recognition with static patterns or optional flashing prompts, score feedback, and follow-up review for missed patterns."
           aside={
-            <DarkNote label="Score" value={`${correct}/${TOTAL_QUESTIONS}`}>
+            <DarkNote as="div" label="Score" value={`${correct}/${TOTAL_QUESTIONS}`}>
               Ten prompts, attempts, accuracy, streak, and a share card. Set
               Farnsworth lower when you need slower gaps between flashes.
             </DarkNote>
@@ -355,6 +309,7 @@ export default function MorseCodeVisualQuiz() {
           id="visual-quiz"
           className="mw-static-surface-soft mt-8 scroll-mt-28 rounded-xl bg-[#fffaf2]/45 p-5 sm:p-7"
         >
+          <h2 className="sr-only">Visual quiz exercise</h2>
           <div className="pb-4">
             <div className="flex flex-wrap items-center gap-3 text-sm text-slate-700">
               <span>
@@ -375,7 +330,7 @@ export default function MorseCodeVisualQuiz() {
               {hasShareableProgress ? (
                 <ShareResultsButton
                   title="Morse Code Visual Quiz"
-                  subtitle="Flashing-light quiz results"
+                  subtitle="Visual recognition quiz results"
                   stats={{
                     attempts,
                     correct,
@@ -389,6 +344,8 @@ export default function MorseCodeVisualQuiz() {
               ) : null}
             </div>
           </div>
+
+          <p className="mt-4 max-w-[68ch] text-sm text-slate-600">Use static patterns or choose Flash prompt. Both use the same targets and scoring; scores do not distinguish the presentation. Reduced motion or Disable flash effects starts with static patterns. Flashes stop when this tab is hidden.</p>
 
           {gameOver ? (
               <div className="py-6">
@@ -432,7 +389,7 @@ export default function MorseCodeVisualQuiz() {
                   </button>
                   <ShareResultsButton
                     title="Morse Code Visual Quiz"
-                    subtitle="Flashing-light quiz results"
+                    subtitle="Visual recognition quiz results"
                     stats={{
                       attempts,
                       correct,
@@ -449,6 +406,7 @@ export default function MorseCodeVisualQuiz() {
           ) : (
             <div className="grid gap-6 py-6 lg:grid-cols-[320px_minmax(0,1fr)]">
                 <div className="flex flex-col items-center p-2 sm:p-4">
+                <StaticMorsePractice morse={morse} show={showStatic} onToggle={() => { stop(); setShowStatic(value => !value); }} />
                 {disableFlashEffects ? (
                   <FlashEffectsDisabledNotice
                     id={FLASH_DISABLED_NOTICE_ID}

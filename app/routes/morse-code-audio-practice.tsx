@@ -174,7 +174,7 @@ export default function MorseCodeAudioPractice() {
   const flashLamp = useFlashLampState(flash && !staticPattern);
   const { disableFlashEffects, flashAllowed } = flashLamp;
   const effectiveFlash = flashAllowed && flash && !staticPattern;
-  const showStrobeWarning = flashLamp.shouldShowWholePageFlashWarning;
+  const showStrobeWarning = effectiveFlash;
 
   const morse = React.useMemo(() => textToMorse(prompt.text), [prompt.text]);
   const normalizedAnswer = normalizeAudioAnswer(answer);
@@ -605,6 +605,12 @@ export default function MorseCodeAudioPractice() {
 
           {submitted && feedback !== "idle" && <AnswerComparison key={attempts} answer={submitted} />}
 
+            {disableFlashEffects ? (
+              <FlashEffectsDisabledNotice id={FLASH_DISABLED_NOTICE_ID} className="mt-4" />
+            ) : showStrobeWarning ? (
+              <StrobeWarning id={STROBE_WARNING_ID} className="mt-4" />
+            ) : null}
+
           <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
             <button
               type="button"
@@ -716,11 +722,7 @@ export default function MorseCodeAudioPractice() {
 
             {staticPattern && <p id="audio-practice-static-notice" className="mt-3 max-w-[68ch] text-sm text-slate-600">Static pattern mode keeps Flash Light off. Choose Listen first to restore your flash preference. Playing sound is optional.</p>}
 
-            {disableFlashEffects ? (
-              <FlashEffectsDisabledNotice id={FLASH_DISABLED_NOTICE_ID} className="mt-4" />
-            ) : showStrobeWarning ? (
-              <StrobeWarning id={STROBE_WARNING_ID} className="mt-4" />
-            ) : null}
+
 
             {advancedOpen ? (
               <div className="mt-5">

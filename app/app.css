@@ -2188,3 +2188,10 @@ body :is(input, textarea, select):where(:focus, :focus-visible) {
   border: 0;
   box-shadow: none;
 }
+
+/* Opt-in readable support copy on warm learning surfaces. Home keeps its treatment. */
+.mw-readable-support .mw-control-help,
+.mw-readable-support .mw-muted-label,
+.mw-readable-support .mw-signal-caption {
+  color: var(--mw-text-soft) !important;
+}

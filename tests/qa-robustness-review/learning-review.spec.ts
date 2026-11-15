@@ -72,8 +72,10 @@ for (const width of [390, 768, 1440]) test(`miss → review → remove and clear
   page.on("request", request => requests.push(request.url() + (request.postData() ?? "")));
   page.on("pageerror", error => errors.push(error.message));
   await page.goto("/practice", { waitUntil: "networkidle" });
+  await expect(page.getByText("First characters: E T A N I M S O")).toBeVisible();
   await page.getByLabel("Practice answer").fill("PRIVATE_REVIEW_ANSWER");
   await page.getByLabel("Practice answer").press("Enter");
+  await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key) ?? "null")?.items?.[0]?.misses, REVIEW_STORAGE_KEY)).toBe(1);
   await page.getByLabel("Practice answer").fill(".-");
   await page.getByLabel("Practice answer").press("Enter");
   expect(await page.evaluate(key => JSON.parse(localStorage.getItem(key)!).items, REVIEW_STORAGE_KEY)).toEqual([{ ...target, misses: 2 }]);
@@ -109,6 +111,8 @@ for (const width of [390, 768, 1440]) test(`miss → review → remove and clear
 
 for (const route of ["/morse-code-sentence-practice", "/morse-code-audio-practice", "/morse-code-audio-quiz", "/morse-code-visual-quiz"]) test(`${route} saves expected target only`, async ({ page }) => {
   await page.goto(route, { waitUntil: "networkidle" });
+  // A network-idle SSR document can precede hydration on a loaded test host.
+  if (route === "/morse-code-audio-practice") await expect(page.getByRole("button", { name: /advanced settings/i })).toBeEnabled();
   await page.getByLabel(route.includes("sentence") ? "Sentence practice answer" : "Your answer", { exact: true }).fill("PRIVATE_WRONG_SENTINEL");
   await page.getByRole("button", { name: route.includes("sentence") ? /Check sentence/ : /Check answer/ }).click();
   await expect(page.getByRole("link", { name: "Review missed items", exact: true })).toBeVisible();
@@ -125,6 +129,7 @@ for (const failure of ["malformed", "quota", "denied"] as const) test(`${failure
     Storage.prototype.setItem = function (name, value) { if (name === key && failure !== "malformed") throw new DOMException("full", "QuotaExceededError"); return set.call(this, name, value); };
   }, { key: REVIEW_STORAGE_KEY, failure });
   await page.goto("/practice#review-queue", { waitUntil: "networkidle" });
+  await expect(page.getByRole("button", { name: "Start review", exact: true })).toBeVisible();
   await page.getByLabel("Practice answer").fill("WRONG");
   await page.getByLabel("Practice answer").press("Enter");
   const queue = page.getByRole("region", { name: "Review queue", exact: true });
