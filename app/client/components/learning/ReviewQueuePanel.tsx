@@ -20,6 +20,7 @@ export default function ReviewQueuePanel() {
   const [submitted, setSubmitted] = useState<SubmittedAnswer | null>(null);
   const [checks, setChecks] = useState(0);
   const [solved, setSolved] = useState(0);
+  const [staticAudioReview, setStaticAudioReview] = useState(false);
   const [result, setResult] = useState<{ finished: number; correct: number; total: number } | null>(null);
   const resultRef = useSessionResultFocus(result !== null);
   const inputRef = useRef<HTMLDivElement>(null);
@@ -28,7 +29,7 @@ export default function ReviewQueuePanel() {
   function start(items: ReviewItem[]) {
     setDeck(items.map(value => ({ ...value })));
     setPosition(0); setAnswer(""); setSubmitted(null);
-    setSolved(0); setResult(null);
+    setSolved(0); setResult(null); setStaticAudioReview(false);
     requestAnimationFrame(() => inputRef.current?.querySelector("textarea")?.focus());
   }
   function finishReview(advance = false) {
@@ -52,10 +53,13 @@ export default function ReviewQueuePanel() {
     {item && <section aria-label="Review exercise" className="mt-6 border-t border-slate-300 pt-5">
       <h3 className="text-2xl font-extrabold text-sky-950">Review item {position + 1} of {deck.length}</h3>
       <p className="mt-2 text-sm">{REVIEW_SOURCE_LABELS[item.source]}{item.private ? " · Private custom target" : ""}</p>
-      {audio ? <>
+      {audio && <>
         <p className="mt-3">Listen to this saved target in audio practice. Its answer stays hidden until you check or reveal it.</p>
-        <ToolButton className="mt-3" tone="dark" onClick={() => { if (stageReviewAudio(item)) navigate("/morse-code-audio-practice"); }}>Open listening review</ToolButton>
-      </> : <form className="mt-3" onSubmit={event => {
+        <div className="mt-3 flex flex-wrap gap-3"><ToolButton tone="dark" onClick={() => { if (stageReviewAudio(item)) navigate("/morse-code-audio-practice"); }}>Open listening review</ToolButton>
+        <ToolButton aria-expanded={staticAudioReview} onClick={() => setStaticAudioReview(value => !value)}>{staticAudioReview ? "Hide static review" : "Review as a static pattern"}</ToolButton></div>
+        {staticAudioReview && <p className="mt-3 max-w-[68ch] text-sm">This checks recognition of the same written pattern. It does not measure listening skill. No sound or flashing is needed.</p>}
+      </>}
+      {(!audio || staticAudioReview) && <form className="mt-3" onSubmit={event => {
         event.preventDefault();
         if (!answer.trim() || submitted?.correct) return;
         const result = checkReviewAnswer(item, answer);

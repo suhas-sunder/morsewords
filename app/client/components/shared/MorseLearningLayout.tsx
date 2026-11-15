@@ -126,16 +126,18 @@ export function SectionCard({
 }
 
 export function DarkNote({
+  as: Element = "aside",
   label,
   value,
   children,
 }: {
+  as?: "aside" | "div";
   label: string;
   value?: string;
   children: React.ReactNode;
 }) {
   return (
-    <aside className="mw-panel-dark rounded-xl bg-slate-950 p-4 text-slate-200">
+    <Element className="mw-panel-dark rounded-xl bg-slate-950 p-4 text-slate-200">
       <p className="mw-output-muted font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-slate-300">
         {label}
       </p>
@@ -145,7 +147,7 @@ export function DarkNote({
         </p>
       ) : null}
       <div className="mw-output-soft mt-2 text-sm leading-relaxed text-slate-200">{children}</div>
-    </aside>
+    </Element>
   );
 }
 

@@ -157,7 +157,7 @@ export default function MorseCodeAudioQuiz() {
   const flashLamp = useFlashLampState(flash);
   const { disableFlashEffects, flashAllowed } = flashLamp;
   const effectiveFlash = flashAllowed && flash;
-  const showStrobeWarning = flashLamp.shouldShowWholePageFlashWarning;
+  const showStrobeWarning = effectiveFlash;
 
   const promptPool = React.useMemo(() => getAudioPrompts(difficulty), [difficulty]);
   const deck = React.useMemo(
@@ -490,6 +490,12 @@ export default function MorseCodeAudioQuiz() {
             </div>
           </div>
 
+            {disableFlashEffects ? (
+              <FlashEffectsDisabledNotice id={FLASH_DISABLED_NOTICE_ID} className="mt-4" />
+            ) : showStrobeWarning ? (
+              <StrobeWarning id={STROBE_WARNING_ID} className="mt-4" />
+            ) : null}
+
           {gameOver ? (
             <QuizComplete
               attempts={attempts}
@@ -725,11 +731,7 @@ export default function MorseCodeAudioQuiz() {
               />
             </div>
 
-            {disableFlashEffects ? (
-              <FlashEffectsDisabledNotice id={FLASH_DISABLED_NOTICE_ID} className="mt-4" />
-            ) : showStrobeWarning ? (
-              <StrobeWarning id={STROBE_WARNING_ID} className="mt-4" />
-            ) : null}
+
 
             {advancedOpen ? (
               <div className="mt-5">

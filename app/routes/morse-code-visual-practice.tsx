@@ -18,12 +18,11 @@ import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace
 import SliderRow from "~/client/components/shared/ui/SliderRow";
 import FlashLamp from "~/client/components/shared/FlashLamp";
 import {
-  dispatchFlashClear,
-  dispatchMorseFlash,
   isFlashAllowedNow,
   useFlashSafety,
 } from "~/client/components/shared/useFlashSafety";
-import { morseVisualEvents } from "~/client/components/shared/playMorsePattern";
+import { useVisualMorsePlayback } from "~/client/components/shared/useVisualMorsePlayback";
+import StaticMorsePractice, { useStaticPracticePreference } from "~/client/components/learning/StaticMorsePractice";
 import {
   VISUAL_SPEED_RANGE,
   clampFarnsworthWpm,
@@ -46,7 +45,7 @@ const FLASH_DISABLED_NOTICE_ID = "visual-practice-flash-disabled";
 const faqItems = [
   {
     q: "What does visual Morse practice train?",
-    a: "Visual practice trains dot-dash recognition by sight. It shows Morse as timed flashes so you can practice pattern recall without relying on sound.",
+    a: "Visual practice trains dot-dash recognition by sight. Read a static pattern or explicitly play timed flashes to practice without relying on sound.",
   },
   {
     q: "Is visual practice enough to learn Morse?",
@@ -81,71 +80,21 @@ export function meta({}: Route.MetaArgs) {
   });
 }
 
-function useVisualPlayback(pattern: string, wpm: number, farnsworthWpm: number) {
-  const [active, setActive] = React.useState(false);
-  const [playing, setPlaying] = React.useState(false);
-  const timers = React.useRef<number[]>([]);
-
-  React.useEffect(() => {
-    return () => {
-      timers.current.forEach((timer) => window.clearTimeout(timer));
-    };
-  }, []);
-
-  const stop = React.useCallback(() => {
-    timers.current.forEach((timer) => window.clearTimeout(timer));
-    timers.current = [];
-    setActive(false);
-    setPlaying(false);
-    dispatchFlashClear();
-  }, []);
-
-  const play = React.useCallback(() => {
-    stop();
-    let cursor = 0;
-    const events = morseVisualEvents(pattern, wpm, farnsworthWpm);
-    if (events.length === 0) return;
-    setPlaying(true);
-    for (const event of events) {
-      timers.current.push(
-        window.setTimeout(() => {
-          setActive(event.on);
-          if (event.on) dispatchMorseFlash(event.ms);
-          else dispatchFlashClear();
-        }, cursor),
-      );
-      cursor += event.ms;
-    }
-    timers.current.push(
-      window.setTimeout(() => {
-        setActive(false);
-        setPlaying(false);
-        dispatchFlashClear();
-      }, cursor + 80),
-    );
-  }, [farnsworthWpm, pattern, stop, wpm]);
-
-  return { active, playing, play, stop };
-}
 
 export default function MorseCodeVisualPractice() {
-  const { disableFlashEffects, flashAllowed, fullPageFlash } = useFlashSafety();
+  const { disableFlashEffects, flashAllowed, reducedMotion } = useFlashSafety();
+  const [showStatic, setShowStatic] = useStaticPracticePreference(reducedMotion, disableFlashEffects);
   const [message, setMessage] = React.useState("sos");
   const [wpm, setWpm] = React.useState(14);
   const [farnsworthWpm, setFarnsworthWpm] = React.useState(10);
   const [showAnswer, setShowAnswer] = React.useState(false);
   const morse = React.useMemo(() => textToMorse(message), [message]);
-  const { active, playing, play, stop } = useVisualPlayback(
+  const { active, play, stop } = useVisualMorsePlayback(
     morse,
     wpm,
     farnsworthWpm,
   );
-  const showStrobeWarning = fullPageFlash && playing;
-  const stopPlaybackRef = React.useRef(stop);
-
-  React.useEffect(() => {
-    stopPlaybackRef.current = stop;
-  }, [stop]);
+  const showStrobeWarning = flashAllowed;
 
   const handleWpmChange = React.useCallback((value: number) => {
     const next = Math.round(
@@ -167,13 +116,10 @@ export default function MorseCodeVisualPractice() {
     stop();
   }, [flashAllowed, stop]);
 
-  React.useEffect(() => {
-    stopPlaybackRef.current();
-  }, [message, wpm, farnsworthWpm]);
 
   function flashMessage() {
     if (!morse || !flashAllowed || !isFlashAllowedNow()) return;
-    play();
+    setShowStatic(false); play();
   }
 
   const jsonLd = {
@@ -183,7 +129,7 @@ export default function MorseCodeVisualPractice() {
     url: canonicalUrl(CANONICAL_PATH),
     applicationCategory: "EducationalApplication",
     description:
-      "An open-ended visual Morse practice tool for flashing dot-dash prompts, reveal-based review, and timing adjustment.",
+      "An open-ended visual Morse practice tool for static or optionally flashing dot-dash prompts, reveal-based review, and timing adjustment.",
     isPartOf: { "@type": "WebSite", name: "MorseWords", url: SITE_URL },
   };
   const breadcrumbJsonLd = {
@@ -211,13 +157,13 @@ export default function MorseCodeVisualPractice() {
 
   return (
     <div className="mw-non-home-page" style={styles.page}>
-      <main style={styles.wrap}>
+      <main className="mw-readable-support" style={styles.wrap}>
         <PageHero
           eyebrow="Visual practice"
           title="Morse Code Visual Practice"
-          description="Practice recognizing dot-dash patterns by sight with short flash prompts, reveal-based review, and timing controls."
+          description="Practice recognizing dot-dash patterns by sight with static patterns or optional flashes, reveal-based review, and timing controls."
           aside={
-            <DarkNote label="Flash mode" value={active ? "ON" : "READY"}>
+            <DarkNote as="div" label="Visual mode" value={showStatic ? "STATIC" : active ? "ON" : "READY"}>
               Use short messages at first. Visual Morse is easiest when the
               spacing is clean and the message is not too long.
             </DarkNote>
@@ -233,6 +179,8 @@ export default function MorseCodeVisualPractice() {
         </PageHero>
 
         <section className="mw-static-surface-soft mt-8 rounded-xl bg-[#fffaf2]/45 p-5 sm:p-7">
+          <StaticMorsePractice morse={morse} show={showStatic} onToggle={() => { stop(); setShowStatic(value => !value); }} />
+          <p className="mb-5 max-w-[68ch] text-sm text-slate-600">Static patterns are shown by default when reduced motion or Disable flash effects is active. Flash message remains an explicit choice when flashing is allowed. Flashes stop when this tab is hidden.</p>
           <div className="grid gap-6 lg:grid-cols-[360px_minmax(0,1fr)] lg:items-center">
             <div className="flex flex-col items-center justify-center p-2 sm:p-4">
               {disableFlashEffects ? (

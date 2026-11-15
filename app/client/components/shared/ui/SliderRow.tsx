@@ -53,7 +53,7 @@ export default function SliderRow({
           {value} {unit}
         </span>
       </div>
-      {help ? <p className="mt-1 text-xs text-slate-500">{help}</p> : null}
+      {help ? <p className="mw-control-help mt-1 text-xs text-slate-500">{help}</p> : null}
       <input
         id={inputId}
         type="range"
