@@ -896,7 +896,9 @@
       "implementationCommits": [
         "60f7af157c9fb99a42bf362a5f94bdcb9d20c5e6"
       ],
-      "documentationCommits": [],
+      "documentationCommits": [
+        "43c5082a61720872c3945f8e621b925a31c26749"
+      ],
       "reviewBranch": "release/2027-W19-answer-feedback",
       "draftPr": "https://github.com/suhas-sunder/morsewords/pull/22",
       "commonGates": [
@@ -929,21 +931,28 @@
         "W19"
       ],
       "affectedRoutes": [
-        "local learning storage",
+        "/practice",
+        "/morse-code-sentence-practice",
         "/morse-code-word-trainer",
-        "/practice"
+        "/morse-code-audio-practice",
+        "/morse-code-audio-quiz",
+        "/morse-code-visual-quiz",
+        "/learn-morse-code",
+        "local learning storage"
       ],
-      "plannedScope": "Word trainer, practice storage, review selection tests.",
+      "plannedScope": "Bounded local missed-target review, shared grading, stable weak-word rounds, private audio handoff and reversible storage contract.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED",
+      "status": "VALIDATED",
       "acceptance": "Existing keys preserved/migrated reversibly, empty queue, repeated mistakes, clear-one/clear-all distinctions.",
       "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
-      "implementationCommits": [],
+      "implementationCommits": [
+        "76cc6479721b39c84f1798b94e86df85946b446e"
+      ],
       "documentationCommits": [],
-      "reviewBranch": null,
-      "draftPr": null,
+      "reviewBranch": "release/2027-W20-weak-spot-review",
+      "draftPr": "https://github.com/suhas-sunder/morsewords/pull/23",
       "commonGates": [
         "npm run typecheck",
         "npm test",
@@ -958,8 +967,14 @@
         "npm run books:navigation-index:check",
         "npm run test:release-integrity"
       ],
-      "packageSpecificGates": [],
-      "evidence": []
+      "packageSpecificGates": [
+        "npx playwright test --config=playwright.review.config.ts tests/qa-robustness-review/learning-review.spec.ts",
+        "npx playwright test --config=playwright.review.config.ts tests/qa-robustness-review/settings-storage.spec.ts",
+        "npx playwright test tests/qa-robustness-review/practice-flow-hardening.spec.ts tests/qa-robustness-review/practice-reset-actions.spec.ts tests/qa-robustness-review/route-smoke-practice-quiz.spec.ts"
+      ],
+      "evidence": [
+        "ai-issues/2027-release-train/W20.md"
+      ]
     },
     {
       "packageId": "W21",
@@ -1140,7 +1155,7 @@
       "userFacing": true,
       "standaloneProductionEligible": true,
       "status": "PROPOSED",
-      "acceptance": "All A\u2013Z canonical mappings, one playback owner, meaningful accessible labels.",
+      "acceptance": "All A–Z canonical mappings, one playback owner, meaningful accessible labels.",
       "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
       "implementationCommits": [],
       "documentationCommits": [],
@@ -1409,7 +1424,7 @@
       "userFacing": true,
       "standaloneProductionEligible": true,
       "status": "PROPOSED",
-      "acceptance": "Web/print/playback mappings agree; exceptions explicit; no invented \u201cofficial certification.\u201d",
+      "acceptance": "Web/print/playback mappings agree; exceptions explicit; no invented “official certification.”",
       "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
       "implementationCommits": [],
       "documentationCommits": [],
@@ -2018,9 +2033,9 @@
         "W47"
       ],
       "affectedRoutes": [
-        "W41\u2013W47 assets/flows and integration tests."
+        "W41–W47 assets/flows and integration tests."
       ],
-      "plannedScope": "W41\u2013W47 assets/flows and integration tests.",
+      "plannedScope": "W41–W47 assets/flows and integration tests.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
@@ -2300,7 +2315,9 @@
     "b963f5dc8257692100690a36b64458d42b712cd1",
     "036a148dc639adaa02cedd6952b144a049c47b4e",
     "f6c3f2ca4dbd18ad4b6271bf4af73846b0cc15c4",
-    "60f7af157c9fb99a42bf362a5f94bdcb9d20c5e6"
+    "60f7af157c9fb99a42bf362a5f94bdcb9d20c5e6",
+    "43c5082a61720872c3945f8e621b925a31c26749",
+    "76cc6479721b39c84f1798b94e86df85946b446e"
   ],
   "persistentGates": [
     {
