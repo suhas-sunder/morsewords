@@ -2294,7 +2294,9 @@
       "implementationCommits": [
         "949f27729626f445cdeb3764cffd34191b314503"
       ],
-      "amendmentCommits": [],
+      "amendmentCommits": [
+        "380b4135ecc5a6a298c923d5e4e90c7e3d2a7435"
+      ],
       "documentationCommits": [
         "bc73402dbc2cee734dfb80a0c9cb7405ac0a3f3b"
       ],
@@ -2381,7 +2383,8 @@
     "3c6c4ca8e6759cab27f525b27add103734a83c8a",
     "8a859fd39fd4ad2c5ad676a5a0a2ea62262c2eb0",
     "707f872445e1d66153a29a5c04cf0f6e710fd44b",
-    "17ebcc469350165e135663a450eaa077ad7d39f0"
+    "17ebcc469350165e135663a450eaa077ad7d39f0",
+    "380b4135ecc5a6a298c923d5e4e90c7e3d2a7435"
   ],
   "persistentGates": [
     {
