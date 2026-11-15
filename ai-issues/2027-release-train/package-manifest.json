@@ -1161,7 +1161,9 @@
       "implementationCommits": [
         "8a859fd39fd4ad2c5ad676a5a0a2ea62262c2eb0"
       ],
-      "documentationCommits": [],
+      "documentationCommits": [
+        "17ebcc469350165e135663a450eaa077ad7d39f0"
+      ],
       "reviewBranch": "release/2027-W24-learning-portability-review",
       "draftPr": "https://github.com/suhas-sunder/morsewords/pull/27",
       "commonGates": [
@@ -2378,7 +2380,8 @@
     "dcd07dfd62ec6ed9539f523afc02b73b0fb30bc3",
     "3c6c4ca8e6759cab27f525b27add103734a83c8a",
     "8a859fd39fd4ad2c5ad676a5a0a2ea62262c2eb0",
-    "707f872445e1d66153a29a5c04cf0f6e710fd44b"
+    "707f872445e1d66153a29a5c04cf0f6e710fd44b",
+    "17ebcc469350165e135663a450eaa077ad7d39f0"
   ],
   "persistentGates": [
     {
