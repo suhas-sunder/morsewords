@@ -1,3 +1,4 @@
+import { installAbsentPcmWavDecoder } from "./pcm-wav-test-boundary";
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Locator, type Page } from "@playwright/test";
 
@@ -914,4 +915,9 @@ test.describe("Morse code audio decoder route", () => {
       );
     }
   });
+});
+
+// Same absent-API boundary used by signal inspection; Chromium remains native.
+test.beforeEach(async ({ page, browserName }) => {
+  if (browserName === "webkit") await installAbsentPcmWavDecoder(page);
 });

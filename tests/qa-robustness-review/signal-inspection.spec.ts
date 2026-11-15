@@ -1,26 +1,10 @@
+import { installAbsentPcmWavDecoder } from "./pcm-wav-test-boundary";
 import { expect, test } from "@playwright/test";
 import { analyzeSamplesToMorse, analyzeSamplesToMorseAsync, mixAudioBufferToMono, mixAudioBufferToMonoAsync } from "../../app/client/components/morse-code-audio-decoder/audioDecodeUtils";
 import { blockExternalNetwork, collectConsoleErrors } from "./helpers";
 
-// Windows Playwright WebKit has no AudioContext. Adapt only PCM WAV decoding at
-// that absent browser boundary; the sample renderer, samples and analyzer remain real.
 test.beforeEach(async ({ page, browserName }) => {
-  if (browserName !== "webkit") return;
-  await page.addInitScript(() => {
-    if (typeof AudioContext !== "undefined") return;
-    class PcmWavContext {
-      decodeAudioData(buffer: ArrayBuffer) {
-        const view = new DataView(buffer);
-        if (view.getUint16(20, true) !== 1 || view.getUint16(34, true) !== 16) return Promise.reject(new Error("PCM WAV only"));
-        const sampleRate = view.getUint32(24, true), channels = view.getUint16(22, true);
-        const length = view.getUint32(40, true) / (2 * channels);
-        const data = Array.from({ length: channels }, (_, channel) => Float32Array.from({ length }, (_, i) => view.getInt16(44 + (i * channels + channel) * 2, true) / 32768));
-        return Promise.resolve({ length, sampleRate, numberOfChannels: channels, duration: length / sampleRate, getChannelData: (n: number) => data[n] });
-      }
-      close() { return Promise.resolve(); }
-    }
-    Object.defineProperty(window, "AudioContext", { value: PcmWavContext, configurable: true });
-  });
+  if (browserName === "webkit") await installAbsentPcmWavDecoder(page);
 });
 
 function pulses(seconds: number, rate = 48_000) {

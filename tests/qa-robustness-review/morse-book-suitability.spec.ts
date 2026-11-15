@@ -108,10 +108,12 @@ async function expectListingCardSuitability(
 }
 
 async function searchListing(page: Page, surface: ListingSurface, query: string) {
-  await page
-    .getByTestId(surface.browserTestId)
-    .locator('input[type="search"]')
-    .fill(query);
+  const search = page.getByTestId(surface.browserTestId).locator('input[type="search"]');
+  // SSR-visible inputs can precede React hydration under a loaded browser run.
+  await expect.poll(() => search.evaluate(element =>
+    Object.keys(element).some(key => key.startsWith("__reactProps$"))
+  )).toBe(true);
+  await search.fill(query);
 }
 
 async function expectNoUnsupportedSafetyClaims(page: Page) {

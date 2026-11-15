@@ -79,6 +79,7 @@ for (const route of ["/morse-code-audio-practice", "/morse-code-audio-quiz", "/m
     page.on("request", request => requests.push(request.url() + (request.postData() ?? "")));
     page.on("pageerror", error => errors.push(error.message));
     await page.goto(route, { waitUntil: "networkidle" });
+    if (route.includes("audio")) await expect(page.getByRole("button", { name: /Show advanced settings|Hide advanced settings/ })).toBeEnabled();
     const comparison = page.getByRole("region", { name: "Answer comparison" });
     await expect(comparison).toHaveCount(0);
     const answer = route.includes("sentence") ? page.getByLabel("Sentence practice answer")
