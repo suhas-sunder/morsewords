@@ -2,12 +2,16 @@ import fs from "node:fs/promises";
 import { execFileSync } from "node:child_process";
 import { CORE_ROUTE_CONTRACTS } from "./core-route-contracts.ts";
 import { startNetlifyBuildServer } from "./serve-netlify-build.mjs";
+import { checkNavigationBookIndex } from "./books/navigation-index.ts";
 
 // Current release gate. The historical two-book upload gate is preserved in
 // historical-local-final-validation.ts; neither needs fabricated upload files.
 const checks: { name: string; pass: boolean; details: unknown }[] = [];
 function check(name: string, pass: boolean, details: unknown) { checks.push({ name, pass, details }); }
 const readJson = async (file: string) => JSON.parse(await fs.readFile(file, "utf8"));
+// Fail before starting the server; never silently regenerate a release artifact.
+await checkNavigationBookIndex();
+check("navigation index freshness", true, "Exact read-only comparison with the current publishable library");
 const library = await readJson("app/client/assets/books/generated/library-manifest.json");
 const reviews = await readJson("app/client/assets/books/seo-summaries/book-seo-summaries.json");
 const previews = await readJson("public/book-previews/manifest.json");

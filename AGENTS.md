@@ -3,6 +3,20 @@
 This file is durable repo guidance for future Codex passes. Keep it current with
 the implementation. Do not paste one-off phase prompts here.
 
+## Release-train authority
+
+The active sequence and release decisions are governed, in order, by:
+
+1. `ai-issues/2027-maturity-rebuild-release-train.md`
+2. `ai-issues/2027-release-train/PRODUCTION-CALENDAR.md`
+3. `ai-issues/2027-release-train/package-manifest.json`
+4. The latest accepted tranche owner review in `ai-issues/2027-release-train/`.
+
+This file supplies durable engineering and product rules, not a competing roadmap.
+Legacy priority lists are historical context only. Do not postpone measured
+performance or release integrity work until an imagined final optimization phase.
+A validated review package is not a production release or owner approval.
+
 ## 1. Project identity
 
 - MorseWords is the friendly way to learn and use Morse code.
@@ -830,103 +844,25 @@ For now:
 
 This may be revisited later if the Morse book pages gain traction.
 
-## 23. Current high-priority remaining work
+## 23. Durable content and release constraints
 
-Keep the following work tracked and do not lose it across Codex passes.
+The former export/language/contact/book/SEO/deploy/final-optimization priority
+sequence is retired. Use the release-train authority above for current sequencing.
+The following facts remain applicable within an authorized package:
 
-### Active priority: export pipeline correctness
-
-The export pipeline must be corrected before major book expansion continues.
-
-Required outcome:
-
-* long audio/video exports work through automatic split parts
-* MP3/WAV/MP4/WebM are not disabled just because the selection is long
-* rendering is optimized to avoid giant memory allocation
-* progress, elapsed time, ETA, and part count are visible
-* output quality and timing are verified
-* preview/export timing remains synchronized
-* raw allocation errors never appear in the UI
-
-### Then: Morse Code by Language expansion
-
-Planned language work should be done in batches, starting with high-value pages such as:
-
-* German
-* French
-* Spanish
-* Korean
-* Italian
-* Portuguese
-
-Later likely candidates:
-
-* Dutch
-* Swedish
-* Norwegian
-* Danish
-* Finnish
-* Polish
-* Hebrew
-* Arabic
-* Turkish
-* Czech
-* Hungarian
-* Romanian
-* Ukrainian
-* Bulgarian
-
-Each language page must be accurate about whether it is an established adaptation, International Morse with added letters, or transliteration-based practical use. Do not invent official status.
-
-### Then: Contact, support, and legal
-
-Use `support@morsewords.com`.
-
-Still needed:
-
-* footer/contact/legal email updates
-* Contact page
-* Resend server-side contact form
-* categories for business, general, feature request, bug report, and source/content/copyright issues
-* safe attachment handling
-* spam/rate limiting
-* validation
-* privacy-safe behavior
-
-### Then: book processing in batches of 5
-
-Use the batch rules above.
-
-Respect:
-
-* `No-Restriction` books are public candidates.
-* `Not-Allowed-In-Canada` books are restricted/hidden by default unless geo-gating and rights rules are explicitly implemented.
-* Restricted books must not appear in public hub pages, book pages, audiobook pages, print pages, sitemap, schema, public manifests, or Cloudflare export.
-* Do not touch raw source folders except to read them.
-
-### Then: book SEO, audiobook SEO, printable SEO
-
-After reliable processing:
-
-* add unique book-specific content
-* add audiobook-specific content
-* add printable-specific content
-* avoid template spam
-* avoid copied summaries
-* keep content human, specific, useful, and accurate
-
-### Then: schema/canonical/sitemap audit
-
-Audit all public pages after major additions.
-
-### Then: AdSense readiness and human-first content quality pass
-
-The final content pass must reduce robotic AI-SEO patterns and keep pages useful, natural, and task-focused.
-
-### Then: deploy, Cloudflare upload, and production checks
-
-Do not deploy before content, legal/contact, schema, sitemap, and export behavior are production-ready.
-
-### Then: final optimization sweep
-
-Final performance optimization happens after the product is complete and deploy-ready.
+- Preserve reliable segmented exports, canonical timing, truthful progress and
+  recoverable errors as described in the export rules above.
+- Language pages must distinguish established adaptations, International Morse
+  extensions and practical transliteration. Do not invent official status.
+- The support address is `support@morsewords.com`. Contact handling must validate
+  input, handle attachments safely, limit spam and preserve privacy.
+- Follow the book batch rules when processing is explicitly authorized.
+  `No-Restriction` books are public candidates; `Not-Allowed-In-Canada` books
+  remain restricted/hidden unless geo-gating and rights rules are authorized.
+  Restricted books stay out of public routes, hubs, print, sitemap, schema,
+  manifests and Cloudflare export. Raw source folders are read-only.
+- Book, audio and print content must be specific, useful and accurate, without
+  copied summaries or template spam. Audit canonical/schema/sitemap contracts
+  after authorized additions.
+- Production changes require the current release procedure and owner decision;
+  a review branch, local build or historical preview is not release authority.

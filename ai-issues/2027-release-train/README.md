@@ -25,6 +25,9 @@ W01 is **FOUNDATION / RELEASE INFRASTRUCTURE**. W07 is **RESEARCH / EVIDENCE CHE
 Use `npm ci`. For local book browser fixtures, `npm run books:cloudflare-export` writes ignored local output from existing sources; it performs no upload. Then run:
 
 ```text
+npm run release:validate-package-manifest
+npm run test:release-integrity
+npm run books:navigation-index:check
 npm run typecheck
 npm test
 npm run build:netlify
@@ -44,3 +47,30 @@ Blocked means skip the affected package/window. Do not automatically double next
 Rollback is a reviewed revert of the applied increment/amendments against current main, in dependency-safe order, followed by all relevant gates, an exact-SHA preview, owner decision and verified production deployment. Preserve storage/user data. Never restore an old deployment that discards later emergency fixes.
 
 This assignment authorizes review branches/draft PRs and safe non-production previews only. No main merge, force push, production deployment or scheduling automation.
+
+## Manifest schema and focused gates
+
+Schema 2 assigns each SHA exactly once to implementation, amendment or documentation
+commits. `commitOrder` records chronological application order across weekly and
+explicit internal hardening records; it is evidence for reviewed selection, never
+an executable replay script. W13's browser capability correction is an amendment.
+Documentation commits that reconcile several earlier weeks are owned once by the
+closing package. Empty future arrays mean proposed, unimplemented work.
+
+`npm run release:validate-package-manifest` is read-only. It checks all 52 IDs,
+commit assignment, dependencies/cycles, statuses, gates, rollback and the AGENTS
+source-of-truth section. RELEASED additionally requires actual candidate/deploy,
+owner-decision and live-check evidence. VALIDATED is review readiness only.
+
+The optional `release:select-gates` command only prints commands. Supply selected
+packages, all shipped/included prerequisites and reviewed affected surfaces, for
+example `npm run release:select-gates -- --packages=W16 --included=W09,W10,W11,W12,W13,W14,W15 --surfaces=shared-audio`.
+Run common gates and each selected package's focused gates. Include W09 freshness
+whenever W09 is present; include W12 lifecycle/parity when shared audio is touched;
+include W17 payload isolation when library runtime is touched after W17. Inspect
+the real diff before assigning surfaces; omission is not a waiver. The selector
+neither executes tests nor changes branches, commits, deployment or files.
+
+The navigation check is also inside the normal built-handler release gate. It
+accepts Git's LF/CRLF checkout newlines, rejects stale/missing content and never
+regenerates it. Only the explicit `books:navigation-index` command generates it.
