@@ -1,3 +1,4 @@
+import SessionNextStep, { useSessionResultFocus } from "~/client/components/learning/SessionNextStep";
 import { useLocation } from "react-router";
 import { captureReviewAnswer } from "~/client/components/learning/reviewSubmission";
 import AnswerComparison, { type SubmittedAnswer } from "~/client/components/learning/AnswerComparison";
@@ -125,7 +126,9 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
   const [answer, setAnswer] = React.useState("");
 
   // Quiz flow
-  const [questionNumber, setQuestionNumber] = React.useState(1);
+  const [ended, setEnded] = React.useState(false);
+  const solvedRef = React.useRef(false);
+  const advanceLocked = React.useRef(false);
   const [completed, setCompleted] = React.useState(0); // questions finished (0..TOTAL_QUESTIONS)
   const [solvedThisQuestion, setSolvedThisQuestion] = React.useState(false);
 
@@ -169,17 +172,8 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
     if (intent) focusExercise();
   }, [readSessionIntent]);
 
-  React.useEffect(() => {
-    if (completed > TOTAL_QUESTIONS) {
-      setCompleted(TOTAL_QUESTIONS);
-      return;
-    }
-    const expected =
-      completed >= TOTAL_QUESTIONS
-        ? TOTAL_QUESTIONS
-        : Math.min(TOTAL_QUESTIONS, completed + 1);
-    setQuestionNumber((q) => (q === expected ? q : expected));
-  }, [completed]);
+  React.useEffect(() => { advanceLocked.current = false; }, [completed, prompt]);
+  const questionNumber = Math.min(TOTAL_QUESTIONS, completed + 1);
 
   React.useEffect(() => {
     if (!hydrated) return;
@@ -189,35 +183,33 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
   }, [pool, mode, bestStreak, hydrated]);
 
   const next = React.useCallback(() => {
-    setCompleted((c) => {
-      if (c >= TOTAL_QUESTIONS) return c;
-
-      const nextCompleted = c + 1;
-      const clamped =
-        nextCompleted > TOTAL_QUESTIONS ? TOTAL_QUESTIONS : nextCompleted;
-
-      // If they advance without solving, break the streak.
-      if (!solvedThisQuestion) setStreak(0);
-
-      if (clamped >= TOTAL_QUESTIONS) {
-        // Game over. Keep last prompt visible but disable interactions.
-        setFeedback(null); setSubmitted(null);
-        return clamped;
-      }
-
-      setQuestionNumber((q) => q + 1);
+    if (ended || completed >= TOTAL_QUESTIONS || advanceLocked.current) return;
+    advanceLocked.current = true;
+    const nextCompleted = completed + 1;
+    if (!solvedRef.current) setStreak(0);
+    setCompleted(nextCompleted);
+    setFeedback(null); setSubmitted(null);
+    setSolvedThisQuestion(false); solvedRef.current = false;
+    if (nextCompleted < TOTAL_QUESTIONS) {
       setPrompt(randomPrompt(mode, pool));
       setAnswer("");
-      setFeedback(null); setSubmitted(null);
-      setSolvedThisQuestion(false);
+    }
+  }, [mode, pool, completed, ended]);
 
-      return clamped;
-    });
-  }, [mode, pool, solvedThisQuestion]);
+  function finishEarly() {
+    if (ended || advanceLocked.current) return;
+    advanceLocked.current = true;
+    if (solvedRef.current || submitted) {
+      setCompleted(value => Math.min(TOTAL_QUESTIONS, value + 1));
+      if (!solvedRef.current) setStreak(0);
+    }
+    setSolvedThisQuestion(false); solvedRef.current = false;
+    setEnded(true);
+  }
 
   function resetRun(nextMode: DrillMode, nextPool: Pool) {
     setCompleted(0);
-    setQuestionNumber(1);
+    setEnded(false); solvedRef.current = false; advanceLocked.current = false;
     setRunStartedAt(null);
     setAttempts(0);
     setCorrect(0);
@@ -230,8 +222,8 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
   const resetStats = () => resetRun(mode, pool);
 
   const doCheck = React.useCallback(() => {
-    if (completed >= TOTAL_QUESTIONS) return;
-    if (solvedThisQuestion) return;
+    if (ended || completed >= TOTAL_QUESTIONS) return;
+    if (solvedRef.current) return;
     if (runStartedAt === null) setRunStartedAt(Date.now());
 
     // Every check counts as an attempt (correct or not).
@@ -243,6 +235,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
     if (res.ok) {
       // Only count the first correct solve per question.
       if (!solvedThisQuestion) {
+        solvedRef.current = true;
         setSolvedThisQuestion(true);
         setCorrect((c) => c + 1);
         setStreak((s) => {
@@ -261,7 +254,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
       ok: res.ok,
       msg: res.ok ? "Correct" : "Not quite. Try again.",
     });
-  }, [prompt, answer, runStartedAt, solvedThisQuestion, completed]);
+  }, [prompt, answer, runStartedAt, solvedThisQuestion, completed, ended]);
 
   const progress = Math.min(
     TOTAL_QUESTIONS,
@@ -269,8 +262,9 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
   );
   const accuracy =
     attempts > 0 ? Math.min(100, Math.round((correct / attempts) * 100)) : 0;
-  const gameOver = completed >= TOTAL_QUESTIONS;
-  const questionsShown = gameOver ? TOTAL_QUESTIONS : questionNumber;
+  const gameOver = ended || completed >= TOTAL_QUESTIONS;
+ const resultRef = useSessionResultFocus(gameOver);
+  const questionsShown = gameOver ? completed : questionNumber;
 
   const placeholder =
     prompt.kind === "text_to_morse"
@@ -319,6 +313,8 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
           <ToolButton aria-expanded={reviewOpen} aria-controls="review-queue-content" onClick={() => setReviewOpen(value => !value)}>{reviewOpen ? "Hide review queue" : "Show review queue"}</ToolButton>
           {reviewOpen && <div id="review-queue-content"><h2 className="mt-4 text-2xl font-extrabold text-sky-950">Your review queue</h2><React.Suspense fallback={<p role="status">Opening review queue...</p>}><ReviewQueuePanel /></React.Suspense></div>}
         </section>
+        <p className="mb-3 max-w-[68ch] text-sm text-slate-600">Finish whenever you are ready. Finishing after a check includes that target; an unsolved target counts as skipped. Untouched targets stay unfinished. Accuracy includes retries. Reloading starts a fresh round and keeps saved settings, best scores and review targets.</p>
+        {!gameOver && <ToolButton onClick={finishEarly}>Finish session early</ToolButton>}
         <div id="practice-workspace" tabIndex={-1} className="pb-2 pt-4 sm:pb-3 sm:pt-4">
         {/* Top control bar */}
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
@@ -406,14 +402,13 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
             <div className="mw-static-surface-soft rounded-xl bg-[#fffaf2]/45 p-5 sm:p-6">
               <div className="flex flex-col items-center text-center">
                 <div className="inline-flex items-center rounded-full bg-[#fffdf8] px-3 py-1 text-sm font-semibold text-sky-950">
-                  Quiz complete
+                  {completed === TOTAL_QUESTIONS ? "Quiz complete" : "Session ended early"}
                 </div>
-                <h2 className="mt-3 text-xl sm:text-2xl font-extrabold text-sky-950">
+                <h2 ref={resultRef} tabIndex={-1} className="mt-3 text-xl sm:text-2xl font-extrabold text-sky-950">
                   Your results
                 </h2>
-                <p className="mt-1 text-sm text-slate-700 sm:text-base">
-                  10 questions, unlimited attempts per question. Accuracy
-                  reflects all attempts.
+                <p className="mt-1 max-w-[68ch] text-sm text-slate-700 sm:text-base">
+                  {completed} of {TOTAL_QUESTIONS} prompts finished: {correct} solved, {completed - correct} skipped. {TOTAL_QUESTIONS - completed} unfinished. Accuracy reflects all answer checks, including retries.
                 </p>
               </div>
 
@@ -423,7 +418,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
                     Questions
                   </div>
                   <div className="mt-1 text-3xl font-extrabold text-sky-950">
-                    {TOTAL_QUESTIONS}/{TOTAL_QUESTIONS}
+                    {completed}/{TOTAL_QUESTIONS}
                   </div>
                 </div>
                 <div className="mw-static-panel rounded-xl bg-[#fffdf8]/85 p-4">
@@ -468,6 +463,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
                 </div>
               </div>
 
+              <SessionNextStep />
               <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
                 <ActionButton
                   type="button"
@@ -483,7 +479,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
                   stats={{
                     attempts,
                     correct,
-                    progress: TOTAL_QUESTIONS,
+                    progress: completed,
                     streak,
                     bestStreak,
                     totalQuestions: TOTAL_QUESTIONS,
@@ -546,7 +542,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
                         onClick={next}
                         aria-label="Next prompt"
                       >
-                        {progress + 1 >= TOTAL_QUESTIONS ? "Finish" : "Next"}
+                        {questionNumber >= TOTAL_QUESTIONS ? "Finish" : "Next"}
                       </ToolButton>
                     )}
                     <ActionButton

@@ -1,3 +1,4 @@
+import SessionNextStep, { useSessionResultFocus } from "~/client/components/learning/SessionNextStep";
 import { captureReviewAnswer } from "~/client/components/learning/reviewSubmission";
 import { morseWithWordSlashes, canonicalizeSentenceMorse, checkSentenceMorseAnswer } from "~/client/components/learning/learningAnswerRules";
 import AnswerComparison, { type SubmittedAnswer } from "~/client/components/learning/AnswerComparison";
@@ -277,6 +278,8 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: unknown }) {
  const [correct, setCorrect] = React.useState(0);
  const [streak, setStreak] = React.useState(0);
  const [bestStreak, setBestStreak] = React.useState(0);
+ const [ended, setEnded] = React.useState(false);
+ const solvedRef = React.useRef(false);
  const [completed, setCompleted] = React.useState(0);
  const [skipped, setSkipped] = React.useState(0);
  const [solvedThisQuestion, setSolvedThisQuestion] = React.useState(false);
@@ -313,6 +316,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: unknown }) {
 
  const resetRun = React.useCallback(() => {
  advanceLockedRef.current = false;
+ solvedRef.current = false; setEnded(false);
  const nextPrompt = makePrompt(mode, pool);
  setPrompt(nextPrompt);
  setAnswer("");
@@ -340,9 +344,10 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: unknown }) {
  advanceLockedRef.current = false;
  }, [completed, prompt]);
 
- const gameOver = completed >= TOTAL_QUESTIONS;
+ const gameOver = ended || completed >= TOTAL_QUESTIONS;
+ const resultRef = useSessionResultFocus(gameOver);
  const questionsShown = gameOver
- ? TOTAL_QUESTIONS
+ ? completed
  : Math.min(TOTAL_QUESTIONS, completed + 1);
  const progress = Math.min(
  TOTAL_QUESTIONS,
@@ -371,7 +376,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: unknown }) {
 
  setCompleted(nextCompleted);
  setAnswer("");
- setSolvedThisQuestion(false);
+ setSolvedThisQuestion(false); solvedRef.current = false;
  setFeedback(null); setSubmitted(null);
  setShowAnswer(false);
 
@@ -393,7 +398,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: unknown }) {
  }, [advanceQuestion, solvedThisQuestion]);
 
  const doCheck = React.useCallback(() => {
- if (gameOver || solvedThisQuestion || !answer.trim()) return;
+ if (gameOver || solvedRef.current || !answer.trim()) return;
  if (runStartedAt === null) setRunStartedAt(Date.now());
 
  setAttempts((value) => value + 1);
@@ -402,6 +407,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: unknown }) {
 
  if (result.ok) {
  const nextStreak = streak + 1;
+ solvedRef.current = true;
  setSolvedThisQuestion(true);
  setCorrect((value) => value + 1);
  setStreak(nextStreak);
@@ -420,6 +426,17 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: unknown }) {
  prompt.kind ==="text_to_morse"?"Not quite. Check each word gap and try again.":"Not quite. Check the full sentence, not just the first word.",
  });
  }, [answer, gameOver, prompt, runStartedAt, solvedThisQuestion, streak]);
+
+ function finishEarly() {
+ if (gameOver || advanceLockedRef.current) return;
+ advanceLockedRef.current = true;
+ if (solvedRef.current || submitted || showAnswer) {
+ setCompleted(value => Math.min(TOTAL_QUESTIONS, value + 1));
+ if (!solvedRef.current) { setSkipped(value => value + 1); setStreak(0); }
+ }
+ setSolvedThisQuestion(false); solvedRef.current = false;
+ setEnded(true);
+ }
 
  const expectedAnswer =
  prompt.kind ==="text_to_morse"? morseWithWordSlashes(prompt.plain)
@@ -544,19 +561,20 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: unknown }) {
  </div>
  </div>
 
+ <p className="mt-4 max-w-[68ch] text-sm text-slate-600">This is an eight-sentence round. Finishing includes a checked or revealed sentence as solved or skipped; untouched sentences stay unfinished. Reloading starts a fresh round while keeping settings, best scores and review targets.</p>
+ {!gameOver && <Button className="mt-3" onClick={finishEarly}>Finish sentence session early</Button>}
  <div className="mw-static-surface-soft mt-4 rounded-xl bg-[#fffaf2]/45 p-4 sm:p-5">
  {gameOver ? (
  <div className="mw-static-panel rounded-2xl bg-[#fffdf8] p-5 sm:p-6">
  <div className="flex flex-col items-center text-center">
  <div className="mw-static-tile inline-flex items-center rounded-full bg-[#f7f4ee] px-3 py-1 text-sm font-semibold text-neutral-900">
- Sentence session complete
+ {completed === TOTAL_QUESTIONS ? "Sentence session complete" : "Sentence session ended early"}
  </div>
- <h2 className="mt-3 text-xl sm:text-2xl font-extrabold text-sky-950">
+ <h2 ref={resultRef} tabIndex={-1} className="mt-3 text-xl sm:text-2xl font-extrabold text-sky-950">
  Your sentence practice results
  </h2>
- <p className="mt-1 text-sm sm:text-base text-slate-700">
- This session checks full sentences, so accuracy counts skipped
- sentences as missed questions.
+ <p className="mt-1 max-w-[68ch] text-sm sm:text-base text-slate-700">
+ {completed} of {TOTAL_QUESTIONS} sentences finished; {TOTAL_QUESTIONS - completed} unfinished. Accuracy includes answer checks and skipped sentences. Untouched sentences add no attempts or skips.
  </p>
  </div>
 
@@ -566,7 +584,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: unknown }) {
  Questions
  </div>
  <div className="mt-1 text-3xl font-extrabold text-neutral-900">
- {TOTAL_QUESTIONS}/{TOTAL_QUESTIONS}
+ {completed}/{TOTAL_QUESTIONS}
  </div>
  </div>
  <div className="mw-static-tile rounded-2xl bg-[#f7f4ee] p-4">
@@ -619,6 +637,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: unknown }) {
  </div>
  </div>
 
+ <SessionNextStep />
  <div className="mt-5 flex flex-wrap justify-center gap-3">
  <Button type="button" variant="primary" onClick={resetRun}>
  Restart sentence drill

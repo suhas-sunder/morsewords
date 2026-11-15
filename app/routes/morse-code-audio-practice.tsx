@@ -1,3 +1,4 @@
+import SessionNextStep, { useSessionResultFocus } from "~/client/components/learning/SessionNextStep";
 import { useReviewAudioIntent } from "~/client/components/learning/reviewAudioHandoff";
 import type { ReviewItem } from "~/client/components/learning/learningReviewSchema";
 import { Link } from "react-router";
@@ -20,7 +21,7 @@ import StrobeWarning, {
   FlashEffectsDisabledNotice,
 } from "~/client/components/shared/StrobeWarning";
 import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
-import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
+import { ToolButton, toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
 import SliderRow from "~/client/components/shared/ui/SliderRow";
 import PlaybackToggleGroup from "~/client/components/shared/PlaybackToggleGroup";
 import AdvancedSettingsToggle from "~/client/components/shared/AdvancedSettingsToggle";
@@ -141,6 +142,12 @@ export default function MorseCodeAudioPractice() {
   const [feedback, setFeedback] = React.useState<"idle" | "correct" | "missed" | "revealed">(
     "idle",
   );
+  const [roundTarget, setRoundTarget] = React.useState<10 | null>(null);
+  const [sessionEnded, setSessionEnded] = React.useState(false);
+  const promptScore = React.useRef({ solved: false, attempted: false, revealed: false });
+  const checkLocked = React.useRef(false);
+  const advanceLocked = React.useRef(false);
+  const summaryRef = useSessionResultFocus(sessionEnded);
   const [attempts, setAttempts] = React.useState(0);
   const [correct, setCorrect] = React.useState(0);
   const [completed, setCompleted] = React.useState(0);
@@ -199,6 +206,7 @@ export default function MorseCodeAudioPractice() {
 
   React.useEffect(() => {
     const listening = readSessionIntent()?.id === "listening";
+    if (listening) setRoundTarget(10);
     const storedDifficulty = listening ? "beginner" : readStoredDifficulty(
       DIFFICULTY_STORAGE_KEY,
       DEFAULT_AUDIO_DIFFICULTY,
@@ -256,11 +264,7 @@ export default function MorseCodeAudioPractice() {
       didSyncInitialDifficulty.current = true;
       return;
     }
-    setReviewItem(null);
-    setPrompt((current) => pickPrompt(promptPool, current.text));
-    setAnswer("");
-    setFeedback("idle"); setSubmitted(null);
-    player.stop();
+    resetSession();
   }, [difficulty, promptPool, hydrated]); // eslint-disable-line react-hooks/exhaustive-deps
 
   React.useEffect(() => {
@@ -304,7 +308,10 @@ export default function MorseCodeAudioPractice() {
     anyPlayer.setLiveOptions?.({ flash: false });
   }, [flashAllowed, player]);
 
+  React.useEffect(() => { advanceLocked.current = false; }, [completed, prompt]);
+
   async function playPrompt() {
+    if (sessionEnded) return;
     await player.play({
       code: morse,
       wpm: charWpm,
@@ -321,12 +328,14 @@ export default function MorseCodeAudioPractice() {
   }
 
   function checkAnswer() {
-    if (!normalizedAnswer || feedback !== "idle") {
+    if (sessionEnded || !normalizedAnswer || feedback !== "idle" || promptScore.current.solved || checkLocked.current) {
       return;
     }
+    checkLocked.current = true; promptScore.current.attempted = true;
     setSubmitted(captureReviewAnswer({ expected: expectedAnswer, attempted: normalizedAnswer, correct: normalizedAnswer === expectedAnswer, kind: "text" }, reviewItem ?? { source: "audio-practice", mode: "morse_to_text", target: expectedAnswer, private: false }));
     setAttempts((value) => value + 1);
     if (normalizedAnswer === expectedAnswer) {
+      promptScore.current.solved = true;
       setCorrect((value) => value + 1);
       setFeedback("correct");
       setStreak((value) => {
@@ -341,26 +350,40 @@ export default function MorseCodeAudioPractice() {
   }
 
   function revealAnswer() {
-    if (feedback !== "idle") return;
+    if (sessionEnded || feedback !== "idle") return;
+    promptScore.current.revealed = true;
     setFeedback("revealed");
     setStreak(0);
   }
 
-  function nextPrompt({ skippedPrompt = false }: { skippedPrompt?: boolean } = {}) {
+  function nextPrompt(_options: { skippedPrompt?: boolean } = {}) {
+    if (sessionEnded || advanceLocked.current) return;
+    advanceLocked.current = true;
     player.stop();
+    const nextCompleted = completed + 1;
+    setCompleted(nextCompleted);
+    if (!promptScore.current.solved) { setSkipped(value => value + 1); setStreak(0); }
+    if (roundTarget && nextCompleted >= roundTarget) { setSessionEnded(true); return; }
+    promptScore.current = { solved: false, attempted: false, revealed: false }; checkLocked.current = false;
     setReviewItem(null);
-    setPrompt((current) => pickPrompt(promptPool, current.text));
-    setAnswer("");
-    setFeedback("idle"); setSubmitted(null);
-    setCompleted((value) => value + 1);
-    if (skippedPrompt) {
-      setSkipped((value) => value + 1);
-      setStreak(0);
+    setPrompt(current => pickPrompt(promptPool, current.text));
+    setAnswer(""); setFeedback("idle"); setSubmitted(null);
+  }
+
+  function finishSession() {
+    if (sessionEnded || advanceLocked.current) return;
+    advanceLocked.current = true; player.stop();
+    if (promptScore.current.attempted || promptScore.current.revealed || promptScore.current.solved) {
+      setCompleted(value => value + 1);
+      if (!promptScore.current.solved) { setSkipped(value => value + 1); setStreak(0); }
     }
+    setSessionEnded(true);
   }
 
   function resetSession() {
     player.stop();
+    promptScore.current = { solved: false, attempted: false, revealed: false };
+    checkLocked.current = false; advanceLocked.current = false; setSessionEnded(false);
     setReviewItem(null);
     setPrompt((current) => pickPrompt(promptPool, current.text));
     setAnswer("");
@@ -413,7 +436,7 @@ export default function MorseCodeAudioPractice() {
           title="Morse Code Audio Practice"
           description="Listen first, type what you copied, and repeat hidden prompts until Morse patterns become recognizable by ear."
           aside={
-            <DarkNote label="Practice mode" value="Endless">
+            <DarkNote label="Practice mode" value={roundTarget ? "10 prompts" : "Endless"}>
               {promptPool.length} prompts available. Answers stay hidden until you
               check or reveal them.
             </DarkNote>
@@ -427,6 +450,22 @@ export default function MorseCodeAudioPractice() {
           />
         </PageHero>
 
+        <section className="mt-6" aria-label="Listening session goal">
+          <h2 className="text-2xl font-extrabold text-sky-950">Choose a stopping point</h2>
+          <div className="mt-3 flex flex-wrap gap-3">
+            <ToolButton active={roundTarget === 10} onClick={() => { setRoundTarget(10); resetSession(); }}>Start 10-prompt session</ToolButton>
+            <ToolButton active={roundTarget === null} onClick={() => { setRoundTarget(null); resetSession(); }}>Start open-ended practice</ToolButton>
+            <ToolButton disabled={sessionEnded} onClick={finishSession}>Finish listening session</ToolButton>
+          </div>
+          <p className="mt-3 max-w-[68ch] text-sm text-slate-600">Replay never adds points. Next or Skip counts an unsolved target as skipped. Finishing includes the current target if checked or revealed; untouched targets stay unfinished. A correct target earns credit once. Changing difficulty starts a fresh session. Reloading keeps settings, best scores and review targets, and starts fresh open-ended practice.</p>
+        </section>
+        {sessionEnded && <section className="mt-6" aria-label="Listening session results">
+          <h2 ref={summaryRef} tabIndex={-1} className="text-2xl font-extrabold text-sky-950">{roundTarget && completed >= roundTarget ? "Listening session complete" : "Listening session ended"}</h2>
+          <p className="mt-3 max-w-[68ch]" role="status">{completed}{roundTarget ? ` of ${roundTarget}` : ""} prompts finished: {correct} solved, {skipped} skipped. {attempts} answer {attempts === 1 ? "check" : "checks"}. Answer-check accuracy: {attempts ? `${accuracy}%` : "no checked answers"}.</p>
+          {roundTarget && completed < roundTarget && <p className="mt-2 text-sm text-slate-600">{roundTarget - completed} planned prompts unfinished. Finishing early does not add unanswered targets to your score.</p>}
+          <SessionNextStep />
+          <ToolButton className="mt-3" onClick={resetSession}>Restart listening session</ToolButton>
+        </section>}
         {reviewItem && <p className="mt-5 max-w-[68ch] text-slate-700" role="status">Reviewing one saved listening target. Press Play when ready. Next prompt returns to your selected difficulty. <Link className="font-semibold text-sky-900 underline underline-offset-4" to="/practice#review-queue">Back to review queue</Link></p>}
         <section className="mw-static-surface-soft mt-8 rounded-xl bg-[#fffaf2]/45 px-5 py-6 sm:px-8 lg:px-10">
           <div className="flex flex-wrap items-center justify-between gap-3">
@@ -480,9 +519,11 @@ export default function MorseCodeAudioPractice() {
               <textarea
                 id="mw_audio_practice_answer"
                 value={answer}
+                disabled={sessionEnded}
                 onChange={(event) => {
                   setAnswer(event.target.value);
-                  if (feedback !== "revealed") setFeedback("idle"); setSubmitted(null);
+                  checkLocked.current = false;
+                  if (!promptScore.current.solved && !promptScore.current.revealed) { setFeedback("idle"); setSubmitted(null); }
                 }}
                 onKeyDown={(event) => {
                   if (event.key === "Enter" && (event.ctrlKey || event.metaKey)) {
@@ -551,7 +592,8 @@ export default function MorseCodeAudioPractice() {
             <button
               type="button"
               onClick={playPrompt}
-              className={toolControlButtonClass({ tone: "dark", size: "lg", rounded: "xl" })}
+              disabled={sessionEnded}
+              className={toolControlButtonClass({ disabled: sessionEnded, tone: "dark", size: "lg", rounded: "xl" })}
             >
               <PlayIcon size={20} title="Play prompt" />
               {player.state === "playing" ? "Restart prompt" : "Play prompt"}
@@ -568,9 +610,9 @@ export default function MorseCodeAudioPractice() {
             <button
               type="button"
               onClick={checkAnswer}
-              disabled={!normalizedAnswer || feedback !== "idle"}
+              disabled={sessionEnded || !normalizedAnswer || feedback !== "idle"}
               className={toolControlButtonClass({
-                disabled: !normalizedAnswer || feedback !== "idle",
+                disabled: sessionEnded || !normalizedAnswer || feedback !== "idle",
                 size: "lg",
                 rounded: "xl",
               })}
@@ -585,9 +627,9 @@ export default function MorseCodeAudioPractice() {
               <button
                 type="button"
                 onClick={revealAnswer}
-                disabled={feedback !== "idle"}
+                disabled={sessionEnded || feedback !== "idle"}
                 className={toolControlButtonClass({
-                  disabled: feedback !== "idle",
+                  disabled: sessionEnded || feedback !== "idle",
                   rounded: "xl",
                 })}
               >
@@ -597,7 +639,8 @@ export default function MorseCodeAudioPractice() {
               <button
                 type="button"
                 onClick={() => nextPrompt()}
-                className={toolControlButtonClass({ rounded: "xl" })}
+                disabled={sessionEnded}
+                className={toolControlButtonClass({ disabled: sessionEnded, rounded: "xl" })}
               >
                 <RefreshIcon size={18} title="Next prompt" />
                 Next prompt
@@ -605,7 +648,8 @@ export default function MorseCodeAudioPractice() {
               <button
                 type="button"
                 onClick={() => nextPrompt({ skippedPrompt: true })}
-                className={toolControlButtonClass({ rounded: "xl" })}
+                disabled={sessionEnded}
+                className={toolControlButtonClass({ disabled: sessionEnded, rounded: "xl" })}
               >
                 Skip
               </button>

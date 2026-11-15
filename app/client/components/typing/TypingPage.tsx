@@ -1,3 +1,6 @@
+import { createPortal } from "react-dom";
+import SessionNextStep from "~/client/components/learning/SessionNextStep";
+import { useDialogFocus } from "~/client/components/shared/useDialogFocus";
 import { useLearningSessionIntent } from "~/client/components/learning/useLearningSessionIntent";
 import * as React from "react";
 
@@ -85,6 +88,9 @@ export default function TypingPage({ jsonLd }: Props) {
   >(null);
   const [completedAtMs, setCompletedAtMs] = React.useState<number | null>(null);
   const [showEndScreen, setShowEndScreen] = React.useState(false);
+  const resultsRef = React.useRef<HTMLDivElement>(null);
+  const [pauseNotice, setPauseNotice] = React.useState("");
+  useDialogFocus({ open: showEndScreen, dialogRef: resultsRef, triggerRef: inputRef, modal: true, onClose: () => setShowEndScreen(false) });
 
   const [raw, setRaw] = React.useState("");
 
@@ -113,10 +119,16 @@ export default function TypingPage({ jsonLd }: Props) {
   const decoded = React.useMemo(() => decodeTypingRaw(raw), [raw]);
 
   const [now, setNow] = React.useState(0);
+  const completeRun = React.useCallback((activeMs: number, finishedAt: number) => {
+    setSessionState("done"); setSessionStartMs(null); setEndsAtMs(null);
+    setPausedRemainingMs(null); setElapsedBeforePauseMs(activeMs);
+    setCompletedAtMs(finishedAt); setShowEndScreen(true); setPauseNotice("");
+  }, []);
   React.useEffect(() => {
+    if (sessionState !== "running") return;
     const id = window.setInterval(() => setNow(Date.now()), 250);
     return () => window.clearInterval(id);
-  }, []);
+  }, [sessionState]);
 
   const fmtMMSS = React.useCallback((sec: number) => {
     const s = Math.max(0, Math.floor(sec));
@@ -130,21 +142,14 @@ export default function TypingPage({ jsonLd }: Props) {
     if (sessionState !== "running") return;
     if (endsAtMs == null) return;
     if (now < endsAtMs) return;
-    // Session complete
-    setSessionState("done");
-    setSessionStartMs(null);
-    setEndsAtMs(null);
-    setPausedRemainingMs(null);
-    setElapsedBeforePauseMs(durationSec * 1000);
-    setCompletedAtMs(Date.now());
-    setShowEndScreen(true);
-  }, [now, sessionState, endsAtMs, durationSec]);
+    completeRun(durationSec * 1000, endsAtMs);
+  }, [now, sessionState, endsAtMs, durationSec, completeRun]);
 
   const runningElapsedMs =
     sessionState === "running" && sessionStartMs != null
       ? Math.max(0, now - sessionStartMs)
       : 0;
-  const elapsedMs = elapsedBeforePauseMs + runningElapsedMs;
+  const elapsedMs = Math.min(durationSec * 1000, elapsedBeforePauseMs + runningElapsedMs);
   const elapsedSec = Math.floor(elapsedMs / 1000);
 
   const remainingSec = React.useMemo(() => {
@@ -194,11 +199,13 @@ export default function TypingPage({ jsonLd }: Props) {
   }, [focusInput]);
 
   const ensureRunning = React.useCallback(() => {
+    if (document.hidden) return false;
     if (sessionState === "running") return true;
     if (sessionState === "paused" || sessionState === "done") return false;
 
     // idle -> running (auto-start on first input)
     const nowMs = Date.now();
+    setNow(nowMs); setPauseNotice("");
     setSessionState("running");
     setElapsedBeforePauseMs(0);
     setSessionStartMs(nowMs);
@@ -226,6 +233,7 @@ export default function TypingPage({ jsonLd }: Props) {
 
   const clearAll = React.useCallback(() => {
     setRaw("");
+    setPauseNotice("");
     setSessionState("idle");
     setSessionStartMs(null);
     setElapsedBeforePauseMs(0);
@@ -237,11 +245,16 @@ export default function TypingPage({ jsonLd }: Props) {
   }, [focusInput]);
 
   const pauseSession = React.useCallback(() => {
-    if (sessionState !== "running") return;
+    if (sessionState !== "running") return false;
     const nowMs = Date.now();
+    // Visibility can change between the deadline and the next timer tick.
+    if (endsAtMs !== null && nowMs >= endsAtMs) {
+      completeRun(durationSec * 1000, endsAtMs);
+      return false;
+    }
     const runningMs =
       sessionStartMs != null ? Math.max(0, nowMs - sessionStartMs) : 0;
-    setElapsedBeforePauseMs((prev) => prev + runningMs);
+    setElapsedBeforePauseMs((prev) => Math.min(durationSec * 1000, prev + runningMs));
     setSessionStartMs(null);
     setSessionState("paused");
     if (durationSec > 0) {
@@ -249,12 +262,14 @@ export default function TypingPage({ jsonLd }: Props) {
       setPausedRemainingMs(remainingMs);
       setEndsAtMs(null);
     }
-    focusInput();
-  }, [durationSec, endsAtMs, focusInput, sessionStartMs, sessionState]);
+    if (!document.hidden) focusInput();
+    return true;
+  }, [durationSec, endsAtMs, focusInput, sessionStartMs, sessionState, completeRun]);
 
   const resumeSession = React.useCallback(() => {
-    if (sessionState !== "paused") return;
+    if (sessionState !== "paused" || document.hidden) return;
     const nowMs = Date.now();
+    setNow(nowMs); setPauseNotice("");
     setSessionState("running");
     setSessionStartMs(nowMs);
     if (durationSec > 0) {
@@ -266,6 +281,7 @@ export default function TypingPage({ jsonLd }: Props) {
 
   const resetSession = React.useCallback(() => {
     setRaw("");
+    setPauseNotice("");
     setSessionState("idle");
     setSessionStartMs(null);
     setElapsedBeforePauseMs(0);
@@ -275,6 +291,24 @@ export default function TypingPage({ jsonLd }: Props) {
     setShowEndScreen(false);
     focusInput();
   }, [focusInput]);
+
+  React.useEffect(() => {
+    const onVisibility = () => {
+      if (document.hidden && sessionState === "running") {
+        if (pauseSession()) setPauseNotice("Paused while this tab was hidden. Hidden time is not counted; press Resume when ready.");
+      }
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => document.removeEventListener("visibilitychange", onVisibility);
+  }, [pauseSession, sessionState]);
+
+  function finishSession() {
+    if (sessionState !== "running" && sessionState !== "paused") return;
+    const finishedAt = Date.now();
+    const activeMs = elapsedBeforePauseMs + (sessionState === "running" && sessionStartMs !== null ? Math.max(0, finishedAt - sessionStartMs) : 0);
+    completeRun(Math.min(durationSec * 1000, activeMs), finishedAt);
+  }
+  const resultTitle = elapsedMs < durationSec * 1000 ? "Session ended early" : "Session complete";
 
   const copyDecoded = React.useCallback(async () => {
     await copyTextToClipboard(decoded.decoded);
@@ -393,21 +427,22 @@ export default function TypingPage({ jsonLd }: Props) {
     <main>
       <JsonLdScript jsonLd={jsonLd} />
 
-      {showEndScreen ? (
+      {showEndScreen && typeof document !== "undefined" ? createPortal(
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
+          className="mw-page-content fixed inset-0 z-[10000] flex items-center justify-center bg-black/40 p-4"
+          ref={resultsRef}
           role="dialog"
           aria-modal="true"
-          aria-label="Session complete"
+          aria-label={resultTitle}
         >
-          <div className="mw-static-panel w-full max-w-3xl overflow-hidden rounded-xl bg-[#fffdf8]">
+          <div className="mw-surface max-h-[calc(100dvh-2rem)] w-full max-w-3xl overflow-y-auto rounded-xl">
             <div className="mw-static-surface-soft flex items-center justify-between gap-3 bg-[#fffaf2]/70 p-4 sm:p-5">
               <div>
                 <div className="text-xl font-extrabold text-sky-950 sm:text-2xl">
-                  Session complete
+                  {resultTitle}
                 </div>
                 <div className="mt-1 text-sm text-slate-700 sm:text-base">
-                  Duration: {fmtMMSS(durationSec)}
+                  Active time: {fmtMMSS(elapsedSec)} of {fmtMMSS(durationSec)} planned
                 </div>
               </div>
               <button
@@ -421,7 +456,7 @@ export default function TypingPage({ jsonLd }: Props) {
             </div>
 
             <div className="p-4 sm:p-6">
-              <div className="grid gap-3 sm:grid-cols-3">
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                 <div className="mw-static-surface-soft rounded-xl bg-[#fffaf2]/70 p-4">
                   <div className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-slate-500">
                     Letters
@@ -459,11 +494,12 @@ export default function TypingPage({ jsonLd }: Props) {
                     Time
                   </div>
                   <div className="mt-1 text-2xl font-extrabold text-sky-950 sm:text-3xl">
-                    {fmtMMSS(durationSec)}
+                    {fmtMMSS(elapsedSec)}
                   </div>
                 </div>
               </div>
 
+              <SessionNextStep />
               <div className="mt-5 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
                 <div className="flex flex-wrap gap-2">
                   <Button
@@ -480,7 +516,7 @@ export default function TypingPage({ jsonLd }: Props) {
                     subtitle="Results summary"
                     completedAt={completedAtMs}
                     stats={{
-                      durationSec,
+                      durationSec: sessionState === "done" ? elapsedSec : durationSec,
                       letters: decoded.lettersDecoded,
                       words: decoded.wordsDecoded,
                       lettersPerMin,
@@ -497,7 +533,7 @@ export default function TypingPage({ jsonLd }: Props) {
             </div>
           </div>
         </div>
-      ) : null}
+      , document.body) : null}
 
       <div className="">
       <section className={HERO_SECTION_CLASS}>
@@ -529,6 +565,8 @@ export default function TypingPage({ jsonLd }: Props) {
                     type="button"
                     onClick={() => {
                       if (sessionState === "running") return;
+                      if (p.sec === durationSec) return;
+                      resetSession();
                       setDurationSec(p.sec);
                     }}
                     className={`px-3 py-2 rounded-md text-sm font-semibold cursor-pointer transition ${
@@ -567,6 +605,7 @@ export default function TypingPage({ jsonLd }: Props) {
                   {sessionState === "paused" ? "Resume" : "Pause"}
                 </Button>
 
+                <Button type="button" onClick={finishSession} disabled={sessionState !== "running" && sessionState !== "paused"}>Finish typing session early</Button>
                 <Button
                   type="button"
                   variant="ghost"
@@ -661,7 +700,7 @@ export default function TypingPage({ jsonLd }: Props) {
                   subtitle="Results summary"
                   completedAt={completedAtMs}
                   stats={{
-                    durationSec,
+                    durationSec: sessionState === "done" ? elapsedSec : durationSec,
                     letters: decoded.lettersDecoded,
                     words: decoded.wordsDecoded,
                     lettersPerMin,
@@ -672,6 +711,8 @@ export default function TypingPage({ jsonLd }: Props) {
             </div>
           </div>
 
+          <p className="mt-4 max-w-[68ch] text-sm text-slate-600">The timer starts with your first input and pauses when this tab is hidden. Resume explicitly. Changing duration or reloading starts a fresh session; saved settings remain. Free typing reports copied text and pace, not an accuracy score.</p>
+          {pauseNotice && <p className="mt-2 text-sm text-slate-700" role="status">{pauseNotice}</p>}
           {/* Main typing panel */}
           <div className="mt-4">
             <div className="space-y-4">
@@ -686,12 +727,12 @@ export default function TypingPage({ jsonLd }: Props) {
               {sessionState === "done" ? (
                 <div className="mx-4 mb-4 rounded-xl bg-slate-900 p-4">
                   <div className="text-sm font-extrabold text-white">
-                    Session complete
+                    {resultTitle}
                   </div>
                   <div className="mt-1 text-sm text-slate-300">
-                    Duration:{" "}
+                    Active time:{" "}
                     <span className="font-extrabold text-sky-100">
-                      {fmtMMSS(durationSec)}
+                      {fmtMMSS(elapsedSec)}
                     </span>{" "}
                     · Letters:{" "}
                     <span className="font-extrabold text-sky-100">
@@ -724,7 +765,7 @@ export default function TypingPage({ jsonLd }: Props) {
                       subtitle="Results summary"
                       completedAt={completedAtMs}
                       stats={{
-                        durationSec,
+                        durationSec: sessionState === "done" ? elapsedSec : durationSec,
                         letters: decoded.lettersDecoded,
                         words: decoded.wordsDecoded,
                         lettersPerMin,

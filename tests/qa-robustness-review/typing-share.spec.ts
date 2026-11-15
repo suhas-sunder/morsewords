@@ -2,13 +2,14 @@ import { expect, test } from "@playwright/test";
 import { blockExternalNetwork, waitForRouteReady } from "./helpers";
 
 test.describe("typing result share actions", () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page }, info) => {
     await blockExternalNetwork(page);
+    await page.addInitScript(theme => localStorage.setItem("morsewords-theme", theme), info.project.name.endsWith("dark") ? "dark" : "light");
   });
 
   test("downloads the generated typing result image with the preserved filename", async ({
     page,
-  }) => {
+  }, info) => {
     await page.goto("/typing", { waitUntil: "domcontentloaded" });
     await waitForRouteReady(page);
 
@@ -37,6 +38,8 @@ test.describe("typing result share actions", () => {
 
     const shareDialog = page.getByRole("dialog", { name: "Share results" });
     await expect(shareDialog).toBeVisible();
+    await expect(shareDialog.getByRole("button", { name: "Close", exact: true })).toBeFocused();
+    expect(await shareDialog.locator(".mw-surface").evaluate(element => getComputedStyle(element).backgroundColor)).toMatch(/^rgb\(/);
     await expect(
       shareDialog.getByText("Generates a shareable image."),
     ).toBeVisible();
@@ -57,5 +60,10 @@ test.describe("typing result share actions", () => {
     const download = await downloadPromise;
 
     expect(download.suggestedFilename()).toBe("morse-typing-results.png");
+    await page.screenshot({ path: info.outputPath("w21-typing-share-dialog.png") });
+    await page.keyboard.press("Escape");
+    await expect(shareDialog).toHaveCount(0);
+    await expect(sessionDialog.getByRole("button", { name: "Share results" })).toBeFocused();
+    await expect(sessionDialog).toBeVisible();
   });
 });
