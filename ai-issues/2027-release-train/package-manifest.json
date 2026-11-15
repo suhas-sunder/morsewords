@@ -844,7 +844,9 @@
       "implementationCommits": [
         "036a148dc639adaa02cedd6952b144a049c47b4e"
       ],
-      "documentationCommits": [],
+      "documentationCommits": [
+        "f6c3f2ca4dbd18ad4b6271bf4af73846b0cc15c4"
+      ],
       "reviewBranch": "release/2027-W18-learning-start",
       "draftPr": "https://github.com/suhas-sunder/morsewords/pull/21",
       "commonGates": [
@@ -878,19 +880,25 @@
       ],
       "affectedRoutes": [
         "/practice",
-        "/typing"
+        "/morse-code-sentence-practice",
+        "/morse-code-word-trainer",
+        "/morse-code-audio-practice",
+        "/morse-code-audio-quiz",
+        "/morse-code-visual-quiz"
       ],
-      "plannedScope": "Practice/typing answer feedback shared behavior.",
+      "plannedScope": "Shared bounded comparison of submitted normalized answers; route-specific grading and retry/reveal contracts preserved.",
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED",
+      "status": "VALIDATED",
       "acceptance": "No answer leakage before submission; exact token differences; accessible status announcements.",
       "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
-      "implementationCommits": [],
+      "implementationCommits": [
+        "60f7af157c9fb99a42bf362a5f94bdcb9d20c5e6"
+      ],
       "documentationCommits": [],
-      "reviewBranch": null,
-      "draftPr": null,
+      "reviewBranch": "release/2027-W19-answer-feedback",
+      "draftPr": "https://github.com/suhas-sunder/morsewords/pull/22",
       "commonGates": [
         "npm run typecheck",
         "npm test",
@@ -905,8 +913,13 @@
         "npm run books:navigation-index:check",
         "npm run test:release-integrity"
       ],
-      "packageSpecificGates": [],
-      "evidence": []
+      "packageSpecificGates": [
+        "npx playwright test --config=playwright.review.config.ts tests/qa-robustness-review/answer-feedback.spec.ts",
+        "npx playwright test tests/qa-robustness-review/practice-flow-hardening.spec.ts tests/qa-robustness-review/practice-reset-actions.spec.ts tests/qa-robustness-review/route-smoke-practice-quiz.spec.ts"
+      ],
+      "evidence": [
+        "ai-issues/2027-release-train/W19.md"
+      ]
     },
     {
       "packageId": "W20",
@@ -2285,7 +2298,9 @@
     "bc73402dbc2cee734dfb80a0c9cb7405ac0a3f3b",
     "6b059417459a40c3c243d18748aecd3e13d24860",
     "b963f5dc8257692100690a36b64458d42b712cd1",
-    "036a148dc639adaa02cedd6952b144a049c47b4e"
+    "036a148dc639adaa02cedd6952b144a049c47b4e",
+    "f6c3f2ca4dbd18ad4b6271bf4af73846b0cc15c4",
+    "60f7af157c9fb99a42bf362a5f94bdcb9d20c5e6"
   ],
   "persistentGates": [
     {
