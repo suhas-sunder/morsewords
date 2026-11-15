@@ -102,6 +102,7 @@ const MP3_BITRATES = [32, 48, 64, 96, 128, 192, 256] as const;
 const TYPING_INPUT_MODES = ["dotdash", "fj"] as const;
 const TYPING_DURATIONS = [10, 30, 60, 120, 300, 1800] as const;
 const PRACTICE_POOLS = [
+  "starter",
   "all",
   "letters",
   "numbers",

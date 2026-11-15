@@ -1,3 +1,4 @@
+import { useLearningSessionIntent } from "~/client/components/learning/useLearningSessionIntent";
 import * as React from "react";
 import type { Route } from "./+types/morse-code-audio-practice";
 
@@ -117,6 +118,7 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function MorseCodeAudioPractice() {
+  const readSessionIntent = useLearningSessionIntent("/morse-code-audio-practice");
   const player = useMorseAudio();
   const playerRef = React.useRef(player);
   const didSyncInitialDifficulty = React.useRef(false);
@@ -188,7 +190,8 @@ export default function MorseCodeAudioPractice() {
   }, []);
 
   React.useEffect(() => {
-    const storedDifficulty = readStoredDifficulty(
+    const listening = readSessionIntent()?.id === "listening";
+    const storedDifficulty = listening ? "beginner" : readStoredDifficulty(
       DIFFICULTY_STORAGE_KEY,
       DEFAULT_AUDIO_DIFFICULTY,
     );
@@ -208,7 +211,7 @@ export default function MorseCodeAudioPractice() {
     setFlash(preferences.flash);
     setAdvancedOpen(preferences.advancedOpen);
     setHydrated(true);
-  }, []);
+  }, [readSessionIntent]);
 
   React.useEffect(() => {
     if (!hydrated) return;

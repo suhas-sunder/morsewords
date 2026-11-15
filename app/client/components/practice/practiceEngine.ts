@@ -1,3 +1,4 @@
+import { STARTER_CHARACTERS } from "~/client/components/learning/learningSessions";
 import {
   countTextWords,
   formatMorseWords,
@@ -45,36 +46,21 @@ export function deterministicPrompt(mode: DrillMode, pool: Pool): Prompt {
   return { kind, plain, morse, label };
 }
 
+function promptBank(pool: Pool): readonly string[] {
+  if (pool === "starter") return STARTER_CHARACTERS.map(item => item.letter);
+  if (pool === "letters") return LETTERS;
+  if (pool === "numbers") return NUMBERS;
+  if (pool === "signals") return SIGNALS;
+  if (pool === "words") return WORDS;
+  if (pool === "sentences") return SENTENCES;
+  return [...LETTERS, ...NUMBERS, ...SIGNALS, ...WORDS, ...SENTENCES];
+}
 function pickPlain(pool: Pool): string {
-  const bank =
-    pool === "letters"
-      ? LETTERS
-      : pool === "numbers"
-        ? NUMBERS
-        : pool === "signals"
-          ? SIGNALS
-          : pool === "words"
-            ? WORDS
-            : pool === "sentences"
-              ? SENTENCES
-              : [...LETTERS, ...NUMBERS, ...SIGNALS, ...WORDS, ...SENTENCES];
+  const bank = promptBank(pool);
   return bank[Math.floor(Math.random() * bank.length)] ?? "SOS";
 }
-
 function firstPlain(pool: Pool): string {
-  const bank =
-    pool === "letters"
-      ? LETTERS
-      : pool === "numbers"
-        ? NUMBERS
-        : pool === "signals"
-          ? SIGNALS
-          : pool === "words"
-            ? WORDS
-            : pool === "sentences"
-              ? SENTENCES
-              : [...LETTERS, ...NUMBERS, ...SIGNALS, ...WORDS, ...SENTENCES];
-  return bank[0] ?? "SOS";
+  return promptBank(pool)[0] ?? "SOS";
 }
 
 function labelFor(pool: Pool, plain: string): string {
@@ -87,6 +73,7 @@ function labelFor(pool: Pool, plain: string): string {
     if (SENTENCES.includes(plain)) return `Short sentence (${wordCount(plain)} words)`;
     return `Short word (${plain.length} chars)`;
   }
+  if (pool === "starter") return "First characters: E T A N I M S O";
   if (pool === "letters") return "Single letter";
   if (pool === "numbers") return "Single number";
   if (pool === "signals") return "Common signal";

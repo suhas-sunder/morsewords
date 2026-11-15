@@ -1,3 +1,6 @@
+import { useLearningSessionIntent } from "~/client/components/learning/useLearningSessionIntent";
+import LearningSessionChooser from "~/client/components/learning/LearningSessionChooser";
+import type { LearningSession } from "~/client/components/learning/learningSessions";
 import * as React from "react";
 
 import { PostPrimaryContentBannerAd } from "~/client/components/ads/AdSenseAds";
@@ -51,6 +54,7 @@ const lsBestStreakKey = (pool: string) => `mw_practice_best_streak_${pool}`;
 const TOTAL_QUESTIONS = 10;
 const DEFAULT_POOL: Pool = "all";
 const POOLS: readonly Pool[] = [
+  "starter",
   "all",
   "letters",
   "numbers",
@@ -96,11 +100,13 @@ function writeInt(key: string, val: number) {
 }
 
 export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
-  const didBuildInitialPrompt = React.useRef(false);
+  const readSessionIntent = useLearningSessionIntent("/practice");
+  const answerRef = React.useRef<HTMLInputElement>(null);
   const [hydrated, setHydrated] = React.useState(false);
 
-  const [pool, setPool] = React.useState<Pool>(DEFAULT_POOL);
-  const [mode, setMode] = React.useState<DrillMode>(DEFAULT_MODE);
+  const [{ pool, mode, bestStreak }, setDrill] = React.useState({
+    pool: DEFAULT_POOL, mode: DEFAULT_MODE, bestStreak: 0,
+  });
 
   const [prompt, setPrompt] = React.useState<Prompt>(() =>
     deterministicPrompt(DEFAULT_MODE, DEFAULT_POOL),
@@ -122,17 +128,34 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
   const [runStartedAt, setRunStartedAt] = React.useState<number | null>(null);
   const [correct, setCorrect] = React.useState(0);
   const [streak, setStreak] = React.useState(0);
-  const [bestStreak, setBestStreak] = React.useState(0);
+  function setBestStreak(value: React.SetStateAction<number>) {
+    setDrill(previous => ({ ...previous, bestStreak: typeof value === "function" ? value(previous.bestStreak) : value }));
+  }
+  function configureDrill(nextPool: Pool, nextMode: DrillMode) {
+    setDrill({ pool: nextPool, mode: nextMode, bestStreak: nextPool === pool ? bestStreak : readInt(lsBestStreakKey(nextPool), 0) });
+    resetRun(nextMode, nextPool);
+  }
+  function setPool(nextPool: Pool) { if (nextPool !== pool) configureDrill(nextPool, readStoredMode(nextPool)); }
+  function setMode(nextMode: DrillMode) { if (nextMode !== mode) configureDrill(pool, nextMode); }
+  function focusExercise() {
+    requestAnimationFrame(() => { const target = answerRef.current ?? document.getElementById("practice-workspace"); target?.focus(); target?.scrollIntoView({ block: "center", behavior: "auto" }); });
+  }
+  function startSession(session: LearningSession) {
+    if (!session.practice) return false;
+    configureDrill(session.practice.pool, session.practice.mode);
+    focusExercise();
+    return true;
+  }
 
   React.useEffect(() => {
-    const storedPool = readStoredPool();
-    const storedMode = readStoredMode(storedPool);
-    setPool(storedPool);
-    setMode(storedMode);
-    setBestStreak(readInt(lsBestStreakKey(storedPool), 0));
-    setPrompt(randomPrompt(storedMode, storedPool));
+    const intent = readSessionIntent()?.practice;
+    const storedPool = intent?.pool ?? readStoredPool();
+    const storedMode = intent?.mode ?? readStoredMode(storedPool);
+    setDrill({ pool: storedPool, mode: storedMode, bestStreak: readInt(lsBestStreakKey(storedPool), 0) });
+    resetRun(storedMode, storedPool);
     setHydrated(true);
-  }, []);
+    if (intent) focusExercise();
+  }, [readSessionIntent]);
 
   React.useEffect(() => {
     if (completed > TOTAL_QUESTIONS) {
@@ -149,46 +172,9 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
   React.useEffect(() => {
     if (!hydrated) return;
     writeStr(LS_POOL, pool);
-  }, [pool]);
-
-  React.useEffect(() => {
-    if (!hydrated) return;
-    // When pool changes, load pool-specific settings instead of inheriting from other drills.
-    const nextMode = readStoredMode(pool);
-    setMode((m) => (m === nextMode ? m : nextMode));
-
-    const bs = readInt(lsBestStreakKey(pool), 0);
-    setBestStreak((b) => (b === bs ? b : bs));
-  }, [pool, hydrated]);
-
-  React.useEffect(() => {
-    if (!hydrated) return;
     writeStr(lsModeKey(pool), mode);
-  }, [mode, pool, hydrated]);
-
-  React.useEffect(() => {
-    if (!hydrated) return;
     writeInt(lsBestStreakKey(pool), bestStreak);
-  }, [bestStreak, pool, hydrated]);
-
-  React.useEffect(() => {
-    if (!hydrated) return;
-    if (!didBuildInitialPrompt.current) {
-      didBuildInitialPrompt.current = true;
-      return;
-    }
-    // When settings change, generate a new prompt to match intent.
-    setPrompt(randomPrompt(mode, pool));
-    setAnswer("");
-    setFeedback(null);
-    setQuestionNumber(1);
-    setCompleted(0);
-    setSolvedThisQuestion(false);
-    setAttempts(0);
-    setRunStartedAt(null);
-    setCorrect(0);
-    setStreak(0);
-  }, [mode, pool, hydrated]);
+  }, [pool, mode, bestStreak, hydrated]);
 
   const next = React.useCallback(() => {
     setCompleted((c) => {
@@ -217,7 +203,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
     });
   }, [mode, pool, solvedThisQuestion]);
 
-  const resetStats = React.useCallback(() => {
+  function resetRun(nextMode: DrillMode, nextPool: Pool) {
     setCompleted(0);
     setQuestionNumber(1);
     setRunStartedAt(null);
@@ -226,9 +212,10 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
     setStreak(0);
     setSolvedThisQuestion(false);
     setFeedback(null);
-    setPrompt(randomPrompt(mode, pool));
+    setPrompt(randomPrompt(nextMode, nextPool));
     setAnswer("");
-  }, [mode, pool]);
+  }
+  const resetStats = () => resetRun(mode, pool);
 
   const doCheck = React.useCallback(() => {
     if (completed >= TOTAL_QUESTIONS) return;
@@ -314,7 +301,8 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
           </p>
         </div>
 
-        <div className="pb-2 pt-4 sm:pb-3 sm:pt-4">
+        <LearningSessionChooser onChoose={startSession} onSkip={focusExercise} />
+        <div id="practice-workspace" tabIndex={-1} className="pb-2 pt-4 sm:pb-3 sm:pt-4">
         {/* Top control bar */}
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex w-full flex-wrap gap-2 lg:w-auto">
@@ -501,10 +489,11 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
                   label={`Your answer (${prompt.kind === "text_to_morse" ? "Morse" : "Text"})`}
                 >
                   <input
+                    ref={answerRef}
                     value={answer}
                     onChange={(e) => setAnswer(e.target.value)}
                     placeholder={placeholder}
-                    className="w-full border-0 bg-transparent px-4 pb-5 pt-2 font-mono text-slate-950 outline-none transition focus:ring-0 focus-visible:outline-none"
+                    className="mw-tool-input-surface w-full border-0 bg-transparent px-4 pb-5 pt-2 font-mono text-slate-950 outline-none transition focus:ring-0 focus-visible:outline-none"
                     onKeyDown={(e) => {
                       if (e.key !== "Enter") return;
                       if (solvedThisQuestion) {
@@ -572,6 +561,12 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
                     className="flex flex-wrap gap-2 lg:justify-end"
                     aria-label="Drill options"
                   >
+                    <ToggleChip
+                      label="First characters"
+                      active={pool === "starter"}
+                      onClick={() => setPool("starter")}
+                      title="E, T, A, N, I, M, S and O"
+                    />
                     <ToggleChip
                       label="All"
                       active={pool === "all"}

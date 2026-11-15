@@ -1791,8 +1791,8 @@ body
 }
 
 /* Tool textareas own their native states so form defaults cannot alter the panel surface. */
-.mw-page-content textarea.mw-tool-input-surface,
-.mw-page-content textarea.mw-tool-input-surface:where(:hover, :focus, :focus-visible, :active, :-webkit-autofill) {
+.mw-page-content :is(textarea, input).mw-tool-input-surface,
+.mw-page-content :is(textarea, input).mw-tool-input-surface:where(:hover, :focus, :focus-visible, :active, :-webkit-autofill) {
   appearance: none !important;
   -webkit-appearance: none !important;
   background: transparent !important;
@@ -1818,7 +1818,7 @@ body
   -webkit-text-fill-color: var(--mw-output-text) !important;
 }
 
-.mw-page-content textarea.mw-tool-input-surface:focus,
+.mw-page-content :is(textarea, input).mw-tool-input-surface:focus,
 .mw-page-content textarea.mw-tool-output-surface:focus {
   outline: none !important;
   outline-color: transparent !important;
@@ -2178,4 +2178,13 @@ body :is(input, textarea, select):where(:focus, :focus-visible) {
   --tw-ring-color: transparent !important;
   --tw-ring-offset-shadow: 0 0 #0000 !important;
   --tw-ring-shadow: 0 0 #0000 !important;
+}
+
+/* Opt-in selector surface: keyboard focus never changes the content fill. */
+.mw-page-content select.mw-tool-select-surface,
+.mw-page-content select.mw-tool-select-surface:where(:hover, :focus, :focus-visible, :active, :disabled) {
+  background-color: var(--mw-input-bg) !important;
+  color: var(--mw-input-text) !important;
+  border: 0;
+  box-shadow: none;
 }
