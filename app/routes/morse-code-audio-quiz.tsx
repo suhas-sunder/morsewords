@@ -1,3 +1,4 @@
+import AnswerComparison, { type SubmittedAnswer } from "~/client/components/learning/AnswerComparison";
 import * as React from "react";
 import type { Route } from "./+types/morse-code-audio-quiz";
 
@@ -131,6 +132,7 @@ export default function MorseCodeAudioQuiz() {
   const [deckSeed, setDeckSeed] = React.useState(INITIAL_AUDIO_QUIZ_SEED);
   const [index, setIndex] = React.useState(0);
   const [answer, setAnswer] = React.useState("");
+  const [submitted, setSubmitted] = React.useState<SubmittedAnswer | null>(null);
   const [feedback, setFeedback] = React.useState<FeedbackState>("idle");
   const [attempts, setAttempts] = React.useState(0);
   const [correct, setCorrect] = React.useState(0);
@@ -329,6 +331,7 @@ export default function MorseCodeAudioQuiz() {
     }
     answeredQuestionRef.current = true;
     if (runStartedAt === null) setRunStartedAt(Date.now());
+    setSubmitted({ expected: expectedAnswer, attempted: normalizedAnswer, correct: normalizedAnswer === expectedAnswer, kind: "text" });
     setAttempts((value) => value + 1);
     if (isCorrect) {
       setFeedback("correct");
@@ -355,7 +358,7 @@ export default function MorseCodeAudioQuiz() {
     const nextCompleted = completed + 1;
     setCompleted(nextCompleted);
     setAnswer("");
-    setFeedback("idle");
+    setFeedback("idle"); setSubmitted(null);
     if (nextCompleted < TOTAL_QUESTIONS) setIndex((value) => value + 1);
   }
 
@@ -366,7 +369,7 @@ export default function MorseCodeAudioQuiz() {
     setDeckSeed(Date.now());
     setIndex(0);
     setAnswer("");
-    setFeedback("idle");
+    setFeedback("idle"); setSubmitted(null);
     setAttempts(0);
     setCorrect(0);
     setCompleted(0);
@@ -614,6 +617,8 @@ export default function MorseCodeAudioQuiz() {
                   </button>
                 )}
               </div>
+
+          {submitted && feedback !== "idle" && <AnswerComparison key={attempts} answer={submitted} />}
 
               <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
                 <p

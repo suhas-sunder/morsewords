@@ -1,3 +1,4 @@
+import AnswerComparison, { type SubmittedAnswer } from "~/client/components/learning/AnswerComparison";
 import { useLearningSessionIntent } from "~/client/components/learning/useLearningSessionIntent";
 import LearningSessionChooser from "~/client/components/learning/LearningSessionChooser";
 import type { LearningSession } from "~/client/components/learning/learningSessions";
@@ -102,6 +103,7 @@ function writeInt(key: string, val: number) {
 export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
   const readSessionIntent = useLearningSessionIntent("/practice");
   const answerRef = React.useRef<HTMLInputElement>(null);
+  const [submitted, setSubmitted] = React.useState<SubmittedAnswer | null>(null);
   const [hydrated, setHydrated] = React.useState(false);
 
   const [{ pool, mode, bestStreak }, setDrill] = React.useState({
@@ -189,14 +191,14 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
 
       if (clamped >= TOTAL_QUESTIONS) {
         // Game over. Keep last prompt visible but disable interactions.
-        setFeedback(null);
+        setFeedback(null); setSubmitted(null);
         return clamped;
       }
 
       setQuestionNumber((q) => q + 1);
       setPrompt(randomPrompt(mode, pool));
       setAnswer("");
-      setFeedback(null);
+      setFeedback(null); setSubmitted(null);
       setSolvedThisQuestion(false);
 
       return clamped;
@@ -211,7 +213,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
     setCorrect(0);
     setStreak(0);
     setSolvedThisQuestion(false);
-    setFeedback(null);
+    setFeedback(null); setSubmitted(null);
     setPrompt(randomPrompt(nextMode, nextPool));
     setAnswer("");
   }
@@ -226,6 +228,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
     setAttempts((n) => n + 1);
 
     const res = checkAnswer(prompt, answer);
+    setSubmitted({ expected: res.normalizedExpected, attempted: res.normalizedGot, correct: res.ok, kind: prompt.kind === "text_to_morse" ? "morse" : "text" });
 
     if (res.ok) {
       // Only count the first correct solve per question.
@@ -243,7 +246,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
       setStreak(0);
     }
 
-    // Do not leak the expected answer in feedback.
+    // Keep the compact status separate from the optional comparison.
     setFeedback({
       ok: res.ok,
       msg: res.ok ? "Correct" : "Not quite. Try again.",
@@ -603,6 +606,7 @@ export default function PracticePage({ jsonLd }: { jsonLd: unknown }) {
                 </div>
 
                 {statusBadge}
+                {submitted && <AnswerComparison key={attempts} answer={submitted} optional={!submitted.correct} />}
               </div>
             </>
           )}

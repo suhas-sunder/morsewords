@@ -1,3 +1,4 @@
+import AnswerComparison, { type SubmittedAnswer } from "~/client/components/learning/AnswerComparison";
 import * as React from "react";
 
 import {
@@ -319,6 +320,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: unknown }) {
  const [skipped, setSkipped] = React.useState(0);
  const [solvedThisQuestion, setSolvedThisQuestion] = React.useState(false);
  const [runStartedAt, setRunStartedAt] = React.useState<number | null>(null);
+ const [submitted, setSubmitted] = React.useState<SubmittedAnswer | null>(null);
  const [feedback, setFeedback] = React.useState<null | {
  ok: boolean;
  msg: string;
@@ -360,7 +362,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: unknown }) {
  setSkipped(0);
  setSolvedThisQuestion(false);
  setRunStartedAt(null);
- setFeedback(null);
+ setFeedback(null); setSubmitted(null);
  setShowAnswer(false);
  }, [mode, pool]);
 
@@ -409,7 +411,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: unknown }) {
  setCompleted(nextCompleted);
  setAnswer("");
  setSolvedThisQuestion(false);
- setFeedback(null);
+ setFeedback(null); setSubmitted(null);
  setShowAnswer(false);
 
  if (nextCompleted < TOTAL_QUESTIONS) {
@@ -435,6 +437,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: unknown }) {
 
  setAttempts((value) => value + 1);
  const result = checkSentenceMorseAnswer(prompt, answer);
+ setSubmitted({ expected: result.normalizedExpected, attempted: result.normalizedGot, correct: result.ok, kind: prompt.kind === "text_to_morse" ? "morse" : "text" });
 
  if (result.ok) {
  const nextStreak = streak + 1;
@@ -781,6 +784,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: unknown }) {
  ) : null}
 
  {statusBadge}
+ {submitted && <AnswerComparison key={attempts} answer={submitted} optional={!submitted.correct} />}
 
  <div className="mt-4 flex flex-wrap gap-3">
  {!solvedThisQuestion ? (
@@ -800,7 +804,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: unknown }) {
  <Button
  type="button" variant="secondary" onClick={() => {
  setAnswer("");
- setFeedback(null);
+ setFeedback(null); setSubmitted(null);
  }}
  disabled={!answer.trim() || solvedThisQuestion}
  >

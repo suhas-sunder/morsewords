@@ -1,3 +1,4 @@
+import AnswerComparison, { type SubmittedAnswer } from "~/client/components/learning/AnswerComparison";
 import * as React from "react";
 import type { Route } from "./+types/morse-code-visual-quiz";
 
@@ -173,6 +174,7 @@ export default function MorseCodeVisualQuiz() {
   const [roundSeed, setRoundSeed] = React.useState(INITIAL_VISUAL_QUIZ_SEED);
   const [index, setIndex] = React.useState(0);
   const [answer, setAnswer] = React.useState("");
+  const [submitted, setSubmitted] = React.useState<SubmittedAnswer | null>(null);
   const [checked, setChecked] = React.useState(false);
   const [attempts, setAttempts] = React.useState(0);
   const [correct, setCorrect] = React.useState(0);
@@ -239,6 +241,7 @@ export default function MorseCodeVisualQuiz() {
     if (runStartedAt === null) setRunStartedAt(Date.now());
     setAttempts((value) => value + 1);
     setChecked(true);
+    setSubmitted({ expected: normalizePlainAnswer(prompt), attempted: normalizedAnswer, correct: isCorrect, kind: "text" });
     if (isCorrect) {
       setSolved(true);
       setCorrect((value) => value + 1);
@@ -258,7 +261,7 @@ export default function MorseCodeVisualQuiz() {
     const nextCompleted = completed + 1;
     setCompleted(nextCompleted);
     setAnswer("");
-    setChecked(false);
+    setChecked(false); setSubmitted(null);
     setSolved(false);
     if (nextCompleted < TOTAL_QUESTIONS) {
       setIndex((value) => Math.min(value + 1, TOTAL_QUESTIONS - 1));
@@ -270,7 +273,7 @@ export default function MorseCodeVisualQuiz() {
     setRoundSeed(createVisualQuizSeed());
     setIndex(0);
     setAnswer("");
-    setChecked(false);
+    setChecked(false); setSubmitted(null);
     setAttempts(0);
     setCorrect(0);
     setCompleted(0);
@@ -490,7 +493,7 @@ export default function MorseCodeVisualQuiz() {
                     value={answer}
                     onChange={(event) => {
                       setAnswer(event.target.value);
-                      setChecked(false);
+                      setChecked(false); setSubmitted(null);
                     }}
                     onKeyDown={(event) => {
                       if (event.key === "Enter") {
@@ -561,6 +564,7 @@ export default function MorseCodeVisualQuiz() {
                     Skip
                   </button>
                 </div>
+                {submitted && checked && <AnswerComparison key={attempts} answer={submitted} optional={!submitted.correct} />}
                 {checked ? (
                   <p
                     className={
