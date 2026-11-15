@@ -1,3 +1,7 @@
+import { recordMissedTarget, removeReviewSource, useReviewQueue } from "~/client/components/learning/learningReviewStore";
+import type { ReviewItem } from "~/client/components/learning/learningReviewSchema";
+import { captureReviewAnswer } from "~/client/components/learning/reviewSubmission";
+import { normalizeWordText as normalizeTextAnswer, normalizeWordMorse as normalizeMorseAnswer } from "~/client/components/learning/learningAnswerRules";
 import AnswerComparison, { type SubmittedAnswer } from "~/client/components/learning/AnswerComparison";
 import * as React from "react";
 import type { Route } from "./+types/morse-code-word-trainer";
@@ -34,11 +38,9 @@ import ToolHowItWorks from "~/client/components/shared/ToolHowItWorks";
 import { toolControlButtonClass } from "~/client/components/shared/ToolWorkspace";
 import SliderRow from "~/client/components/shared/ui/SliderRow";
 import {
- normalizeMorseForDecode,
  textToMorse,
 } from "~/client/components/shared/morseUtils";
 import {
- normalizePlainAnswer,
  shufflePrompts,
 } from "~/client/components/shared/practiceSessionUtils";
 import {
@@ -112,7 +114,7 @@ function shuffleWords(words: string[], seed: number) {
 }
 
 function normalizeTrainerWord(raw: string) {
- return normalizePlainAnswer(raw).replace(/\s+/g,"");
+ return normalizeTextAnswer(raw);
 }
 
 function parseTrainerWords(input: string): ParsedTrainerWords {
@@ -145,14 +147,6 @@ function parseTrainerWords(input: string): ParsedTrainerWords {
  };
 }
 
-function normalizeTextAnswer(value: string) {
- return normalizePlainAnswer(value).replace(/\s+/g,"");
-}
-
-function normalizeMorseAnswer(value: string) {
- return normalizeMorseForDecode(value).replace(/\s+/g,"");
-}
-
 function readStoredInt(key: string, fallback: number) {
  return readStoredNumber(key, {
  fallback,
@@ -178,11 +172,8 @@ function getBuiltInWords(name: Exclude<WordListName,"custom">) {
 export default function MorseCodeWordTrainer() {
  const answeredPromptRef = React.useRef(false);
  const [listName, setListName] = React.useState<WordListName>("beginner");
- const [customWords, setCustomWords] = React.useState(() =>
- readStoredString(CUSTOM_WORDS_STORAGE_KEY, "signal\nteacher\npractice\ncopy", {
- maxLength: 4000,
- }),
- );
+ const [customWords, setCustomWords] = React.useState("signal\nteacher\npractice\ncopy");
+ const [hydrated, setHydrated] = React.useState(false);
  const [mode, setMode] = React.useState<TrainerMode>("morse_to_text");
  const [deckSource, setDeckSource] = React.useState<DeckSource>("list");
  const [deckSeed, setDeckSeed] = React.useState(12053);
@@ -191,14 +182,16 @@ export default function MorseCodeWordTrainer() {
  const [submitted, setSubmitted] = React.useState<SubmittedAnswer | null>(null);
  const [feedback, setFeedback] = React.useState<FeedbackState>("idle");
  const [showAnswer, setShowAnswer] = React.useState(false);
- const [weakWords, setWeakWords] = React.useState<string[]>([]);
+ const reviewQueue = useReviewQueue();
+ const weakItems = React.useMemo(() => reviewQueue.items.filter(item => item.source === "word-trainer"), [reviewQueue.items]);
+ const weakWords = React.useMemo(() => [...new Set(weakItems.map(item => item.target))], [weakItems]);
+ const [weakRound, setWeakRound] = React.useState<ReviewItem[]>([]);
+ const weakRoundWords = React.useMemo(() => [...new Set(weakRound.map(item => item.target))], [weakRound]);
  const [attempts, setAttempts] = React.useState(0);
  const [correct, setCorrect] = React.useState(0);
  const [completed, setCompleted] = React.useState(0);
  const [streak, setStreak] = React.useState(0);
- const [bestStreak, setBestStreak] = React.useState(() =>
- readStoredInt(BEST_STREAK_STORAGE_KEY, 0),
- );
+ const [bestStreak, setBestStreak] = React.useState(0);
  const [runStartedAt, setRunStartedAt] = React.useState<number | null>(null);
  const [wpm, setWpm] = React.useState(18);
  const [farnsworthWpm, setFarnsworthWpm] = React.useState(12);
@@ -215,13 +208,14 @@ export default function MorseCodeWordTrainer() {
  [listName, parsedCustomWords.words],
  );
  const deckWords =
- deckSource ==="weak"&& weakWords.length > 0 ? weakWords : sourceWords;
+ deckSource ==="weak" ? weakRoundWords : sourceWords;
  const deck = React.useMemo(
  () => shuffleWords(deckWords, deckSeed),
  [deckSeed, deckWords],
  );
  const roundComplete = deck.length > 0 && promptIndex >= deck.length;
  const activeWord = roundComplete ?"": deck[promptIndex] ??"";
+ const activePrivate = deckSource === "weak" ? weakRound.some(item => item.target === activeWord && item.private) : listName === "custom";
  const activeMorse = textToMorse(activeWord);
  const expectedAnswer =
  mode ==="morse_to_text"? activeWord : normalizeMorseAnswer(activeMorse);
@@ -255,21 +249,20 @@ export default function MorseCodeWordTrainer() {
  );
 
  React.useEffect(() => {
+ setCustomWords(readStoredString(CUSTOM_WORDS_STORAGE_KEY, "signal\nteacher\npractice\ncopy", { maxLength: 4000 }));
+ setBestStreak(readStoredInt(BEST_STREAK_STORAGE_KEY, 0));
+ setHydrated(true);
+ }, []);
+
+ React.useEffect(() => {
+ if (!hydrated) return;
  safeWriteStorage(CUSTOM_WORDS_STORAGE_KEY, customWords);
- }, [customWords]);
+ }, [customWords, hydrated]);
 
  React.useEffect(() => {
+ if (!hydrated) return;
  safeWriteStorage(BEST_STREAK_STORAGE_KEY, String(bestStreak));
- }, [bestStreak]);
-
- React.useEffect(() => {
- if (deckSource ==="weak"&& weakWords.length === 0) {
- setDeckSource("list");
- setPromptIndex(0);
- resetPromptOnly();
- }
- // eslint-disable-next-line react-hooks/exhaustive-deps
- }, [deckSource, weakWords.length]);
+ }, [bestStreak, hydrated]);
 
  function resetPromptOnly() {
  answeredPromptRef.current = false;
@@ -323,6 +316,7 @@ export default function MorseCodeWordTrainer() {
 
  function practiceWeakWords() {
  if (!weakWords.length) return;
+ setWeakRound(weakItems.map(item => ({ ...item })));
  setDeckSource("weak");
  setDeckSeed(Date.now());
  resetRoundPosition();
@@ -330,9 +324,7 @@ export default function MorseCodeWordTrainer() {
 
  function addWeakWord(word: string) {
  if (!word) return;
- setWeakWords((current) =>
- current.includes(word) ? current : [...current, word],
- );
+ recordMissedTarget({ source: "word-trainer", mode, target: word, private: activePrivate });
  }
 
  function playWord(word = activeWord) {
@@ -344,7 +336,7 @@ export default function MorseCodeWordTrainer() {
  function checkAnswer() {
  if (!activeWord || feedback !=="idle" || !normalizedAnswer || answeredPromptRef.current) return;
  answeredPromptRef.current = true;
- setSubmitted({ expected: mode === "morse_to_text" ? normalizeTextAnswer(expectedAnswer) : normalizeMorseAnswer(expectedAnswer), attempted: normalizedAnswer, correct: answerIsCorrect, kind: mode === "text_to_morse" ? "morse" : "text" });
+ setSubmitted(captureReviewAnswer({ expected: mode === "morse_to_text" ? normalizeTextAnswer(expectedAnswer) : normalizeMorseAnswer(expectedAnswer), attempted: normalizedAnswer, correct: answerIsCorrect, kind: mode === "text_to_morse" ? "morse" : "text" }, { source: "word-trainer", mode, target: activeWord, private: activePrivate }));
  if (runStartedAt === null) setRunStartedAt(Date.now());
 
  setAttempts((value) => value + 1);
@@ -362,7 +354,6 @@ export default function MorseCodeWordTrainer() {
  } else {
  setFeedback("incorrect");
  setStreak(0);
- addWeakWord(activeWord);
  }
  }
 
@@ -397,7 +388,13 @@ export default function MorseCodeWordTrainer() {
  }
 
  function clearWeakWords() {
- setWeakWords([]);
+ removeReviewSource("word-trainer");
+ // Keep the existing explicit-clear flow: return to the selected source list.
+ if (deckSource === "weak") {
+ setDeckSource("list");
+ setPromptIndex(0);
+ resetPromptOnly();
+ }
  setCopyStatus("");
  }
 
@@ -776,6 +773,8 @@ className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg t
  </span>
  </div>
 
+ <p className="mt-3 text-sm text-slate-600">Weak words are saved in this browser's review queue. Custom targets stay private.</p>
+ {reviewQueue.notice && <p role="status" className="mt-2 text-sm">{reviewQueue.notice}</p>}
  {weakWords.length ? (
  <>
  <div className="mt-4 flex flex-wrap gap-2">

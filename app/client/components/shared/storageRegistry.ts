@@ -1,4 +1,5 @@
 import { CHARACTER_SPEED_RANGE } from "~/client/components/shared/morseSettings";
+import { parseReviewQueue, REVIEW_JSON_LIMIT, REVIEW_STORAGE_KEY, REVIEW_TARGET_LIMIT, serializeReviewQueue } from "~/client/components/learning/learningReviewSchema";
 
 export type StorageSensitivity =
   | "preference"
@@ -51,7 +52,7 @@ export type StorageKeyDefinition = {
 
 export const STORAGE_LIMITS = {
   sourceTextMaxLength: 25_000,
-  wordTrainerCustomWordsMaxLength: 4_000,
+  wordTrainerCustomWordsMaxLength: REVIEW_TARGET_LIMIT,
   filenameMaxLength: 120,
   printableChartJsonMaxLength: 90_000,
   preferenceJsonMaxLength: 24_000,
@@ -664,6 +665,20 @@ export const STORAGE_KEY_REGISTRY: readonly StorageKeyDefinition[] = [
     STORAGE_LIMITS.wordTrainerCustomWordsMaxLength,
   ),
   progressKey("mw_word_trainer_best_streak", "word trainer best streak"),
+
+  {
+    key: REVIEW_STORAGE_KEY,
+    routeScope: "local learning review queue",
+    valueType: "json-object",
+    defaultValue: serializeReviewQueue([]),
+    validatorName: "versionedBoundedLearningReviewQueue",
+    validate: raw => parseReviewQueue(raw) !== null,
+    sensitivity: "source text",
+    clearBehaviors: ["clear source data", "clear all site data"],
+    versionStrategy: "version 1; new key, no legacy progress or custom-word keys overwritten",
+    maxLength: REVIEW_JSON_LIMIT,
+    notes: "At most 100 missed targets; never stores submitted learner answers. Custom targets stay private on this device.",
+  },
 
   {
     key: STORAGE_KEYS.printableChartSettings,

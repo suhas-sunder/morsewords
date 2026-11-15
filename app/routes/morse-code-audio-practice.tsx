@@ -1,3 +1,7 @@
+import { useReviewAudioIntent } from "~/client/components/learning/reviewAudioHandoff";
+import type { ReviewItem } from "~/client/components/learning/learningReviewSchema";
+import { Link } from "react-router";
+import { captureReviewAnswer } from "~/client/components/learning/reviewSubmission";
 import AnswerComparison, { type SubmittedAnswer } from "~/client/components/learning/AnswerComparison";
 import { useLearningSessionIntent } from "~/client/components/learning/useLearningSessionIntent";
 import * as React from "react";
@@ -119,6 +123,8 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function MorseCodeAudioPractice() {
+  const readReviewIntent = useReviewAudioIntent();
+  const [reviewItem, setReviewItem] = React.useState<ReviewItem | null>(null);
   const readSessionIntent = useLearningSessionIntent("/morse-code-audio-practice");
   const player = useMorseAudio();
   const playerRef = React.useRef(player);
@@ -199,7 +205,9 @@ export default function MorseCodeAudioPractice() {
     );
     setDifficulty(storedDifficulty);
     setBestStreak(readStoredInt(BEST_STREAK_STORAGE_KEY, 0));
-    setPrompt(pickPrompt(getAudioPrompts(storedDifficulty)));
+    const review = readReviewIntent();
+    setReviewItem(review);
+    setPrompt(review ? { text: review.target, type: review.target.includes(" ") ? "sentence" : "word", difficulty: storedDifficulty } : pickPrompt(getAudioPrompts(storedDifficulty)));
     const preferences = readSharedAudioPreferences();
     setCharWpm(preferences.charWpm);
     setFarnsworthWpm(preferences.farnsworthWpm);
@@ -213,7 +221,7 @@ export default function MorseCodeAudioPractice() {
     setFlash(preferences.flash);
     setAdvancedOpen(preferences.advancedOpen);
     setHydrated(true);
-  }, [readSessionIntent]);
+  }, [readSessionIntent, readReviewIntent]);
 
   React.useEffect(() => {
     if (!hydrated) return;
@@ -248,6 +256,7 @@ export default function MorseCodeAudioPractice() {
       didSyncInitialDifficulty.current = true;
       return;
     }
+    setReviewItem(null);
     setPrompt((current) => pickPrompt(promptPool, current.text));
     setAnswer("");
     setFeedback("idle"); setSubmitted(null);
@@ -315,7 +324,7 @@ export default function MorseCodeAudioPractice() {
     if (!normalizedAnswer || feedback !== "idle") {
       return;
     }
-    setSubmitted({ expected: expectedAnswer, attempted: normalizedAnswer, correct: normalizedAnswer === expectedAnswer, kind: "text" });
+    setSubmitted(captureReviewAnswer({ expected: expectedAnswer, attempted: normalizedAnswer, correct: normalizedAnswer === expectedAnswer, kind: "text" }, reviewItem ?? { source: "audio-practice", mode: "morse_to_text", target: expectedAnswer, private: false }));
     setAttempts((value) => value + 1);
     if (normalizedAnswer === expectedAnswer) {
       setCorrect((value) => value + 1);
@@ -339,6 +348,7 @@ export default function MorseCodeAudioPractice() {
 
   function nextPrompt({ skippedPrompt = false }: { skippedPrompt?: boolean } = {}) {
     player.stop();
+    setReviewItem(null);
     setPrompt((current) => pickPrompt(promptPool, current.text));
     setAnswer("");
     setFeedback("idle"); setSubmitted(null);
@@ -351,6 +361,7 @@ export default function MorseCodeAudioPractice() {
 
   function resetSession() {
     player.stop();
+    setReviewItem(null);
     setPrompt((current) => pickPrompt(promptPool, current.text));
     setAnswer("");
     setFeedback("idle"); setSubmitted(null);
@@ -416,6 +427,7 @@ export default function MorseCodeAudioPractice() {
           />
         </PageHero>
 
+        {reviewItem && <p className="mt-5 max-w-[68ch] text-slate-700" role="status">Reviewing one saved listening target. Press Play when ready. Next prompt returns to your selected difficulty. <Link className="font-semibold text-sky-900 underline underline-offset-4" to="/practice#review-queue">Back to review queue</Link></p>}
         <section className="mw-static-surface-soft mt-8 rounded-xl bg-[#fffaf2]/45 px-5 py-6 sm:px-8 lg:px-10">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="flex flex-wrap gap-2">
@@ -423,7 +435,7 @@ export default function MorseCodeAudioPractice() {
                 <button
                   key={option.value}
                   type="button"
-                  onClick={() => setDifficulty(option.value)}
+                  onClick={() => { if (reviewItem && option.value === difficulty) nextPrompt(); setDifficulty(option.value); }}
                   className={toolControlButtonClass({
                     active: difficulty === option.value,
                     rounded: "xl",

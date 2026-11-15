@@ -1,3 +1,5 @@
+import { captureReviewAnswer } from "~/client/components/learning/reviewSubmission";
+import { morseWithWordSlashes, canonicalizeSentenceMorse, checkSentenceMorseAnswer } from "~/client/components/learning/learningAnswerRules";
 import AnswerComparison, { type SubmittedAnswer } from "~/client/components/learning/AnswerComparison";
 import * as React from "react";
 
@@ -23,10 +25,8 @@ import type {
  Prompt,
  PromptKind,
 } from "~/client/components/practice/PromptCard";
-import { checkAnswer } from "~/client/components/practice/practiceEngine";
 import {
  countTextWords,
- normalizeMorseForDecoding,
  normalizeTextForEncoding,
  splitMorseWords,
  textToMorse,
@@ -126,45 +126,6 @@ function pickKind(mode: DrillMode): PromptKind {
 
 function wordCount(text: string) {
  return countTextWords(text);
-}
-
-function morseWithWordSlashes(text: string) {
- return splitMorseWords(textToMorse(text))
- .map((word) => word.join(""))
- .join("/");
-}
-
-function canonicalizeSentenceMorse(input: string) {
- // Treat pasted line breaks as spacing, not automatic word breaks.
- // Long revealed answers can wrap when copied, and those inserted/newline
- // breaks should not make an otherwise correct Morse sentence fail.
- const wrappedInput = (input ??"").replace(/\r\n|\r|\n/g," ");
- const { invalidChars } = normalizeMorseForDecoding(wrappedInput);
- const words = splitMorseWords(wrappedInput)
- .map((word) => word.join(""))
- .filter(Boolean);
-
- return { value: words.join("/"), invalidChars };
-}
-
-function checkSentenceMorseAnswer(prompt: Prompt, answer: string) {
- if (prompt.kind !=="text_to_morse") return checkAnswer(prompt, answer);
-
- const expected = canonicalizeSentenceMorse(morseWithWordSlashes(prompt.plain));
- const got = canonicalizeSentenceMorse(answer);
- const ok =
- expected.value.length > 0 &&
- got.invalidChars.length === 0 &&
- expected.value === got.value;
-
- return {
- ok,
- msg: ok ?"Correct":"Not quite. Try again.",
- expected: morseWithWordSlashes(prompt.plain),
- got: answer,
- normalizedExpected: expected.value,
- normalizedGot: got.value,
- };
 }
 
 function countMorseSentenceWords(input: string) {
@@ -437,7 +398,7 @@ export default function SentencePracticePage({ jsonLd }: { jsonLd: unknown }) {
 
  setAttempts((value) => value + 1);
  const result = checkSentenceMorseAnswer(prompt, answer);
- setSubmitted({ expected: result.normalizedExpected, attempted: result.normalizedGot, correct: result.ok, kind: prompt.kind === "text_to_morse" ? "morse" : "text" });
+ setSubmitted(captureReviewAnswer({ expected: result.normalizedExpected, attempted: result.normalizedGot, correct: result.ok, kind: prompt.kind === "text_to_morse" ? "morse" : "text" }, { source: "sentence", mode: prompt.kind, target: prompt.plain, private: false }));
 
  if (result.ok) {
  const nextStreak = streak + 1;

@@ -2,12 +2,16 @@ import { useState } from "react";
 import { ToolButton } from "~/client/components/shared/ToolWorkspace";
 import { textToMorse } from "~/client/components/shared/morseUtils";
 import { compareAnswerElements, describeDifference } from "./answerDifferences";
+import type { MissedTarget } from "./learningReviewSchema";
+import ReviewQueueNotice from "./ReviewQueueNotice";
 
 export type SubmittedAnswer = {
   expected: string;
   attempted: string;
   correct: boolean;
   kind: "text" | "morse";
+  reviewTarget?: MissedTarget;
+  queued?: boolean;
 };
 
 export default function AnswerComparison({ answer, optional = false }: {
@@ -15,7 +19,7 @@ export default function AnswerComparison({ answer, optional = false }: {
   optional?: boolean;
 }) {
   const [open, setOpen] = useState(!optional);
-  if (!open) return <div className="mt-3"><ToolButton type="button" onClick={() => setOpen(true)}>Compare submitted answer</ToolButton></div>;
+  if (!open) return <div className="mt-3"><ToolButton type="button" onClick={() => setOpen(true)}>Compare submitted answer</ToolButton><ReviewQueueNotice answer={answer} /></div>;
   const result = compareAnswerElements(answer.expected, answer.attempted);
   const summary = answer.correct ? "Your answer matches."
     : result.count ? `${result.count}${result.truncated ? " or more" : ""} difference${result.count === 1 ? "" : "s"} in the compared answer.`
@@ -41,5 +45,6 @@ export default function AnswerComparison({ answer, optional = false }: {
     {result.groupCount > 8 && <p className="mt-2 text-sm">Showing the first 8 groups of differences.</p>}
     {result.truncated && <p className="mt-2 text-sm">Comparison is limited to the first 240 characters. Your exercise checks the full answer.</p>}
     <p className="mt-3 max-w-[68ch] text-sm">This compares the submitted answer using this exercise’s formatting rules. Try again or continue when ready.</p>
+    <ReviewQueueNotice answer={answer} />
   </section>;
 }
