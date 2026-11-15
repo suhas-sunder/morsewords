@@ -62,14 +62,27 @@ commit assignment, dependencies/cycles, statuses, gates, rollback and the AGENTS
 source-of-truth section. RELEASED additionally requires actual candidate/deploy,
 owner-decision and live-check evidence. VALIDATED is review readiness only.
 
-The optional `release:select-gates` command only prints commands. Supply selected
-packages, all shipped/included prerequisites and reviewed affected surfaces, for
-example `npm run release:select-gates -- --packages=W16 --included=W09,W10,W11,W12,W13,W14,W15 --surfaces=shared-audio`.
-Run common gates and each selected package's focused gates. Include W09 freshness
-whenever W09 is present; include W12 lifecycle/parity when shared audio is touched;
-include W17 payload isolation when library runtime is touched after W17. Inspect
-the real diff before assigning surfaces; omission is not a waiver. The selector
-neither executes tests nor changes branches, commits, deployment or files.
+The optional `release:select-gates` command is advisory/read-only and only prints
+commands; it never executes tests or a release, or changes files, commits, branches
+or deployments. Packages with actual `RELEASED` status and validated production
+evidence are recognized automatically. `VALIDATED` alone does not mean shipped.
+Use `--included` for validated prerequisites intentionally shipped in this same
+fresh candidate, not to re-list historical releases. For example, with the current
+unreleased manifest: `npm run release:select-gates -- --packages=W02 --included=W01`.
+
+Dependency closure is checked recursively for every selected and explicitly
+included package, including internal hardening dependencies. Missing prerequisites
+fail with the dependency chain; the selector does not silently add them. W19 with
+W18 alone fails at W17; W17 and W18 also require their complete earlier chain
+unless those prerequisites are actually released. Selected/included packages must
+be VALIDATED or RELEASED. Run common and focused gates for every package being
+shipped, not merely for the primary package named in one selector invocation.
+
+Persistent gates activate when their introducing package is RELEASED or explicitly
+selected/included: W09 navigation freshness is always on; W12 lifecycle/parity
+requires `--surfaces=shared-audio`; W17 payload isolation requires
+`--surfaces=library-runtime`. Surfaces remain operator-reviewed against the actual
+candidate diff, never inferred from filenames. Omission is not a waiver.
 
 The navigation check is also inside the normal built-handler release gate. It
 accepts Git's LF/CRLF checkout newlines, rejects stale/missing content and never
