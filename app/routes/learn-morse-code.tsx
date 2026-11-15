@@ -1,7 +1,8 @@
 import LearningSessionChooser from "~/client/components/learning/LearningSessionChooser";
 import { STARTER_CHARACTERS } from "~/client/components/learning/learningSessions";
 import PrintableCharts from "~/client/components/shared/PrintableCharts";
-import type { ReactNode } from "react";
+import { lazy, Suspense, useState, type ReactNode } from "react";
+import { ToolButton } from "~/client/components/shared/ToolWorkspace";
 import type { Route } from "./+types/learn-morse-code";
 
 import {
@@ -21,6 +22,8 @@ import styles from "~/client/components/shared/pageStyles";
 import { canonicalUrl, seoMeta, SITE_URL } from "~/client/seo";
 import BreadcrumbTrail from "~/client/components/shared/BreadcrumbTrail";
 import { SOURCE_LINKS } from "~/client/data/morseLearning";
+
+const LearningDataPanel = lazy(() => import("~/client/components/learning/LearningDataPanel"));
 
 const CANONICAL_PATH = "/learn-morse-code";
 const CANONICAL_URL = canonicalUrl(CANONICAL_PATH);
@@ -290,6 +293,7 @@ function FirstSessionPlan() {
 }
 
 export default function LearnMorseCode() {
+  const [dataOpen, setDataOpen] = useState(false);
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -350,6 +354,11 @@ export default function LearnMorseCode() {
         </PageHero>
 
         <LearningSessionChooser />
+        <section id="learning-data" aria-labelledby="learning-data-title" className="mt-9 scroll-mt-28 sm:mt-11">
+          <h2 id="learning-data-title" className="text-3xl font-extrabold text-sky-950">Keep your learning progress</h2>
+          <p className="mt-3 max-w-[68ch] text-slate-700">Save a local learning file or restore one on this device. Review every change before replacing saved progress.</p>
+          {!dataOpen ? <ToolButton className="mt-4" aria-expanded={false} onClick={() => setDataOpen(true)}>Manage learning data</ToolButton> : <Suspense fallback={<p role="status" className="mt-4">Opening learning data controls…</p>}><LearningDataPanel /></Suspense>}
+        </section>
 
         <SectionCard
           eyebrow="First concepts"

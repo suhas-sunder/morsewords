@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { ToolButton, ToolPanel, ToolTextarea } from "~/client/components/shared/ToolWorkspace";
 import { textToMorse } from "~/client/components/shared/morseUtils";
 import AnswerComparison, { type SubmittedAnswer } from "./AnswerComparison";
@@ -40,6 +40,7 @@ export default function ReviewQueuePanel() {
   return <div ref={inputRef} className="mt-4 text-slate-700">
     <p className="max-w-[68ch]">Missed targets stay in this browser, with the most recently marked first. Up to {REVIEW_LIMIT} targets are kept; a new target replaces the oldest when full. Submitted answers are never saved. Custom words are private local items.</p>
     <p className="mt-2 max-w-[68ch]">Review uses the original exercise’s answer rules. Listening items open in audio practice with your audio settings and wait for you to press Play. You decide when to remove an item.</p>
+    <p className="mt-2"><Link to="/learn-morse-code#learning-data" className="font-semibold text-sky-900 underline underline-offset-4">Back up or restore learning data</Link></p>
     {queue.notice && <p role="status" className="mt-3 max-w-[68ch]">{queue.notice}</p>}
     <div className="mt-4 flex flex-wrap gap-3">
       <ToolButton tone="dark" disabled={!queue.items.length} onClick={() => start(queue.items)}>Start review</ToolButton>
