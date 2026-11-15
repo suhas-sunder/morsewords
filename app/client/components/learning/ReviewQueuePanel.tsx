@@ -8,6 +8,7 @@ import { REVIEW_LIMIT, REVIEW_SOURCE_LABELS, reviewItemKey, type ReviewItem } fr
 import { clearReviewQueue, removeReviewItem, useReviewQueue } from "./learningReviewStore";
 import { stageReviewAudio } from "./reviewAudioHandoff";
 import { captureReviewAnswer } from "./reviewSubmission";
+import { useSessionResultFocus } from "./SessionNextStep";
 
 export default function ReviewQueuePanel() {
   const queue = useReviewQueue();
@@ -18,13 +19,22 @@ export default function ReviewQueuePanel() {
   const [answer, setAnswer] = useState("");
   const [submitted, setSubmitted] = useState<SubmittedAnswer | null>(null);
   const [checks, setChecks] = useState(0);
+  const [solved, setSolved] = useState(0);
+  const [result, setResult] = useState<{ finished: number; correct: number; total: number } | null>(null);
+  const resultRef = useSessionResultFocus(result !== null);
   const inputRef = useRef<HTMLDivElement>(null);
   const item = deck[position];
   const audio = item && ["audio-practice", "audio-quiz"].includes(item.source);
   function start(items: ReviewItem[]) {
     setDeck(items.map(value => ({ ...value })));
     setPosition(0); setAnswer(""); setSubmitted(null);
+    setSolved(0); setResult(null);
     requestAnimationFrame(() => inputRef.current?.querySelector("textarea")?.focus());
+  }
+  function finishReview(advance = false) {
+    const includeCurrent = advance || submitted !== null;
+    setResult({ finished: position + Number(includeCurrent), correct: solved + Number(Boolean(submitted?.correct)), total: deck.length });
+    setPosition(deck.length);
   }
   return <div ref={inputRef} className="mt-4 text-slate-700">
     <p className="max-w-[68ch]">Missed targets stay in this browser, with the most recently marked first. Up to {REVIEW_LIMIT} targets are kept; a new target replaces the oldest when full. Submitted answers are never saved. Custom words are private local items.</p>
@@ -61,11 +71,19 @@ export default function ReviewQueuePanel() {
         {submitted && <AnswerComparison key={checks} answer={submitted} />}
       </form>}
       <div className="mt-4 flex flex-wrap gap-3">
-        <ToolButton onClick={() => { setPosition(value => value + 1); setAnswer(""); setSubmitted(null); requestAnimationFrame(() => inputRef.current?.querySelector("textarea")?.focus()); }}>{position + 1 === deck.length ? "Finish review" : "Next review item"}</ToolButton>
-        <ToolButton onClick={() => setDeck([])}>Close review exercise</ToolButton>
+        <ToolButton onClick={() => {
+          if (position + 1 === deck.length) finishReview(true);
+          else { setSolved(value => value + Number(Boolean(submitted?.correct))); setPosition(value => value + 1); setAnswer(""); setSubmitted(null); requestAnimationFrame(() => inputRef.current?.querySelector("textarea")?.focus()); }
+        }}>{position + 1 === deck.length ? "Finish review" : "Next review item"}</ToolButton>
+        <ToolButton onClick={() => finishReview()}>Finish review early</ToolButton>
+        <ToolButton onClick={() => { setDeck([]); setResult(null); }}>Close review exercise</ToolButton>
       </div>
     </section>}
-    {deck.length > 0 && !item && <p role="status" className="mt-5">You reached the end of this review list. Targets stay saved until you remove them; reaching the end does not mean every target was answered correctly.</p>}
+    {result && <section aria-label="Review session results" className="mt-5">
+      <h3 ref={resultRef} tabIndex={-1} className="text-2xl font-extrabold text-sky-950">Review session finished</h3>
+      <p role="status" className="mt-2">{result.finished} of {result.total} targets finished: {result.correct} solved, {result.finished - result.correct} skipped without a correct answer. {result.total - result.finished} unfinished.</p>
+      <p className="mt-2 max-w-[68ch]">Targets stay saved until you remove them. Reloading starts a fresh review round and keeps the saved queue. Listening review opens a separate listening session.</p>
+    </section>}
     {queue.items.length > 0 && <ul className="mt-6 divide-y divide-slate-300" aria-label="Saved review targets">
       {queue.items.map(target => <li key={reviewItemKey(target)} className="flex flex-wrap items-center justify-between gap-3 py-3">
         <div className="min-w-0 flex-1"><p className="truncate font-mono text-sky-950">{target.target}</p><p className="mt-1 text-sm">{REVIEW_SOURCE_LABELS[target.source]} · {target.mode === "text_to_morse" ? "Write Morse" : "Recognize Morse"} · {target.misses} {target.misses === 1 ? "time" : "times"} marked{target.private ? " · Private" : ""}</p></div>

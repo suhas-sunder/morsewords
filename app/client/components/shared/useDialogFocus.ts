@@ -23,6 +23,9 @@ export function useDialogFocus({ open, dialogRef, triggerRef, initialFocusRef, m
     outside.forEach(({ node }) => { node.inert = true; });
 
     const keydown = (event: KeyboardEvent) => {
+      // Downloads can leave focus on body in WebKit. An inert parent dialog
+      // still must not consume the foreground dialog's Escape/Tab event.
+      if (event.defaultPrevented || dialog.closest("[inert]")) return;
       const active = document.activeElement as HTMLElement | null;
       const nearestDialog = active?.closest('[role="dialog"]');
       // The nested display-settings dialog owns its own Escape key.

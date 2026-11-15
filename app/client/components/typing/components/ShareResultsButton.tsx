@@ -1,4 +1,6 @@
 import * as React from "react";
+import { createPortal } from "react-dom";
+import { useDialogFocus } from "~/client/components/shared/useDialogFocus";
 
 import { DownloadIcon } from "~/client/assets/svg/Icons";
 import {
@@ -203,6 +205,9 @@ async function renderShareImage(args: Props): Promise<Blob> {
 export default function ShareResultsButton(props: Props) {
   const dialogTitleId = React.useId();
   const [open, setOpen] = React.useState(false);
+  const dialogRef = React.useRef<HTMLDivElement>(null);
+  const triggerRef = React.useRef<HTMLButtonElement>(null);
+  useDialogFocus({ open, dialogRef, triggerRef, modal: true, onClose: () => setOpen(false) });
   const [pngUrl, setPngUrl] = React.useState<string | null>(null);
   const [pngBlob, setPngBlob] = React.useState<Blob | null>(null);
   const [busy, setBusy] = React.useState(false);
@@ -251,20 +256,21 @@ export default function ShareResultsButton(props: Props) {
   return (
     <>
       <ActionButton
-        onClick={() => setOpen(true)}
+        onClick={event => { triggerRef.current = event.currentTarget; setOpen(true); }}
         aria-label="Share results"
       >
         Share results
       </ActionButton>
 
-      {open ? (
+      {open && typeof document !== "undefined" ? createPortal(
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
+          ref={dialogRef}
+          className="mw-page-content fixed inset-0 z-[10001] flex items-center justify-center bg-black/40 p-4"
           role="dialog"
           aria-modal="true"
           aria-labelledby={dialogTitleId}
         >
-          <div className="mw-static-panel w-full max-w-3xl overflow-hidden rounded-xl bg-[#fffdf8]">
+          <div className="mw-surface max-h-[calc(100dvh-2rem)] w-full max-w-3xl overflow-y-auto rounded-xl">
             <div className="mw-static-surface-soft flex items-center justify-between bg-[#fffaf2] p-4 sm:p-5">
               <div>
                 <div
@@ -330,7 +336,7 @@ export default function ShareResultsButton(props: Props) {
             </div>
           </div>
         </div>
-      ) : null}
+      , document.body) : null}
     </>
   );
 }
