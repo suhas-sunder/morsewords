@@ -1,3 +1,4 @@
+import AnswerComparison, { type SubmittedAnswer } from "~/client/components/learning/AnswerComparison";
 import * as React from "react";
 import type { Route } from "./+types/morse-code-word-trainer";
 
@@ -187,6 +188,7 @@ export default function MorseCodeWordTrainer() {
  const [deckSeed, setDeckSeed] = React.useState(12053);
  const [promptIndex, setPromptIndex] = React.useState(0);
  const [answer, setAnswer] = React.useState("");
+ const [submitted, setSubmitted] = React.useState<SubmittedAnswer | null>(null);
  const [feedback, setFeedback] = React.useState<FeedbackState>("idle");
  const [showAnswer, setShowAnswer] = React.useState(false);
  const [weakWords, setWeakWords] = React.useState<string[]>([]);
@@ -272,7 +274,7 @@ export default function MorseCodeWordTrainer() {
  function resetPromptOnly() {
  answeredPromptRef.current = false;
  setAnswer("");
- setFeedback("idle");
+ setFeedback("idle"); setSubmitted(null);
  setShowAnswer(false);
  setCopyStatus("");
  }
@@ -342,6 +344,7 @@ export default function MorseCodeWordTrainer() {
  function checkAnswer() {
  if (!activeWord || feedback !=="idle" || !normalizedAnswer || answeredPromptRef.current) return;
  answeredPromptRef.current = true;
+ setSubmitted({ expected: mode === "morse_to_text" ? normalizeTextAnswer(expectedAnswer) : normalizeMorseAnswer(expectedAnswer), attempted: normalizedAnswer, correct: answerIsCorrect, kind: mode === "text_to_morse" ? "morse" : "text" });
  if (runStartedAt === null) setRunStartedAt(Date.now());
 
  setAttempts((value) => value + 1);
@@ -366,7 +369,7 @@ export default function MorseCodeWordTrainer() {
  function tryAgain() {
  answeredPromptRef.current = false;
  setAnswer("");
- setFeedback("idle");
+ setFeedback("idle"); setSubmitted(null);
  setShowAnswer(false);
  }
 
@@ -623,7 +626,7 @@ className="mt-2 min-h-36 w-full rounded-xl bg-[#fffdf8] p-4 font-mono text-sm tr
  setAnswer(event.target.value);
  if (feedback ==="incorrect") {
  answeredPromptRef.current = false;
- setFeedback("idle");
+ setFeedback("idle"); setSubmitted(null);
  }
  }}
  onKeyDown={(event) => {
@@ -669,13 +672,16 @@ className="mt-2 min-h-12 w-full rounded-xl bg-[#fffdf8] px-4 font-mono text-lg t
  </ToolButton>
  </div>
 
- <FeedbackCard
+ {submitted && feedback !== "idle" ? <>
+ <p className="mt-4 text-sm font-semibold text-sky-950">{submitted.correct ? "Correct." : `Not quite. Expected: ${activeWord}.`}</p>
+ <AnswerComparison key={attempts} answer={submitted} />
+ </> : <FeedbackCard
  state={feedback}
  word={activeWord}
  morse={activeMorse}
  showAnswer={showAnswer}
  mode={mode}
- />
+ />}
  </div>
  </div>
 

@@ -102,7 +102,7 @@ export function checkAnswer(prompt: Prompt, answer: string): CheckResult {
 
     return {
       ok,
-      // Never leak the expected answer in the UI (users may want multiple attempts).
+      // Keep compact status separate from an explicitly requested comparison.
       msg: ok ? "Correct" : "Not quite. Try again.",
       expected,
       got: raw,
@@ -126,7 +126,7 @@ export function checkAnswer(prompt: Prompt, answer: string): CheckResult {
 
   return {
     ok,
-    // Never leak the expected answer in the UI (users may want multiple attempts).
+    // Keep compact status separate from an explicitly requested comparison.
     msg: ok ? "Correct" : "Not quite. Try again.",
     expected,
     got: raw,

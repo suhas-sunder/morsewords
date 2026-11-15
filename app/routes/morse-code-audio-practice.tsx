@@ -1,3 +1,4 @@
+import AnswerComparison, { type SubmittedAnswer } from "~/client/components/learning/AnswerComparison";
 import { useLearningSessionIntent } from "~/client/components/learning/useLearningSessionIntent";
 import * as React from "react";
 import type { Route } from "./+types/morse-code-audio-practice";
@@ -130,6 +131,7 @@ export default function MorseCodeAudioPractice() {
     getAudioPrompts(DEFAULT_AUDIO_DIFFICULTY)[0],
   );
   const [answer, setAnswer] = React.useState("");
+  const [submitted, setSubmitted] = React.useState<SubmittedAnswer | null>(null);
   const [feedback, setFeedback] = React.useState<"idle" | "correct" | "missed" | "revealed">(
     "idle",
   );
@@ -248,7 +250,7 @@ export default function MorseCodeAudioPractice() {
     }
     setPrompt((current) => pickPrompt(promptPool, current.text));
     setAnswer("");
-    setFeedback("idle");
+    setFeedback("idle"); setSubmitted(null);
     player.stop();
   }, [difficulty, promptPool, hydrated]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -313,6 +315,7 @@ export default function MorseCodeAudioPractice() {
     if (!normalizedAnswer || feedback !== "idle") {
       return;
     }
+    setSubmitted({ expected: expectedAnswer, attempted: normalizedAnswer, correct: normalizedAnswer === expectedAnswer, kind: "text" });
     setAttempts((value) => value + 1);
     if (normalizedAnswer === expectedAnswer) {
       setCorrect((value) => value + 1);
@@ -338,7 +341,7 @@ export default function MorseCodeAudioPractice() {
     player.stop();
     setPrompt((current) => pickPrompt(promptPool, current.text));
     setAnswer("");
-    setFeedback("idle");
+    setFeedback("idle"); setSubmitted(null);
     setCompleted((value) => value + 1);
     if (skippedPrompt) {
       setSkipped((value) => value + 1);
@@ -350,7 +353,7 @@ export default function MorseCodeAudioPractice() {
     player.stop();
     setPrompt((current) => pickPrompt(promptPool, current.text));
     setAnswer("");
-    setFeedback("idle");
+    setFeedback("idle"); setSubmitted(null);
     setAttempts(0);
     setCorrect(0);
     setCompleted(0);
@@ -467,7 +470,7 @@ export default function MorseCodeAudioPractice() {
                 value={answer}
                 onChange={(event) => {
                   setAnswer(event.target.value);
-                  if (feedback !== "revealed") setFeedback("idle");
+                  if (feedback !== "revealed") setFeedback("idle"); setSubmitted(null);
                 }}
                 onKeyDown={(event) => {
                   if (event.key === "Enter" && (event.ctrlKey || event.metaKey)) {
@@ -529,6 +532,8 @@ export default function MorseCodeAudioPractice() {
                   : "Not quite. Compare the answer, replay the sound, then continue."}
             </div>
           ) : null}
+
+          {submitted && feedback !== "idle" && <AnswerComparison key={attempts} answer={submitted} />}
 
           <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
             <button
