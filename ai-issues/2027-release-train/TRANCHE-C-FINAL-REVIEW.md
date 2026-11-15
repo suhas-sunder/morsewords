@@ -329,3 +329,17 @@ canonical route registry and ad implementation remain protected.
 These are local review/isolation verdicts with the stated platform/hosted-preview
 limits, not production release approval. Compact safety evidence is in
 [evidence/w24-release-checks.json](evidence/w24-release-checks.json).
+
+
+## Post-review release-selector infrastructure amendment
+
+The owner-approved W17–W24 product stack remains unchanged. A separate review
+branch, `review/2027-release-selector-hardening`, starts at final W24 receipt
+`164bef1d3d0a98461c1aa4b01aac4d629a8e5e34`. Implementation
+`380b4135ecc5a6a298c923d5e4e90c7e3d2a7435` closes transitive dependency and
+released-package persistent-gate gaps in the advisory selector. It is assigned
+once to Tranche B hardening, not W25. See the appended
+[Tranche B amendment evidence](TRANCHE-B-HARDENING.md). No current package is
+marked RELEASED, no production evidence was fabricated, and no production action
+occurred. The selector remains read-only and affected surfaces remain reviewed
+manually.

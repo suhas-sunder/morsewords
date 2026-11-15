@@ -75,3 +75,50 @@ Rollback: revert these selected amendments/infrastructure changes on a fresh
 current-main candidate in dependency order, preserving user data and subsequent
 emergency fixes. Revalidate and follow the owner release procedure. No main merge
 or production deployment is authorized by this review.
+
+
+## Final release-selector amendment after W24 owner review
+
+Base: `164bef1d3d0a98461c1aa4b01aac4d629a8e5e34`.
+Implementation: `380b4135ecc5a6a298c923d5e4e90c7e3d2a7435` on
+`review/2027-release-selector-hardening`, in its own clean isolated worktree.
+This is an amendment to Tranche B infrastructure, not a weekly product package.
+The separate documentation receipt records the implementation SHA once in this
+internal package and `commitOrder`; it does not try to record its own future SHA.
+
+The old selector checked direct dependencies only for selected packages and built
+availability only from explicit IDs. Included packages could therefore hide
+missing prerequisites, and genuinely released gate owners were not recognized
+unless manually re-listed. The selector now validates all explicit IDs/statuses,
+adds only actual RELEASED records to availability, and recursively checks every
+selected/included dependency chain, including internal hardening records. Missing
+prerequisites report the full chain. PROPOSED, BLOCKED and IN_PROGRESS inclusions
+fail; VALIDATED is never treated as shipped. Traversal also checks the prerequisites
+of a released dependency reached from a candidate root.
+
+Persistent always gates activate for released or explicit owners. Affected gates
+still require an operator-reviewed surface; there is no filename inference. The
+selector still only validates, reads and prints commands. It does not execute
+listed tests, mutate the manifest or perform any Git/deployment action. Common
+and focused command listing remains scoped to explicitly selected packages.
+
+Eleven added regression tests cover the requested A–H cases, unreviewed included
+statuses, immutable inputs and command deduplication. The W09 test removes the
+same command from common/focused gates to prove activation comes from persistence.
+Synthetic release evidence exists only in test clones/ignored CLI fixtures.
+Current-manifest W19 + W18 fails at W17. W19 + W17,W18 alone also fails at W16:
+W17's existing prerequisites cannot be bypassed. Success includes W01–W18 and
+both hardening records, or recognizes genuinely released prerequisites. No
+checked-in dependency or status was weakened to make a shortened example pass.
+
+Validation: typecheck, build, manifest validator, navigation freshness and
+`git diff --check` passed. Release-integrity tests: 30/30 passed. Five direct CLI
+exercises verified incomplete-chain failure, complete-chain success, released W09
+always gate, released W12 affected gate with shared-audio, and its absence without
+that surface. `npm test` against the local production build: 28/28 smoke tests passed.
+
+Weekly statuses remain W01–W24 VALIDATED (24), W25–W52 PROPOSED (28), zero RELEASED.
+The protected original checkout still matches all 191 file hashes and exact dirty
+status. W17–W24 application code, UI, runtime, sitemap, rights and production
+configuration are unchanged; W25 was not started. Origin/main remains
+`8c83c8214d515565c314ff99bc3df8af88e73121`. No main push, merge or deploy.
