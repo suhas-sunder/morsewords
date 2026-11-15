@@ -1,0 +1,1295 @@
+{
+  "methodology": "Fresh Chromium contexts, same local built handler, fixed 250ms local asset responses, no third-party resources; lab observations only",
+  "baselineSha": "689d8ea38965b37d70138d761f5407cd01bffcb1",
+  "w17ImplementationSha": "6b059417459a40c3c243d18748aecd3e13d24860",
+  "finalApplicationSha": "8a859fd39fd4ad2c5ad676a5a0a2ea62262c2eb0",
+  "runtime": "Node 22.23.4; final Netlify offline production bundle; fresh Chromium at 390 and 1440px",
+  "observations": 30,
+  "keyRoutes": [
+    {
+      "route": "/",
+      "width": 390,
+      "w16": {
+        "jsBytes": 828196,
+        "jsGzip": 278551,
+        "htmlBytes": 223245,
+        "htmlGzip": 46231,
+        "serializedStreamBytes": 3095,
+        "loaderState": {
+          "bytes": 2776,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "w17": {
+        "jsBytes": 828196,
+        "jsGzip": 278551,
+        "htmlBytes": 223245,
+        "htmlGzip": 46231,
+        "serializedStreamBytes": 3095,
+        "loaderState": {
+          "bytes": 2776,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "w24": {
+        "jsBytes": 834255,
+        "jsGzip": 281423,
+        "htmlBytes": 223706,
+        "htmlGzip": 46328,
+        "serializedStreamBytes": 3095,
+        "loaderState": {
+          "bytes": 2776,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "deltaFromW17": {
+        "jsBytes": 6059,
+        "jsGzip": 2872,
+        "htmlBytes": 461,
+        "htmlGzip": 97
+      },
+      "largestInitialChunks": [
+        {
+          "path": "/assets/entry.client--OrFFHNb.js",
+          "bytes": 183222,
+          "gzip": 58381,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/array.no-external-CgJ7MXwd.js",
+          "bytes": 170102,
+          "gzip": 53666,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/chunk-EVOBXE3Y-DpuJhuNZ.js",
+          "bytes": 127714,
+          "gzip": 42870,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/root-C33gE8a-.js",
+          "bytes": 91047,
+          "gzip": 38324,
+          "hasFullManifest": false
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "/audio",
+      "width": 390,
+      "w16": {
+        "jsBytes": 819651,
+        "jsGzip": 275901,
+        "htmlBytes": 207855,
+        "htmlGzip": 43112,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "w17": {
+        "jsBytes": 819651,
+        "jsGzip": 275901,
+        "htmlBytes": 207855,
+        "htmlGzip": 43111,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "w24": {
+        "jsBytes": 825717,
+        "jsGzip": 278766,
+        "htmlBytes": 208416,
+        "htmlGzip": 43209,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "deltaFromW17": {
+        "jsBytes": 6066,
+        "jsGzip": 2865,
+        "htmlBytes": 561,
+        "htmlGzip": 98
+      },
+      "largestInitialChunks": [
+        {
+          "path": "/assets/entry.client--OrFFHNb.js",
+          "bytes": 183222,
+          "gzip": 58381,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/array.no-external-CgJ7MXwd.js",
+          "bytes": 170102,
+          "gzip": 53666,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/chunk-EVOBXE3Y-DpuJhuNZ.js",
+          "bytes": 127714,
+          "gzip": 42870,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/root-C33gE8a-.js",
+          "bytes": 91047,
+          "gzip": 38324,
+          "hasFullManifest": false
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "/practice",
+      "width": 390,
+      "w16": {
+        "jsBytes": 767049,
+        "jsGzip": 255487,
+        "htmlBytes": 178489,
+        "htmlGzip": 38906,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "w17": {
+        "jsBytes": 767049,
+        "jsGzip": 255487,
+        "htmlBytes": 178489,
+        "htmlGzip": 38905,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "w24": {
+        "jsBytes": 786740,
+        "jsGzip": 264489,
+        "htmlBytes": 183631,
+        "htmlGzip": 39852,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "deltaFromW17": {
+        "jsBytes": 19691,
+        "jsGzip": 9002,
+        "htmlBytes": 5142,
+        "htmlGzip": 947
+      },
+      "largestInitialChunks": [
+        {
+          "path": "/assets/entry.client--OrFFHNb.js",
+          "bytes": 183222,
+          "gzip": 58381,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/array.no-external-CgJ7MXwd.js",
+          "bytes": 170102,
+          "gzip": 53666,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/chunk-EVOBXE3Y-DpuJhuNZ.js",
+          "bytes": 127714,
+          "gzip": 42870,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/root-C33gE8a-.js",
+          "bytes": 91047,
+          "gzip": 38324,
+          "hasFullManifest": false
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "/learn-morse-code",
+      "width": 390,
+      "w16": {
+        "jsBytes": 786337,
+        "jsGzip": 257501,
+        "htmlBytes": 206253,
+        "htmlGzip": 42057,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "w17": {
+        "jsBytes": 786337,
+        "jsGzip": 257501,
+        "htmlBytes": 206253,
+        "htmlGzip": 42057,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "w24": {
+        "jsBytes": 795177,
+        "jsGzip": 261712,
+        "htmlBytes": 209786,
+        "htmlGzip": 42789,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "deltaFromW17": {
+        "jsBytes": 8840,
+        "jsGzip": 4211,
+        "htmlBytes": 3533,
+        "htmlGzip": 732
+      },
+      "largestInitialChunks": [
+        {
+          "path": "/assets/entry.client--OrFFHNb.js",
+          "bytes": 183222,
+          "gzip": 58381,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/array.no-external-CgJ7MXwd.js",
+          "bytes": 170102,
+          "gzip": 53666,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/chunk-EVOBXE3Y-DpuJhuNZ.js",
+          "bytes": 127714,
+          "gzip": 42870,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/root-C33gE8a-.js",
+          "bytes": 91047,
+          "gzip": 38324,
+          "hasFullManifest": false
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "/morse-code-audio-practice",
+      "width": 390,
+      "w16": {
+        "jsBytes": 805414,
+        "jsGzip": 270764,
+        "htmlBytes": 201092,
+        "htmlGzip": 41429,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "w17": {
+        "jsBytes": 805414,
+        "jsGzip": 270764,
+        "htmlBytes": 201092,
+        "htmlGzip": 41428,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "w24": {
+        "jsBytes": 829699,
+        "jsGzip": 280798,
+        "htmlBytes": 204711,
+        "htmlGzip": 42011,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "deltaFromW17": {
+        "jsBytes": 24285,
+        "jsGzip": 10034,
+        "htmlBytes": 3619,
+        "htmlGzip": 583
+      },
+      "largestInitialChunks": [
+        {
+          "path": "/assets/entry.client--OrFFHNb.js",
+          "bytes": 183222,
+          "gzip": 58381,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/array.no-external-CgJ7MXwd.js",
+          "bytes": 170102,
+          "gzip": 53666,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/chunk-EVOBXE3Y-DpuJhuNZ.js",
+          "bytes": 127714,
+          "gzip": 42870,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/root-C33gE8a-.js",
+          "bytes": 91047,
+          "gzip": 38324,
+          "hasFullManifest": false
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "/morse-code-books/alices-adventures-in-wonderland",
+      "width": 390,
+      "w16": {
+        "jsBytes": 1744901,
+        "jsGzip": 383289,
+        "htmlBytes": 397784,
+        "htmlGzip": 59669,
+        "serializedStreamBytes": 29141,
+        "loaderState": {
+          "bytes": 40584,
+          "relatedCount": 0
+        },
+        "previewBytes": 12110
+      },
+      "w17": {
+        "jsBytes": 928549,
+        "jsGzip": 305181,
+        "htmlBytes": 398298,
+        "htmlGzip": 59890,
+        "serializedStreamBytes": 29595,
+        "loaderState": {
+          "bytes": 40931,
+          "relatedCount": 1
+        },
+        "previewBytes": 12110
+      },
+      "w24": {
+        "jsBytes": 934608,
+        "jsGzip": 308037,
+        "htmlBytes": 398975,
+        "htmlGzip": 60016,
+        "serializedStreamBytes": 29595,
+        "loaderState": {
+          "bytes": 40931,
+          "relatedCount": 1
+        },
+        "previewBytes": 12110
+      },
+      "deltaFromW17": {
+        "jsBytes": 6059,
+        "jsGzip": 2856,
+        "htmlBytes": 677,
+        "htmlGzip": 126
+      },
+      "largestInitialChunks": [
+        {
+          "path": "/assets/entry.client--OrFFHNb.js",
+          "bytes": 183222,
+          "gzip": 58381,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/array.no-external-CgJ7MXwd.js",
+          "bytes": 170102,
+          "gzip": 53666,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/chunk-EVOBXE3Y-DpuJhuNZ.js",
+          "bytes": 127714,
+          "gzip": 42870,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/root-C33gE8a-.js",
+          "bytes": 91047,
+          "gzip": 38324,
+          "hasFullManifest": false
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "/morse-code-audiobooks/alices-adventures-in-wonderland",
+      "width": 390,
+      "w16": {
+        "jsBytes": 1745233,
+        "jsGzip": 383449,
+        "htmlBytes": 296207,
+        "htmlGzip": 54156,
+        "serializedStreamBytes": 29146,
+        "loaderState": {
+          "bytes": 40589,
+          "relatedCount": 0
+        },
+        "previewBytes": 12110
+      },
+      "w17": {
+        "jsBytes": 928916,
+        "jsGzip": 305362,
+        "htmlBytes": 296721,
+        "htmlGzip": 54384,
+        "serializedStreamBytes": 29600,
+        "loaderState": {
+          "bytes": 40936,
+          "relatedCount": 1
+        },
+        "previewBytes": 12110
+      },
+      "w24": {
+        "jsBytes": 934975,
+        "jsGzip": 308215,
+        "htmlBytes": 297382,
+        "htmlGzip": 54495,
+        "serializedStreamBytes": 29600,
+        "loaderState": {
+          "bytes": 40936,
+          "relatedCount": 1
+        },
+        "previewBytes": 12110
+      },
+      "deltaFromW17": {
+        "jsBytes": 6059,
+        "jsGzip": 2853,
+        "htmlBytes": 661,
+        "htmlGzip": 111
+      },
+      "largestInitialChunks": [
+        {
+          "path": "/assets/entry.client--OrFFHNb.js",
+          "bytes": 183222,
+          "gzip": 58381,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/array.no-external-CgJ7MXwd.js",
+          "bytes": 170102,
+          "gzip": 53666,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/chunk-EVOBXE3Y-DpuJhuNZ.js",
+          "bytes": 127714,
+          "gzip": 42870,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/root-C33gE8a-.js",
+          "bytes": 91047,
+          "gzip": 38324,
+          "hasFullManifest": false
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "w16": {
+        "jsBytes": 828196,
+        "jsGzip": 278551,
+        "htmlBytes": 223245,
+        "htmlGzip": 46231,
+        "serializedStreamBytes": 3095,
+        "loaderState": {
+          "bytes": 2776,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "w17": {
+        "jsBytes": 828196,
+        "jsGzip": 278551,
+        "htmlBytes": 223245,
+        "htmlGzip": 46231,
+        "serializedStreamBytes": 3095,
+        "loaderState": {
+          "bytes": 2776,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "w24": {
+        "jsBytes": 834255,
+        "jsGzip": 281423,
+        "htmlBytes": 223706,
+        "htmlGzip": 46328,
+        "serializedStreamBytes": 3095,
+        "loaderState": {
+          "bytes": 2776,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "deltaFromW17": {
+        "jsBytes": 6059,
+        "jsGzip": 2872,
+        "htmlBytes": 461,
+        "htmlGzip": 97
+      },
+      "largestInitialChunks": [
+        {
+          "path": "/assets/entry.client--OrFFHNb.js",
+          "bytes": 183222,
+          "gzip": 58381,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/array.no-external-CgJ7MXwd.js",
+          "bytes": 170102,
+          "gzip": 53666,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/chunk-EVOBXE3Y-DpuJhuNZ.js",
+          "bytes": 127714,
+          "gzip": 42870,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/root-C33gE8a-.js",
+          "bytes": 91047,
+          "gzip": 38324,
+          "hasFullManifest": false
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "/audio",
+      "width": 1440,
+      "w16": {
+        "jsBytes": 819651,
+        "jsGzip": 275901,
+        "htmlBytes": 207855,
+        "htmlGzip": 43112,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "w17": {
+        "jsBytes": 819651,
+        "jsGzip": 275901,
+        "htmlBytes": 207855,
+        "htmlGzip": 43111,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "w24": {
+        "jsBytes": 825717,
+        "jsGzip": 278766,
+        "htmlBytes": 208416,
+        "htmlGzip": 43209,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "deltaFromW17": {
+        "jsBytes": 6066,
+        "jsGzip": 2865,
+        "htmlBytes": 561,
+        "htmlGzip": 98
+      },
+      "largestInitialChunks": [
+        {
+          "path": "/assets/entry.client--OrFFHNb.js",
+          "bytes": 183222,
+          "gzip": 58381,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/array.no-external-CgJ7MXwd.js",
+          "bytes": 170102,
+          "gzip": 53666,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/chunk-EVOBXE3Y-DpuJhuNZ.js",
+          "bytes": 127714,
+          "gzip": 42870,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/root-C33gE8a-.js",
+          "bytes": 91047,
+          "gzip": 38324,
+          "hasFullManifest": false
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "/practice",
+      "width": 1440,
+      "w16": {
+        "jsBytes": 767049,
+        "jsGzip": 255487,
+        "htmlBytes": 178489,
+        "htmlGzip": 38906,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "w17": {
+        "jsBytes": 767049,
+        "jsGzip": 255487,
+        "htmlBytes": 178489,
+        "htmlGzip": 38905,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "w24": {
+        "jsBytes": 786740,
+        "jsGzip": 264489,
+        "htmlBytes": 183631,
+        "htmlGzip": 39852,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "deltaFromW17": {
+        "jsBytes": 19691,
+        "jsGzip": 9002,
+        "htmlBytes": 5142,
+        "htmlGzip": 947
+      },
+      "largestInitialChunks": [
+        {
+          "path": "/assets/entry.client--OrFFHNb.js",
+          "bytes": 183222,
+          "gzip": 58381,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/array.no-external-CgJ7MXwd.js",
+          "bytes": 170102,
+          "gzip": 53666,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/chunk-EVOBXE3Y-DpuJhuNZ.js",
+          "bytes": 127714,
+          "gzip": 42870,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/root-C33gE8a-.js",
+          "bytes": 91047,
+          "gzip": 38324,
+          "hasFullManifest": false
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "/learn-morse-code",
+      "width": 1440,
+      "w16": {
+        "jsBytes": 786337,
+        "jsGzip": 257501,
+        "htmlBytes": 206253,
+        "htmlGzip": 42057,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "w17": {
+        "jsBytes": 786337,
+        "jsGzip": 257501,
+        "htmlBytes": 206253,
+        "htmlGzip": 42057,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "w24": {
+        "jsBytes": 795177,
+        "jsGzip": 261712,
+        "htmlBytes": 209786,
+        "htmlGzip": 42789,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "deltaFromW17": {
+        "jsBytes": 8840,
+        "jsGzip": 4211,
+        "htmlBytes": 3533,
+        "htmlGzip": 732
+      },
+      "largestInitialChunks": [
+        {
+          "path": "/assets/entry.client--OrFFHNb.js",
+          "bytes": 183222,
+          "gzip": 58381,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/array.no-external-CgJ7MXwd.js",
+          "bytes": 170102,
+          "gzip": 53666,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/chunk-EVOBXE3Y-DpuJhuNZ.js",
+          "bytes": 127714,
+          "gzip": 42870,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/root-C33gE8a-.js",
+          "bytes": 91047,
+          "gzip": 38324,
+          "hasFullManifest": false
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "/morse-code-audio-practice",
+      "width": 1440,
+      "w16": {
+        "jsBytes": 805414,
+        "jsGzip": 270764,
+        "htmlBytes": 201092,
+        "htmlGzip": 41429,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "w17": {
+        "jsBytes": 805414,
+        "jsGzip": 270764,
+        "htmlBytes": 201092,
+        "htmlGzip": 41428,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "w24": {
+        "jsBytes": 829699,
+        "jsGzip": 280798,
+        "htmlBytes": 204711,
+        "htmlGzip": 42011,
+        "serializedStreamBytes": 183,
+        "loaderState": {
+          "bytes": 26,
+          "relatedCount": 0
+        },
+        "previewBytes": 0
+      },
+      "deltaFromW17": {
+        "jsBytes": 24285,
+        "jsGzip": 10034,
+        "htmlBytes": 3619,
+        "htmlGzip": 583
+      },
+      "largestInitialChunks": [
+        {
+          "path": "/assets/entry.client--OrFFHNb.js",
+          "bytes": 183222,
+          "gzip": 58381,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/array.no-external-CgJ7MXwd.js",
+          "bytes": 170102,
+          "gzip": 53666,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/chunk-EVOBXE3Y-DpuJhuNZ.js",
+          "bytes": 127714,
+          "gzip": 42870,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/root-C33gE8a-.js",
+          "bytes": 91047,
+          "gzip": 38324,
+          "hasFullManifest": false
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "/morse-code-books/alices-adventures-in-wonderland",
+      "width": 1440,
+      "w16": {
+        "jsBytes": 1744901,
+        "jsGzip": 383289,
+        "htmlBytes": 397784,
+        "htmlGzip": 59669,
+        "serializedStreamBytes": 29141,
+        "loaderState": {
+          "bytes": 40584,
+          "relatedCount": 0
+        },
+        "previewBytes": 12110
+      },
+      "w17": {
+        "jsBytes": 928549,
+        "jsGzip": 305181,
+        "htmlBytes": 398298,
+        "htmlGzip": 59890,
+        "serializedStreamBytes": 29595,
+        "loaderState": {
+          "bytes": 40931,
+          "relatedCount": 1
+        },
+        "previewBytes": 12110
+      },
+      "w24": {
+        "jsBytes": 934608,
+        "jsGzip": 308037,
+        "htmlBytes": 398975,
+        "htmlGzip": 60016,
+        "serializedStreamBytes": 29595,
+        "loaderState": {
+          "bytes": 40931,
+          "relatedCount": 1
+        },
+        "previewBytes": 12110
+      },
+      "deltaFromW17": {
+        "jsBytes": 6059,
+        "jsGzip": 2856,
+        "htmlBytes": 677,
+        "htmlGzip": 126
+      },
+      "largestInitialChunks": [
+        {
+          "path": "/assets/entry.client--OrFFHNb.js",
+          "bytes": 183222,
+          "gzip": 58381,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/array.no-external-CgJ7MXwd.js",
+          "bytes": 170102,
+          "gzip": 53666,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/chunk-EVOBXE3Y-DpuJhuNZ.js",
+          "bytes": 127714,
+          "gzip": 42870,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/root-C33gE8a-.js",
+          "bytes": 91047,
+          "gzip": 38324,
+          "hasFullManifest": false
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "/morse-code-audiobooks/alices-adventures-in-wonderland",
+      "width": 1440,
+      "w16": {
+        "jsBytes": 1745233,
+        "jsGzip": 383449,
+        "htmlBytes": 296207,
+        "htmlGzip": 54156,
+        "serializedStreamBytes": 29146,
+        "loaderState": {
+          "bytes": 40589,
+          "relatedCount": 0
+        },
+        "previewBytes": 12110
+      },
+      "w17": {
+        "jsBytes": 928916,
+        "jsGzip": 305362,
+        "htmlBytes": 296721,
+        "htmlGzip": 54384,
+        "serializedStreamBytes": 29600,
+        "loaderState": {
+          "bytes": 40936,
+          "relatedCount": 1
+        },
+        "previewBytes": 12110
+      },
+      "w24": {
+        "jsBytes": 934975,
+        "jsGzip": 308215,
+        "htmlBytes": 297382,
+        "htmlGzip": 54495,
+        "serializedStreamBytes": 29600,
+        "loaderState": {
+          "bytes": 40936,
+          "relatedCount": 1
+        },
+        "previewBytes": 12110
+      },
+      "deltaFromW17": {
+        "jsBytes": 6059,
+        "jsGzip": 2853,
+        "htmlBytes": 661,
+        "htmlGzip": 111
+      },
+      "largestInitialChunks": [
+        {
+          "path": "/assets/entry.client--OrFFHNb.js",
+          "bytes": 183222,
+          "gzip": 58381,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/array.no-external-CgJ7MXwd.js",
+          "bytes": 170102,
+          "gzip": 53666,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/chunk-EVOBXE3Y-DpuJhuNZ.js",
+          "bytes": 127714,
+          "gzip": 42870,
+          "hasFullManifest": false
+        },
+        {
+          "path": "/assets/root-C33gE8a-.js",
+          "bytes": 91047,
+          "gzip": 38324,
+          "hasFullManifest": false
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "libraryObservations": [
+    {
+      "route": "/morse-code-books/alices-adventures-in-wonderland",
+      "width": 390,
+      "status": 200,
+      "readyMs": 1681.1,
+      "fullPayloadFetches": 1,
+      "loaderState": {
+        "bytes": 40931,
+        "relatedCount": 1
+      },
+      "errors": []
+    },
+    {
+      "route": "/morse-code-books/the-time-machine",
+      "width": 390,
+      "status": 200,
+      "readyMs": 2194.7,
+      "fullPayloadFetches": 1,
+      "loaderState": {
+        "bytes": 37533,
+        "relatedCount": 4
+      },
+      "errors": []
+    },
+    {
+      "route": "/morse-code-books/the-old-man-and-his-grandson",
+      "width": 390,
+      "status": 200,
+      "readyMs": 1148.5,
+      "fullPayloadFetches": 1,
+      "loaderState": {
+        "bytes": 10560,
+        "relatedCount": 4
+      },
+      "errors": []
+    },
+    {
+      "route": "/morse-code-books/the-count-of-monte-cristo-gutenberg-1184",
+      "width": 390,
+      "status": 200,
+      "readyMs": 19853.7,
+      "fullPayloadFetches": 1,
+      "loaderState": {
+        "bytes": 40960,
+        "relatedCount": 1
+      },
+      "errors": []
+    },
+    {
+      "route": "/morse-code-books/a-scandal-in-bohemia",
+      "width": 390,
+      "status": 200,
+      "readyMs": 1454.4,
+      "fullPayloadFetches": 1,
+      "loaderState": {
+        "bytes": 10983,
+        "relatedCount": 4
+      },
+      "errors": []
+    },
+    {
+      "route": "/morse-code-books/a-christmas-carol",
+      "width": 390,
+      "status": 200,
+      "readyMs": 1948.9,
+      "fullPayloadFetches": 1,
+      "loaderState": {
+        "bytes": 39339,
+        "relatedCount": 3
+      },
+      "errors": []
+    },
+    {
+      "route": "/morse-code-books/the-secret-garden",
+      "width": 390,
+      "status": 200,
+      "readyMs": 1652.4,
+      "fullPayloadFetches": 1,
+      "loaderState": {
+        "bytes": 36350,
+        "relatedCount": 1
+      },
+      "errors": []
+    },
+    {
+      "route": "/morse-code-books/anne-of-green-gables",
+      "width": 390,
+      "status": 200,
+      "readyMs": 1552.3,
+      "fullPayloadFetches": 1,
+      "loaderState": {
+        "bytes": 36858,
+        "relatedCount": 3
+      },
+      "errors": []
+    },
+    {
+      "route": "/morse-code-books/grimm-s-fairy-tales",
+      "width": 390,
+      "status": 200,
+      "readyMs": 1535.2,
+      "fullPayloadFetches": 1,
+      "loaderState": {
+        "bytes": 37154,
+        "relatedCount": 0
+      },
+      "errors": []
+    },
+    {
+      "route": "/morse-code-audiobooks/alices-adventures-in-wonderland",
+      "width": 390,
+      "status": 200,
+      "readyMs": 1456.7,
+      "fullPayloadFetches": 1,
+      "loaderState": {
+        "bytes": 40936,
+        "relatedCount": 1
+      },
+      "errors": []
+    },
+    {
+      "route": "/morse-code-books/alices-adventures-in-wonderland",
+      "width": 1440,
+      "status": 200,
+      "readyMs": 2991.8,
+      "fullPayloadFetches": 1,
+      "loaderState": {
+        "bytes": 40931,
+        "relatedCount": 1
+      },
+      "errors": []
+    },
+    {
+      "route": "/morse-code-books/the-time-machine",
+      "width": 1440,
+      "status": 200,
+      "readyMs": 3625.2,
+      "fullPayloadFetches": 1,
+      "loaderState": {
+        "bytes": 37533,
+        "relatedCount": 4
+      },
+      "errors": []
+    },
+    {
+      "route": "/morse-code-books/the-old-man-and-his-grandson",
+      "width": 1440,
+      "status": 200,
+      "readyMs": 1097.7,
+      "fullPayloadFetches": 1,
+      "loaderState": {
+        "bytes": 10560,
+        "relatedCount": 4
+      },
+      "errors": []
+    },
+    {
+      "route": "/morse-code-books/the-count-of-monte-cristo-gutenberg-1184",
+      "width": 1440,
+      "status": 200,
+      "readyMs": 1844.4,
+      "fullPayloadFetches": 1,
+      "loaderState": {
+        "bytes": 40960,
+        "relatedCount": 1
+      },
+      "errors": []
+    },
+    {
+      "route": "/morse-code-books/a-scandal-in-bohemia",
+      "width": 1440,
+      "status": 200,
+      "readyMs": 1587.0,
+      "fullPayloadFetches": 1,
+      "loaderState": {
+        "bytes": 10983,
+        "relatedCount": 4
+      },
+      "errors": []
+    },
+    {
+      "route": "/morse-code-books/a-christmas-carol",
+      "width": 1440,
+      "status": 200,
+      "readyMs": 1843.5,
+      "fullPayloadFetches": 1,
+      "loaderState": {
+        "bytes": 39339,
+        "relatedCount": 3
+      },
+      "errors": []
+    },
+    {
+      "route": "/morse-code-books/the-secret-garden",
+      "width": 1440,
+      "status": 200,
+      "readyMs": 2018.7,
+      "fullPayloadFetches": 1,
+      "loaderState": {
+        "bytes": 36350,
+        "relatedCount": 1
+      },
+      "errors": []
+    },
+    {
+      "route": "/morse-code-books/anne-of-green-gables",
+      "width": 1440,
+      "status": 200,
+      "readyMs": 1600.0,
+      "fullPayloadFetches": 1,
+      "loaderState": {
+        "bytes": 36858,
+        "relatedCount": 3
+      },
+      "errors": []
+    },
+    {
+      "route": "/morse-code-books/grimm-s-fairy-tales",
+      "width": 1440,
+      "status": 200,
+      "readyMs": 1443.5,
+      "fullPayloadFetches": 1,
+      "loaderState": {
+        "bytes": 37154,
+        "relatedCount": 0
+      },
+      "errors": []
+    },
+    {
+      "route": "/morse-code-audiobooks/alices-adventures-in-wonderland",
+      "width": 1440,
+      "status": 200,
+      "readyMs": 1283.7,
+      "fullPayloadFetches": 1,
+      "loaderState": {
+        "bytes": 40936,
+        "relatedCount": 1
+      },
+      "errors": []
+    }
+  ],
+  "ssr": "All 524 accepted detail routes retain metadata, schema, source, rights, suitability and bounded related context. No substantive content moved behind client-only rendering.",
+  "initialDetailHasFullCatalog": false,
+  "analysis": "W18-W24 add 6,059-24,285 raw / 2,853-10,034 gzip JS bytes on key routes relative to W17. Shared learning storage registration and dialog/chunk dependencies account for small cross-route growth; exercise-specific learning behavior adds bounded route code. Portability and review interfaces remain lazy. W17 catalog isolation is retained, with about 810 KB raw / 75 KB gzip less library JS than W16. Largest remaining shared chunks are React, UI/animation dependencies and router code; this is a future measured optimization opportunity, not a deferred regression.",
+  "limitations": [
+    "Lab transfer sizes, not field Core Web Vitals, INP or LCP. Gzip is computed over observed local responses, not CDN wire headers.",
+    "Timing has a fixed 250ms local asset delay and concurrent host test activity; do not treat readyMs as a production speed promise.",
+    "Third-party requests are blocked; ads separately tested with blocked/unfilled/simulated-filled states.",
+    "The historic Count of Monte Cristo Gutenberg slug redirects to its canonical retained title; metadata and full-content readiness were checked after redirect.",
+    "Final documentation/test-only amendments do not alter the measured application bundle."
+  ],
+  "functionPackage": {
+    "bytes": 3291907,
+    "entries": 224,
+    "uncompressedBytes": 12844060,
+    "seoSummaries": [
+      "morsewords-2027-tranche-c/app/client/assets/books/seo-summaries/book-seo-summaries.json"
+    ],
+    "fullBookPayloads": [],
+    "chartImages": [],
+    "auditReports": []
+  }
+}

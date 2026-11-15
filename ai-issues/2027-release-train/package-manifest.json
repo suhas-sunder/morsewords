@@ -1105,7 +1105,9 @@
       "implementationCommits": [
         "dcd07dfd62ec6ed9539f523afc02b73b0fb30bc3"
       ],
-      "documentationCommits": [],
+      "documentationCommits": [
+        "3c6c4ca8e6759cab27f525b27add103734a83c8a"
+      ],
       "reviewBranch": "release/2027-W23-non-flash-practice",
       "draftPr": "https://github.com/suhas-sunder/morsewords/pull/26",
       "commonGates": [
@@ -1133,7 +1135,9 @@
     {
       "packageId": "W24",
       "theme": "Learner data portability and learning integration review",
-      "amendmentCommits": [],
+      "amendmentCommits": [
+        "707f872445e1d66153a29a5c04cf0f6e710fd44b"
+      ],
       "dependencies": [
         "W17",
         "W20",
@@ -1151,13 +1155,15 @@
       "classification": "USER-FACING",
       "userFacing": true,
       "standaloneProductionEligible": true,
-      "status": "PROPOSED",
+      "status": "VALIDATED",
       "acceptance": "Invalid/oversized import rejected, preview before overwrite, backup/reversible import, no network upload. Full W18-W23 journey regression; compact performance evidence; no unsupported learning claims.",
       "rollback": "Revert applied package and amendments against current main after dependent work, preserving user data; fresh preview, gates and owner decision required. No old-deploy restore.",
-      "implementationCommits": [],
+      "implementationCommits": [
+        "8a859fd39fd4ad2c5ad676a5a0a2ea62262c2eb0"
+      ],
       "documentationCommits": [],
-      "reviewBranch": null,
-      "draftPr": null,
+      "reviewBranch": "release/2027-W24-learning-portability-review",
+      "draftPr": "https://github.com/suhas-sunder/morsewords/pull/27",
       "commonGates": [
         "npm run typecheck",
         "npm test",
@@ -1172,8 +1178,17 @@
         "npm run books:navigation-index:check",
         "npm run test:release-integrity"
       ],
-      "packageSpecificGates": [],
-      "evidence": []
+      "packageSpecificGates": [
+        "npx playwright test --config=playwright.review.config.ts tests/qa-robustness-review/learning-portability.spec.ts tests/qa-robustness-review/learning-start.spec.ts tests/qa-robustness-review/answer-feedback.spec.ts tests/qa-robustness-review/learning-review.spec.ts tests/qa-robustness-review/session-completion.spec.ts tests/qa-robustness-review/sound-first-path.spec.ts tests/qa-robustness-review/non-flash-practice.spec.ts",
+        "npm run release:check-library-payload",
+        "npm run release:check-library-details"
+      ],
+      "evidence": [
+        "ai-issues/2027-release-train/W24.md",
+        "ai-issues/2027-release-train/TRANCHE-C-FINAL-REVIEW.md",
+        "ai-issues/2027-release-train/evidence/w24-performance.json",
+        "ai-issues/2027-release-train/evidence/w24-release-checks.json"
+      ]
     },
     {
       "packageId": "W25",
@@ -2360,7 +2375,10 @@
     "ccfc3bfa52223e6e49244f979c02f47da08f269f",
     "cfaffdf5161b83cdcb912b31cafe1ccb383ff34a",
     "f7d19989f8023f831d05643536dabd43740a2a1b",
-    "dcd07dfd62ec6ed9539f523afc02b73b0fb30bc3"
+    "dcd07dfd62ec6ed9539f523afc02b73b0fb30bc3",
+    "3c6c4ca8e6759cab27f525b27add103734a83c8a",
+    "8a859fd39fd4ad2c5ad676a5a0a2ea62262c2eb0",
+    "707f872445e1d66153a29a5c04cf0f6e710fd44b"
   ],
   "persistentGates": [
     {
